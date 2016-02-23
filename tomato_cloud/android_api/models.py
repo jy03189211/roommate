@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+class MotionSensorModel(models.Model):
+	room_name = models.CharField(max_length=100)
+	timestamp = models.DateTimeField()
+	is_empty = models.BooleanField()

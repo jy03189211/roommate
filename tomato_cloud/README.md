@@ -1,11 +1,30 @@
 # Cloud REST API
 
-## Setup
+## Installation
 
-- Python 2.7.*
-- Django 1.5
-- ( Django REST framework (v3) )
+- Python `2.7.*`
+- Django `1.5.12`
+- Django REST framework `3.2.3`
 - `https://console.cloud.google.com/home/dashboard?project=tomato-1230`
+
+```sh
+pip install django==1.5.12
+pip install djangorestframework==3.2.3
+```
+
+If the environment is not working, then try
+
+```sh
+pip install markdown
+pip install django-filter
+```
+
+## Running
+
+```sh
+python manage.py syncdb
+python manage.py runserver
+```
 
 ## Structure
 

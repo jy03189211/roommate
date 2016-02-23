@@ -1,0 +1,13 @@
+application: tomato-1230
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: .*
+  script: tomato_cloud.wsgi.application
+
+libraries:
+- name: django
+  version: 1.5

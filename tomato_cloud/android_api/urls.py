@@ -4,7 +4,7 @@ from rest_framework import routers
 import views
 
 router = routers.DefaultRouter()
-router.register(r'sensor/motion', views.MotionSensorView)
+router.register(r'sensors/motion', views.MotionSensorView)
 
 urlpatterns = patterns('',
 	url(r'^', include(router.urls)),

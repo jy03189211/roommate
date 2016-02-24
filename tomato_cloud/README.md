@@ -2,24 +2,19 @@
 
 ## Installation
 
-- Python `2.7.*`
+- Python `2.7.6`
 - Django `1.5.12`
 - Django REST framework `3.2.3`
-- `https://console.cloud.google.com/home/dashboard?project=tomato-1230`
+- Heroku
 
 ```sh
-pip install django==1.5.12
-pip install djangorestframework==3.2.3
+pip install virtualenv
+virtualenv tomato-cloud
+source tomato-cloud/bin/activate
+pip install -r requirements.txt
 ```
 
-If the environment is not working, then try
-
-```sh
-pip install markdown
-pip install django-filter
-```
-
-## Running
+## Local
 
 ```sh
 python manage.py syncdb
@@ -28,8 +23,9 @@ python manage.py runserver
 
 ## Structure
 
-The Django project `tomato_cloud` consists of two API apps, `android_api` and `arduino_api`. These apps share a common root path `/api/v1`. The root of `android_api` is `/api/v1/android` and the root of `/api/v1/arduino`.
+The Django project `tomato_cloud` consists of two API apps, `android_api` and `arduino_api`. These apps share a common root path `/api/v1`. The root of `android_api` is `/api/v1/android` and the root of `arduino_api` is `/api/v1/arduino`.
 
-## Remote
+## Heroku
 
-`tomato-1230.appspot.com/api/v1/{android,arduino}`
+`http://secret-castle-29325.herokuapp.com/api/v1/{android,arduino}`
+

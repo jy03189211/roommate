@@ -1,1 +1,1 @@
-web: gunicorn tomato_cloud.wsgi
+web: gunicorn tomato_cloud.wsgi --log-file -

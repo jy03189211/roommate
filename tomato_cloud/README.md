@@ -31,5 +31,5 @@ The Django project `tomato_cloud` consists of two API apps, `android_api` and `a
 git subtree push--prefix tomato_cloud heroku master
 ```
 
-`http://secret-castle-29325.herokuapp.com/api/v1/{android,arduino}`
+`http://tomato-1230.herokuapp.com/api/v1/{android,arduino}`
 

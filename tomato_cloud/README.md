@@ -33,3 +33,15 @@ git subtree push--prefix tomato_cloud heroku master
 
 `http://tomato-1230.herokuapp.com/api/v1/{android,arduino}`
 
+## Arduino RESTful API (/api/v1/arduino/) 
+At the moment there are no limitations in the methods that can be used with the REST API. Only POST and GET are tested.
+
+### Motion (/api/v1/arduino/motion/) 
+With POST you need to provide two mandatory fields which are "room" and "motion\_detected". "room" is string with max length of 100 characters and "motion\_detected" is boolean.
+
+### Temperature and Humidity (/api/v1/temperaturehumidity/) 
+With POST you need to provide three mandatory fields which are "room", "temperature" and "humidity". "room" is string with max length of 100 characters. "temperature" and "humidity" are both floats.
+
+### CO2 (/api/v1/co2/)
+With POST you need to provide two mandatory fields which are "room" and "concentration". "room" is string with max length of 100 characters and "concentration" is integer.
+

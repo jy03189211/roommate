@@ -5,16 +5,16 @@ class MotionSerializer(serializers.HyperlinkedModelSerializer):
   time = serializers.DateTimeField(required=False)
   class Meta:
     model = models.MotionSensor
-    fields = ('room_name', 'time', 'motion_detected')
+    fields = ('room', 'time', 'motion_detected')
 
 class TemperatureHumiditySerializer(serializers.HyperlinkedModelSerializer):
   time = serializers.DateTimeField(required=False)
   class Meta:
     model = models.TemperatureHumiditySensor
-    fields = ('room_name', 'time', 'temperature', 'humidity')
+    fields = ('room', 'time', 'temperature', 'humidity')
 
 class CO2Serializer(serializers.HyperlinkedModelSerializer):
   time = serializers.DateTimeField(required=False)
   class Meta:
     model = models.CO2Sensor
-    fields = ('room_name', 'time', 'concentration')
+    fields = ('room', 'time', 'concentration')

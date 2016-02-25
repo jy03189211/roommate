@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'tomato_cloud.views.home', name='home'),
     # url(r'^tomato_cloud/', include('tomato_cloud.foo.urls')),
@@ -16,4 +16,4 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/android/', include('android_api.urls')),
 	url(r'^api/v1/arduino/', include('arduino_api.urls')),
-)
+]

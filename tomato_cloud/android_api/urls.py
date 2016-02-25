@@ -6,7 +6,7 @@ import views
 router = routers.DefaultRouter()
 router.register(r'sensors/motion', views.MotionSensorView)
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^', include(router.urls)),
 	url(r'^$', views.index, name='index')
-)
+]

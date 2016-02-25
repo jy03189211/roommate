@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url, include
 from rest_framework import routers
 from . import views
 
@@ -7,6 +7,7 @@ router.register(r'motion', views.MotionSensorView)
 router.register(r'temperaturehumidity', views.TemperatureHumiditySensorView)
 router.register(r'co2', views.CO2SensorView)
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^', include(router.urls)),
-	url(r'^$', views.index, name='index'))
+	url(r'^$', views.index, name='index')
+]

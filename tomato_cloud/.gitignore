@@ -67,5 +67,3 @@ target/
 
 # pyenv
 .python-version
-
-*.sqlite3

@@ -9,5 +9,4 @@ router.register(r'co2', views.CO2SensorView)
 
 urlpatterns = [
 	url(r'^', include(router.urls)),
-	url(r'^$', views.index, name='index')
 ]

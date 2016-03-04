@@ -14,6 +14,5 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/v1/android/', include('android_api.urls')),
-	url(r'^api/v1/arduino/', include('arduino_api.urls')),
+    url(r'^api/v1/', include('cloud_api.urls')),
 ]

@@ -67,6 +67,24 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    private boolean getOccupation(String url) {
+        Request req = new Request.Builder()
+                .url(url + "motion")
+                .build();
+        try {
+            Response resp = client.newCall(req).execute();
+            final String jsonString = resp.body().string();
+            JSONArray json = new JSONArray(jsonString);
+            JSONObject measurement = (JSONObject) json.get(0);
+
+            return measurement.getBoolean("detected");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private void fetchRooms() throws IOException {
         Request req = new Request.Builder()
                 .url(this.getResources().getString(R.string.rooms_url))
@@ -109,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             if (room != null) {
                                 RoomModel thisRoom = new RoomModel();
                                 thisRoom.setRoomName(room.getString("name"));
-                                thisRoom.setOccupation(false); // for now TODO: proper occupation
+                                thisRoom.setOccupation(getOccupation(room.getString("url"))); // for now TODO: proper occupation
                                 thisRoom.setOrganization(room.getString("organization"));
                                 thisRoom.setLocation(room.getString("location"));
                                 thisRoom.setSize(room.getInt("size"));

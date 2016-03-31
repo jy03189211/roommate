@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Tomato</string>
+    <string name="rooms_url">http://tomato-1230.herokuapp.com/api/v1/rooms/</string>
+    <string name="room_availability_header">%1$s: %2$s</string>
+    <string name="failed_to_download">Could not get room data</string>
 </resources>

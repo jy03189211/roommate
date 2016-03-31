@@ -3,6 +3,7 @@ package fi.aalto_iot.tomato;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,6 +22,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     // TODO: Create nice class for rooms (or use Realm or something similar)
     private List<RoomModel> roomList = new ArrayList<>();
+    private String myTag = "RoomAdapter";
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public CardView mCardView;
@@ -65,14 +67,23 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final RoomModel room = roomList.get(position);
+        Resources res = holder.cont.getResources();
 
-        holder.mTextView.setText("Occupation: " + room.getOccupation());
+        final String roomName = room.getRoomName();
+        final String occupationName = room.getOccupation() ? "Occupied" : "Free";
+
+        //holder.mTextView.setText(roomName + ": " + occupationName);
+        holder.mTextView.setText(
+                String.format(
+                        res.getString(R.string.room_availability_header), roomName, occupationName
+                )
+        );
 
     }
 
     public void add(RoomModel job) {
         roomList.add(job);
-        Log.d("tag", "added");
+        Log.d(myTag, "added room to adapter");
     }
 
     public void clear() {

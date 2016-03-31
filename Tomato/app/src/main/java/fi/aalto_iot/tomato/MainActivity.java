@@ -1,11 +1,14 @@
 package fi.aalto_iot.tomato;
 
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Adapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,25 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
 
+    private String myTag = "mainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         realm = Realm.getDefaultInstance();
-/*
-        // Just for testing, remove for actual app
-        ArrayList<String> myDataset = new ArrayList<String>();
-
-        for (int i = 0; i < 10000; i++) {
-            myDataset.add("Number " + Integer.toString(i));
-        }
-        ////////////////
-*/
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //mAdapter = new RoomAdapter(myDataset.toArray(new String[myDataset.size()]));
         mAdapter = new RoomAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
@@ -75,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchRooms() throws IOException {
-        // TODO: proper url for rooms
         Request req = new Request.Builder()
-                .url("http://tomato-1230.herokuapp.com/api/v1/motion/")
+                .url(this.getResources().getString(R.string.rooms_url))
                 .build();
         client.newCall(req).enqueue(new Callback() {
             @Override
@@ -87,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         swipeContainer.setRefreshing(false);
+                        Context context = getApplicationContext();
+                        CharSequence text = getResources().getString(R.string.failed_to_download);
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
                     }
                 });
             }
@@ -105,15 +105,25 @@ public class MainActivity extends AppCompatActivity {
                 if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
-                    RoomModel tomato = new RoomModel();
-                    if (json.length() > 0) {
-                        tomato.setOccupation(true);
+                    try {
+                        for (int i = 0; i < json.length(); i++) {
+                            JSONObject room = (JSONObject) json.get(i);
+                            if (room != null) {
+                                RoomModel thisRoom = new RoomModel();
+                                thisRoom.setRoomName(room.getString("name"));
+                                thisRoom.setOccupation(false); // for now TODO: proper occupation
+                                thisRoom.setOrganization(room.getString("organization"));
+                                thisRoom.setLocation(room.getString("location"));
+                                thisRoom.setSize(room.getInt("size"));
+
+                                realm.copyToRealmOrUpdate(thisRoom);
+
+                            }
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    else {
-                        tomato.setOccupation(false);
-                    }
-                    tomato.setRoomName("Tomato");
-                    realm.copyToRealmOrUpdate(tomato);
                     realm.commitTransaction();
                     realm.close();
                 }

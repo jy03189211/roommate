@@ -3,7 +3,7 @@
 ## Installation
 
 - Python `2.7.6`
-- Django `1.5.12`
+- Django `1.9.2`
 - Django REST framework `3.3.2`
 - Heroku
 

@@ -1,4 +1,4 @@
-package fi.aalto_iot.tomato;
+package fi.aalto_iot.tomato.activity;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -6,16 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-import fi.aalto_iot.tomato.db.models.RoomModel;
+import fi.aalto_iot.tomato.R;
+import fi.aalto_iot.tomato.activity.main.RoomAdapter;
+import fi.aalto_iot.tomato.db.data.RoomModel;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.internal.IOException;

@@ -1,7 +1,9 @@
-package fi.aalto_iot.tomato;
+package fi.aalto_iot.tomato.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import fi.aalto_iot.tomato.R;
 
 public class RoomActivity extends AppCompatActivity {
 

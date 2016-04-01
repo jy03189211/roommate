@@ -1,23 +1,6 @@
 from rest_framework import serializers as s
 import models
-
-# class MotionSerializer(serializers.HyperlinkedModelSerializer):
-#   time = serializers.DateTimeField(required=False)
-#   class Meta:
-#     model = models.MotionSensor
-#     fields = ('room', 'time', 'motion_detected')
-
-# class TemperatureHumiditySerializer(serializers.HyperlinkedModelSerializer):
-#   time = serializers.DateTimeField(required=False)
-#   class Meta:
-#     model = models.TemperatureHumiditySensor
-#     fields = ('room', 'time', 'temperature', 'humidity')
-
-# class CO2Serializer(serializers.HyperlinkedModelSerializer):
-#   time = serializers.DateTimeField(required=False)
-#   class Meta:
-#     model = models.CO2Sensor
-#     fields = ('room', 'time', 'concentration')
+import algorithms as alg
 
 class RoomSerializer(s.HyperlinkedModelSerializer):
   class Meta:
@@ -27,18 +10,32 @@ class SensorSerializer(s.HyperlinkedModelSerializer):
   class Meta:
     model = models.Sensor
 
+class MetaSensorSerializer(s.HyperlinkedModelSerializer):
+  class Meta:
+    model = models.Sensor
+    
+  def create(self, validated_data):
+    sensor = validated_data.get('sensor')
+    room = models.Room.objects.get(sensor=sensor)
+    alg.update_room_status(room, sensor, validated_data)    
+
+    return self.Meta.model.objects.create(**validated_data)
+
 class CO2Serializer(s.HyperlinkedModelSerializer):
   class Meta:
     model = models.CO2Measurement
 
-class MotionSerializer(s.HyperlinkedModelSerializer):
-  class Meta:
-    model = models.MotionMeasurement
+class MotionSerializer(MetaSensorSerializer):
+  def __init__(self, *args, **kwargs):
+    super(MotionSerializer, self).__init__(*args, **kwargs)
+    self.Meta.model = models.MotionMeasurement
 
-class TemperatureSerializer(s.HyperlinkedModelSerializer):
-  class Meta:
-    model = models.TemperatureMeasurement
+class TemperatureSerializer(MetaSensorSerializer):
+  def __init__(self, *args, **kwargs):
+    super(TemperatureSerializer, self).__init__(*args, **kwargs)
+    self.Meta.model = models.TemperatureMeasurement
 
-class HumiditySerializer(s.HyperlinkedModelSerializer):
-  class Meta:
-    model = models.HumidityMeasurement
+class HumiditySerializer(MetaSensorSerializer):
+  def __init__(self, *args, **kwargs):
+    super(HumiditySerializer, self).__init__(*args, **kwargs)
+    self.Meta.model = models.HumidityMeasurement

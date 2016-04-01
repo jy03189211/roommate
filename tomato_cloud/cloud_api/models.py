@@ -1,26 +1,11 @@
 from django.db import models
 
-# class MotionSensor(models.Model):
-#   room = models.CharField(max_length=100)
-#   time = models.DateTimeField()
-#   motion_detected = models.BooleanField()
-
-# class TemperatureHumiditySensor(models.Model):
-#   room = models.CharField(max_length=100)
-#   time = models.DateTimeField()
-#   temperature = models.FloatField()
-#   humidity = models.FloatField()
-
-# class CO2Sensor(models.Model):
-#   room = models.CharField(max_length=100)
-#   time = models.DateTimeField()
-#   concentration = models.IntegerField()
-
 class Room(models.Model):
   name = models.CharField(max_length=30)
   organization = models.CharField(max_length=30)
   location = models.CharField(max_length=30)
   size = models.IntegerField()
+  available = models.BooleanField(default=False)
 
   def __str__(self):
     return self.name

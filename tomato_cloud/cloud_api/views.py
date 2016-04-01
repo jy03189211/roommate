@@ -7,30 +7,6 @@ from rest_framework import filters
 
 import models, serializers
 
-
-# class MotionSensorView(viewsets.ModelViewSet):
-#   queryset = models.MotionSensor.objects.all()
-#   serializer_class = serializers.MotionSerializer
-
-#   def perform_create(self, serializer):
-#     serializer.save(time=timezone.now())
-
-
-# class TemperatureHumiditySensorView(viewsets.ModelViewSet):
-#   queryset = models.TemperatureHumiditySensor.objects.all()
-#   serializer_class = serializers.TemperatureHumiditySerializer
-
-#   def perform_create(self, serializer):
-#     serializer.save(time=timezone.now())
-
-
-# class CO2SensorView(viewsets.ModelViewSet):
-#   queryset = models.CO2Sensor.objects.all()
-#   serializer_class = serializers.CO2Serializer
-
-#   def perform_create(self, serializer):
-#     serializer.save(time=timezone.now())
-
 class RoomView(viewsets.ModelViewSet):
   queryset = models.Room.objects.all()
   serializer_class = serializers.RoomSerializer
@@ -39,38 +15,45 @@ class SensorView(viewsets.ModelViewSet):
   queryset = models.Sensor.objects.all()
   serializer_class = serializers.SensorSerializer
 
-  # def list(self, request, room_pk=None):
-  #   queryset = self.queryset.filter(room=room_pk)
-  #   serializer = serializers.SensorSerializer(queryset, many=True)
-  #   return Response(serializer.data)
+class MetaSensorView(viewsets.ModelViewSet):
+  def list(self, request, room_pk=None):
+    try:
+      room = models.Room.objects.get(pk=room_pk)
+      sensor = models.Sensor.objects.get(room=room, sensor_type=self.sensor_type)
+      queryset = self.queryset.filter(sensor=sensor).order_by('-timestamp')
+      serializer = self.serializer_class(queryset, many=True, context={'request': request})
+      return Response(serializer.data)
+    except:
+      return Response()
+      
+  def retrieve(self, request, pk=None, room_pk=None):
+    try:
+      queryset = self.queryset.get(pk=pk)
+      serializer = self.serializer_class(queryset, many=True, context={'request': request})
+      return Response(serializer.data)
+    except:
+      return Response()  
 
-  # def retrieve(self, request, pk=None, room_pk=None):
-  #   queryset = self.queryset.get(pk=pk, room=room_pk)
-  #   serializer = serializers.SensorSerializer(queryset)
-  #   return Response(serializer.data)
-
-# class MeasurementView(viewsets.ModelViewSet):
-#   co2_query = models.CO2Measurement.objects.all()
-#   motion_query = models.MotionMeasurement.objects.all()
-#   temperature_query = models.TemperatureMeasurement.objects.all()
-#   humidity_query = models.HumidityMeasurement.objects.all()
-
-#   queryset = co2_query | motion_query | temperature_query | humidity_query
-
-class CO2View(viewsets.ModelViewSet):
-  queryset = models.CO2Measurement.objects.all().order_by('-timestamp')
+class CO2View(MetaSensorView):
+  model = models.CO2Measurement
+  queryset = model.objects.all()
+  sensor_type = 'CO2'
   serializer_class = serializers.CO2Serializer
 
-class MotionView(viewsets.ModelViewSet):
-  queryset = models.MotionMeasurement.objects.all().order_by('-timestamp')
+class MotionView(MetaSensorView):
+  model = models.MotionMeasurement
+  queryset = model.objects.all()
+  sensor_type = 'Motion'
   serializer_class = serializers.MotionSerializer
-  filter_backends = (filters.DjangoFilterBackend,)
-  filter_fields = ('detected', 'timestamp')
 
-class TemperatureView(viewsets.ModelViewSet):
-  queryset = models.TemperatureMeasurement.objects.all().order_by('-timestamp')
+class TemperatureView(MetaSensorView):
+  model = models.TemperatureMeasurement
+  queryset = model.objects.all()
+  sensor_type = 'Temperature'
   serializer_class = serializers.TemperatureSerializer
 
-class HumidityView(viewsets.ModelViewSet):
-  queryset = models.HumidityMeasurement.objects.all().order_by('-timestamp')
+class HumidityView(MetaSensorView):
+  model = models.HumidityMeasurement
+  queryset = model.objects.all()
+  sensor_type = 'Humidity'
   serializer_class = serializers.HumiditySerializer

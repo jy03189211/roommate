@@ -7,7 +7,7 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         card_view:cardElevation="2dp"
         card_view:cardCornerRadius="2dp">
@@ -21,11 +21,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="195dp"
+                android:id="@+id/cardImage"/>
+
             <TextView
                 android:id="@+id/room_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:layout_below="@+id/cardImage"
                 android:text="Tomato is free"
                 android:padding="16dp"
                 android:textSize="30sp" />

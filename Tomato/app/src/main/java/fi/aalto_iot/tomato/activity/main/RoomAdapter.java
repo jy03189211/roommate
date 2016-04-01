@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,13 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public CardView mCardView;
         public TextView mTextView;
+        public ImageView mImageView;
         private Context cont;
         public ViewHolder(View v) {
             super(v);
             mCardView = (CardView)v.findViewById(R.id.card_view);
             mTextView = (TextView)v.findViewById(R.id.room_title);
+            mImageView = (ImageView)v.findViewById(R.id.cardImage);
             cont = v.getContext();
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,12 +55,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             Toast.makeText(v.getContext(), "Actvity 1", Toast.LENGTH_SHORT).show();
         }
     }
-
-    // Currently RoomAdapter gets strings as input data; TODO: use a room class or some Realm stuff
-    /*public RoomAdapter(String[] myDataset) {
-        mDataset = myDataset;
-    }
-    */
+    
 
     @Override
     public RoomAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -80,6 +80,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         res.getString(R.string.room_availability_header), roomName, occupationName
                 )
         );
+        Picasso.with(holder.cont)
+                .load("http://i.imgur.com/DvpvklR.png")
+                .fit().centerCrop()
+                .into(holder.mImageView);
 
     }
 

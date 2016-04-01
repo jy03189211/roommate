@@ -5,6 +5,6 @@ def update_room_status(room, sensor, validated_data):
     sensor_type = sensor.sensor_type
     if sensor.sensor_type == 'Motion':
         detected = validated_data.get('detected')
-        if detected != room.available:
-            room.available = detected
+        if detected == room.available:
+            room.available = not detected
             room.save()

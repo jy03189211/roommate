@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Room(models.Model):
   name = models.CharField(max_length=30)
@@ -18,7 +19,7 @@ class Sensor(models.Model):
     return self.sensor_type + " (" + self.room.name + ")"
 
 class Measurement(models.Model):
-  timestamp = models.DateTimeField()
+  timestamp = models.DateTimeField(default=timezone.now())
   sensor = models.ForeignKey(Sensor)
 
   class Meta:

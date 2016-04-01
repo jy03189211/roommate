@@ -25,7 +25,6 @@ import fi.aalto_iot.tomato.db.data.RoomModel;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
-    // TODO: Create nice class for rooms (or use Realm or something similar)
     private List<RoomModel> roomList = new ArrayList<>();
     private String myTag = "RoomAdapter";
 
@@ -55,7 +54,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             Toast.makeText(v.getContext(), "Actvity 1", Toast.LENGTH_SHORT).show();
         }
     }
-    
+
 
     @Override
     public RoomAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,

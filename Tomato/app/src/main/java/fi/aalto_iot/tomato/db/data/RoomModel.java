@@ -1,4 +1,4 @@
-package fi.aalto_iot.tomato.db.models;
+package fi.aalto_iot.tomato.db.data;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

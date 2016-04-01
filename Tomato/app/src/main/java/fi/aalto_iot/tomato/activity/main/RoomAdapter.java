@@ -1,4 +1,4 @@
-package fi.aalto_iot.tomato;
+package fi.aalto_iot.tomato.activity.main;
 
 
 import android.content.Context;
@@ -16,7 +16,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import fi.aalto_iot.tomato.db.models.RoomModel;
+import fi.aalto_iot.tomato.R;
+import fi.aalto_iot.tomato.activity.RoomActivity;
+import fi.aalto_iot.tomato.db.data.RoomModel;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 

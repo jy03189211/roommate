@@ -3,7 +3,7 @@ package fi.aalto_iot.tomato;
 import android.app.Application;
 import android.util.Log;
 
-import fi.aalto_iot.tomato.db.models.RoomModel;
+import fi.aalto_iot.tomato.db.data.RoomModel;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 

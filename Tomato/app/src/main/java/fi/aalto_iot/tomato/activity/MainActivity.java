@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.main.RoomAdapter;
 import fi.aalto_iot.tomato.db.data.RoomModel;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
 
     private String myTag = "mainActivity";
+    private static long maxDataGetInterval = 120; // seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +51,19 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 fetchRooms();
             }
         });
-        fetchRooms();
+        //Log.d(myTag, "oncreate called");
+        if (shouldFetchNewData()) {
+            fetchRooms();
+        }
+        else {
+            updateContent();
+        }
     }
 
     private void updateContent() {
@@ -142,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     realm.commitTransaction();
                     realm.close();
+
+                    BaseApplication app = (BaseApplication)getApplicationContext();
+                    app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -152,5 +163,14 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private boolean shouldFetchNewData() {
+        BaseApplication app = (BaseApplication)getApplicationContext();
+        long elapsedMs = android.os.SystemClock.elapsedRealtime()
+                - app.getLastFetchedDataMainActivity();
+        Log.d(myTag, Long.toString(elapsedMs));
+        return (elapsedMs > maxDataGetInterval*1000);
+
     }
 }

@@ -1,10 +1,10 @@
 ## Arduino Rest Client
 
-Mar.11.2016 15:50 PM
+April 1. 2016 22:12
 
 ###Dependcy
-Please import the two dependencies in the library folders
+Depencies should be included automatically. If not, copy content of library to your sketchbook folder
 
 ###Current funcitonality
-Send hardcoded json data to rest server
-Sensing the brightness
+Read CO2 and motion sensor values.
+Send motion sensor value to cloud once in a minute.

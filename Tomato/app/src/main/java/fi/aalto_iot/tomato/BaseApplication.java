@@ -11,6 +11,9 @@ public class BaseApplication extends Application {
     private final int REALM_VERSION = 1;
     private String TAG = "BaseActivity";
 
+
+    private long lastFetchedDataMainActivity = 0;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,4 +39,14 @@ public class BaseApplication extends Application {
 
         realm.close();
     }
+
+    public long getLastFetchedDataMainActivity() {
+        return lastFetchedDataMainActivity;
+    }
+
+    public void setLastFetchedDataMainActivity(long lastFetchedDataMainActivity) {
+        this.lastFetchedDataMainActivity = lastFetchedDataMainActivity;
+    }
+
+
 }

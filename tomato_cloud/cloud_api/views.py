@@ -3,6 +3,8 @@ from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
+from rest_framework import filters
+
 import models, serializers
 
 
@@ -56,17 +58,19 @@ class SensorView(viewsets.ModelViewSet):
 #   queryset = co2_query | motion_query | temperature_query | humidity_query
 
 class CO2View(viewsets.ModelViewSet):
-  queryset = models.CO2Measurement.objects.all()
+  queryset = models.CO2Measurement.objects.all().order_by('-timestamp')
   serializer_class = serializers.CO2Serializer
 
 class MotionView(viewsets.ModelViewSet):
-  queryset = models.MotionMeasurement.objects.all()
+  queryset = models.MotionMeasurement.objects.all().order_by('-timestamp')
   serializer_class = serializers.MotionSerializer
+  filter_backends = (filters.DjangoFilterBackend,)
+  filter_fields = ('detected', 'timestamp')
 
 class TemperatureView(viewsets.ModelViewSet):
-  queryset = models.TemperatureMeasurement.objects.all()
+  queryset = models.TemperatureMeasurement.objects.all().order_by('-timestamp')
   serializer_class = serializers.TemperatureSerializer
 
 class HumidityView(viewsets.ModelViewSet):
-  queryset = models.HumidityMeasurement.objects.all()
+  queryset = models.HumidityMeasurement.objects.all().order_by('-timestamp')
   serializer_class = serializers.HumiditySerializer

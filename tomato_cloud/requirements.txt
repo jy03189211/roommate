@@ -6,3 +6,4 @@ Markdown==2.6.5
 wheel==0.29.0
 whitenoise==2.0.6
 drf-nested-routers
+django-crispy-forms

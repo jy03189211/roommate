@@ -12,6 +12,8 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.main.RoomAdapter;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    // not used
     private boolean getOccupation(String url) {
         Request req = new Request.Builder()
                 .url(url + "motion")
@@ -126,29 +129,41 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                // TODO: remove deleted rooms locally too
                 if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
                     try {
+                        //ArrayList<RoomModel> newRooms = {};
                         for (int i = 0; i < json.length(); i++) {
                             JSONObject room = (JSONObject) json.get(i);
                             if (room != null) {
                                 RoomModel thisRoom = new RoomModel();
                                 thisRoom.setRoomName(room.getString("name"));
-                                thisRoom.setOccupation(getOccupation(room.getString("url"))); // for now TODO: proper occupation
+                                //thisRoom.setOccupation(getOccupation(room.getString("url"))); // for now TODO: proper occupation
+                                thisRoom.setOccupation(!room.getBoolean("available"));
                                 thisRoom.setOrganization(room.getString("organization"));
                                 thisRoom.setLocation(room.getString("location"));
                                 thisRoom.setSize(room.getInt("size"));
 
+                                //newRooms.add(thisRoom);
                                 realm.copyToRealmOrUpdate(thisRoom);
 
                             }
                         }
 
+                        RealmResults<RoomModel> oldRooms = realm.where(RoomModel.class).findAll();
+/*
+                        for (RoomModel m: oldRooms) {
+                            if (newRooms.contains(m))
+                        }
+*/
+                        realm.commitTransaction();
+
                     } catch (Exception e) {
                         e.printStackTrace();
+                        realm.cancelTransaction();
                     }
-                    realm.commitTransaction();
                     realm.close();
 
                     BaseApplication app = (BaseApplication)getApplicationContext();

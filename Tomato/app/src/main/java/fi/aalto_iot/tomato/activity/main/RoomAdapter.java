@@ -80,7 +80,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 )
         );
         Picasso.with(holder.cont)
-                .load("http://i.imgur.com/DvpvklR.png")
+                .load("http://i.imgur.com/We6zFAz.jpg")
                 .fit().centerCrop()
                 .into(holder.mImageView);
 

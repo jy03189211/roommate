@@ -41,22 +41,73 @@
                     android:padding="16dp"
                     android:layout_alignParentBottom="true"/>
             </RelativeLayout>
-            
-            <TextView
+
+            <RelativeLayout
                 android:id="@+id/room_under_image"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cardImage"
-                android:text="Tomato is free"
-                android:padding="16dp"
-                android:textSize="30sp" />
-            <TextView
-                android:id="@+id/room_state_description"
-                android:layout_width="wrap_content"
+                android:layout_below="@+id/cardImage">
+
+                <ImageView
+                    android:id="@+id/status_indicator_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/room_status_circle"
+                    android:padding="16dp"/>
+
+                <RelativeLayout
+                    android:layout_toEndOf="@+id/status_indicator_circle"
+                    android:layout_toRightOf="@+id/status_indicator_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="0dp"
+                    android:paddingLeft="0dp">
+
+                    <TextView
+                        android:id="@+id/status_indicator_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Free"/>
+                    <TextView
+                        android:id="@+id/room_condition_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/status_indicator_text"
+                        android:text="21K, fresh"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/room_under_image"
-                android:text="Hooray! :) \nNow move your feet and run there before anyone else does!"
-                android:paddingLeft="16dp" />
+                android:layout_below="@+id/room_under_image">
+
+                <Button
+                    android:id="@+id/going_there_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I'm going there"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"/>
+                <Button
+                    android:id="@+id/details_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Details"
+                    android:layout_toEndOf="@+id/going_there_button"
+                    android:layout_toRightOf="@+id/going_there_button"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"/>
+            </RelativeLayout>
         </RelativeLayout>
 
 

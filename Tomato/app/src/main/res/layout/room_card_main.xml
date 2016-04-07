@@ -30,7 +30,7 @@
                     android:id="@+id/room_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Room X"
+                    android:text="@string/room_header"
                     style="@style/HeadlineFont"
                     android:layout_alignParentBottom="true"/>
 

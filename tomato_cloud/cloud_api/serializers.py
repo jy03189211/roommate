@@ -13,6 +13,7 @@ class SensorSerializer(s.HyperlinkedModelSerializer):
 class MetaSensorSerializer(s.HyperlinkedModelSerializer):
   class Meta:
     model = models.Sensor
+    exclude = ('url',)
     
   def create(self, validated_data):
     sensor = validated_data.get('sensor')
@@ -21,9 +22,10 @@ class MetaSensorSerializer(s.HyperlinkedModelSerializer):
 
     return self.Meta.model.objects.create(**validated_data)
 
-class CO2Serializer(s.HyperlinkedModelSerializer):
-  class Meta:
-    model = models.CO2Measurement
+class CO2Serializer(MetaSensorSerializer):
+  def __init__(self, *args, **kwargs):
+    super(CO2Serializer, self).__init__(*args, **kwargs)
+    self.Meta.model = models.CO2Measurement
 
 class MotionSerializer(MetaSensorSerializer):
   def __init__(self, *args, **kwargs):

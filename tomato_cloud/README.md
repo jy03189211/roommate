@@ -5,7 +5,7 @@
 - Python `2.7.6`
 - Django `1.9.2`
 - Django REST framework `3.3.2`
-- Heroku
+- Heroku (http://tomato-1230.herokuapp.com)
 
 ```sh
 pip install virtualenv
@@ -25,11 +25,50 @@ python manage.py runserver
 
 ## Structure
 
-The Django project `tomato_cloud` has a root path `/api/v1/rooms`.
+The Django project `tomato_cloud` has a root path `/api/v1/`.
+
+### Rooms
+```sh
+//list rooms
+GET /api/v1/rooms
+
+//add new room
+POST /api/v1/rooms
+```
+
+### Room
+```sh
+//return room data by id
+GET /api/v1/rooms/<id>
+```
+
+### Sensors
+```sh
+//list sensors
+GET /api/v1/sensors
+
+//add new sensor
+POST /api/v1/sensors
+```
+
+### Sensor
+```sh
+//return sensor data
+GET /api/v1/sensors/<id>
+```
+
+### Measurement data
+```sh
+//return measurement data by room id and sensor class
+GET /api/v1/rooms/<room_id>/{motion,co2,temperature,humidity}
+```
 
 ## Heroku
 
+username: tomato.heroku@gmail.com
+password: tomato-1230
+
 ```sh
-git subtree push--prefix tomato_cloud heroku master
+git subtree push --prefix tomato_cloud https://git.heroku.com/tomato-1230.git master
 ```
 

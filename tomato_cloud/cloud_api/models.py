@@ -7,6 +7,9 @@ class Room(models.Model):
   location = models.CharField(max_length=30)
   size = models.IntegerField()
   available = models.BooleanField(default=False)
+  co2 = models.IntegerField(default=999)
+  temperature = models.IntegerField(default=25)
+  humidity = models.IntegerField(default=30)
 
   def __str__(self):
     return self.name

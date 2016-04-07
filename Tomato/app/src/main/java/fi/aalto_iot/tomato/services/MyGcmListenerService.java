@@ -11,12 +11,6 @@ import com.google.android.gms.gcm.GcmListenerService;
  */
 public class MyGcmListenerService extends GcmListenerService {
 
-    //private LoggingService.Logger logger;
-
-    public MyGcmListenerService() {
-        //logger = new LoggingService.Logger(this);
-    }
-
     @Override
     public void onMessageReceived(String from, Bundle data) {
         sendNotification("Received GCM Message: " + data.toString());
@@ -41,6 +35,6 @@ public class MyGcmListenerService extends GcmListenerService {
     // This is just one simple example of what you might choose to do with
     // a GCM message.
     private void sendNotification(String msg) {
-        //logger.log(Log.INFO, msg);
+        Log.d("NOTIFICARTION", msg);
     }
 }

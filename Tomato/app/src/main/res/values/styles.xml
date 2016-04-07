@@ -23,7 +23,6 @@
     <style name="HeadlineFont" parent="@android:style/TextAppearance.Large">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:padding">16dp</item>
     </style>
 

@@ -24,7 +24,7 @@
         android:layout_margin="8dp"
         card_view:cardElevation="2dp"
         card_view:cardCornerRadius="2dp"
-        android:foreground="@color/colorAccent">
+        android:foreground="@color/color_accent">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"

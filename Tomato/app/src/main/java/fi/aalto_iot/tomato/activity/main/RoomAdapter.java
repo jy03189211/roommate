@@ -108,8 +108,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         // Set follow button text
         final String following = false ?
-                res.getString(R.string.follow_text) :
-                res.getString(R.string.unfollow_text);
+                res.getString(R.string.unfollow_text) :
+                res.getString(R.string.follow_text);
         holder.mFollowButton.setText(following);
 
     }

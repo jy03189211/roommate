@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences
                         .getBoolean(Preferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    Log.d(TAG, "sent token");
+                    Log.d(TAG, "Registration complete?");
                 } else {
-                    Log.d(TAG, "token error");
+                    Log.d(TAG, "Registration error?");
                 }
             }
         };

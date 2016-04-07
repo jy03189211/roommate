@@ -15,7 +15,15 @@ class Room(models.Model):
     return self.name
 
 class Sensor(models.Model):
-  sensor_type = models.CharField(max_length=30)
+  SENSOR_TYPES = (
+    ('motion', 'Motion'),
+    ('co2', 'CO2'),
+    ('temperature', 'Temperature'),
+    ('humidity', 'Humidity')
+  )
+  sensor_type = models.CharField(max_length=30,
+                                 choices=SENSOR_TYPES,
+                                 default='motion')
   room = models.ForeignKey(Room)
 
   def __str__(self):

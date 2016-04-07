@@ -73,7 +73,7 @@
                         android:id="@+id/room_condition_text"
                         style="@style/Body2Font"
                         android:layout_below="@+id/status_indicator_text"
-                        android:text="20°C, fresh"/>
+                        android:text="Unknown"/>
 
                 </RelativeLayout>
             </RelativeLayout>

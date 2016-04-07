@@ -21,11 +21,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.RoomActivity;
 import fi.aalto_iot.tomato.db.data.RoomModel;
+import fi.aalto_iot.tomato.other.Constants;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
@@ -34,8 +34,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public CardView mCardView;
-        public TextView mTextView;
+        public TextView mRoomTitleView;
         public TextView mOccupationView;
+        public TextView mRoomConditionView;
         public ImageView mImageView;
         public ImageView mStatusIndicatorView;
         public Button mFollowButton;
@@ -43,8 +44,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         public ViewHolder(View v) {
             super(v);
             mCardView = (CardView)v.findViewById(R.id.card_view);
-            mTextView = (TextView)v.findViewById(R.id.room_title);
+            mRoomTitleView = (TextView)v.findViewById(R.id.room_title);
             mOccupationView = (TextView)v.findViewById(R.id.status_indicator_text);
+            mRoomConditionView = (TextView)v.findViewById(R.id.room_condition_text);
             mImageView = (ImageView)v.findViewById(R.id.cardImage);
             mStatusIndicatorView = (ImageView)v.findViewById(R.id.status_indicator_circle);
             mFollowButton = (Button)v.findViewById(R.id.follow_button);
@@ -82,7 +84,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         // Set room name as card title:
         final String roomName = room.getRoomName();
-        holder.mTextView.setText(
+        holder.mRoomTitleView.setText(
                 String.format(
                         res.getString(R.string.room_header), roomName));
 
@@ -106,10 +108,23 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 res.getString(R.string.status_free_text);
         holder.mOccupationView.setText(occupationStatus);
 
+        // Set room condition text
+        final String co2_status;
+        final int co2_level = room.getCo2();
+        if (co2_level < Constants.CO2_FRESH)
+            co2_status = res.getString(R.string.room_co2_fresh);
+        else if (co2_level > Constants.CO2_DROWSY)
+            co2_status = res.getString(R.string.room_co2_drowsy);
+        else
+            co2_status = res.getString(R.string.room_co2_ok);
+
+        final String room_condition = String.format(res.getString(R.string.room_condition_text), room.getTemperature(), co2_status);
+        holder.mRoomConditionView.setText(room_condition);
+
         // Set follow button text
         final String following = false ?
-                res.getString(R.string.follow_text) :
-                res.getString(R.string.unfollow_text);
+                res.getString(R.string.unfollow_text) :
+                res.getString(R.string.follow_text);
         holder.mFollowButton.setText(following);
 
     }

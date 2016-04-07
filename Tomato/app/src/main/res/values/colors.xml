@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF3C3C</color>
-    <color name="colorPrimaryDark">#B40000</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="color_primary">#FF3C3C</color>
+    <color name="color_primary_dark">#B40000</color>
+    <color name="color_accent">#FF4081</color>
+
+    <color name="text_scrim_start_heavy">#88000000</color>
+    <color name="text_scrim_center_heavy">#44000000</color>
+    <color name="text_scrim_start_light">#60000000</color>
+    <color name="text_scrim_center_light">#30000000</color>
+    <color name="text_scrim_end">#00000000</color>
 </resources>

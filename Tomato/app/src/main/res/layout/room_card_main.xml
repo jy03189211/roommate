@@ -12,11 +12,6 @@
         card_view:cardElevation="2dp"
         card_view:cardCornerRadius="2dp">
 
-        <!--<TextView
-            android:id="@+id/info_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-            android:background="#b34e4e"-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -29,17 +24,16 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
-                android:background="@drawable/image_gradient">
+                android:background="@drawable/text_scrim_bottom_heavy">
 
                 <TextView
                     android:id="@+id/room_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Room X"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:padding="16dp"
+                    android:text="@string/room_header"
+                    style="@style/HeadlineFont"
                     android:layout_alignParentBottom="true"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -73,7 +67,7 @@
                         android:id="@+id/room_condition_text"
                         style="@style/Body2Font"
                         android:layout_below="@+id/status_indicator_text"
-                        android:text="20°C, fresh"/>
+                        android:text="Unknown"/>
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -112,13 +106,3 @@
 
 
     </android.support.v7.widget.CardView>
-<!--</LinearLayout>-->
-
-<!--
-        card_view:cardElevation="2dp"
-        android:elevation="2dp"
-
-        card_view:cardUseCompatPadding="true">
-
-
--->

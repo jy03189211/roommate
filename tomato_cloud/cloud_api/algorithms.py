@@ -8,7 +8,7 @@ def update_room_status(room, sensor, validated_data):
         return
     
     sensor_type = sensor.sensor_type
-    if sensor.sensor_type == 'Motion':
+    if sensor.sensor_type == 'motion':
         detected = validated_data.get('detected')
         if detected == room.available:
             room.available = not detected
@@ -17,15 +17,15 @@ def update_room_status(room, sensor, validated_data):
             #Push notification to Android
             push_notification(room.available)
     
-    elif sensor.sensor_type == 'CO2':
+    elif sensor.sensor_type == 'co2':
         room.co2 = validated_data.get('concentration')
         room.save()
         
-    elif sensor.sensor_type == 'Temperature':
+    elif sensor.sensor_type == 'temperature':
         room.temperature = validated_data.get('temperature')
         room.save()
         
-    elif sensor.sensor_type == 'Humidity':
+    elif sensor.sensor_type == 'humidity':
         room.humidity = validated_data.get('humidity')
         room.save()
 

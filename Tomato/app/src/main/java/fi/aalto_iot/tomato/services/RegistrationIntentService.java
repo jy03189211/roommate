@@ -17,11 +17,22 @@ import com.google.android.gms.iid.InstanceID;
 import java.io.IOException;
 
 import fi.aalto_iot.tomato.R;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    OkHttpClient client = new OkHttpClient();
 
     public RegistrationIntentService() {
         super(TAG);
@@ -29,6 +40,7 @@ public class RegistrationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.d(TAG, "Onhandleintent called");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         try {
@@ -75,7 +87,25 @@ public class RegistrationIntentService extends IntentService {
      * @param token The new token.
      */
     private void sendRegistrationToServer(String token) {
-        // Add custom implementation, as needed.
+        JSONObject sendObj = new JSONObject();
+        try {
+            sendObj.put("dev_id", "test");
+            sendObj.put("reg_id", token);
+            sendObj.put("name", "test device");
+        } catch (Exception e) {
+
+        }
+
+
+        Request req = new Request.Builder()
+                .url(this.getResources().getString(R.string.gcm_registration_url))
+                .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), sendObj.toString()))
+                .build();
+        try {
+            client.newCall(req).execute();
+        } catch (Exception e) {
+
+        }
     }
 
     /**

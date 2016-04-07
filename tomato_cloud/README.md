@@ -65,6 +65,9 @@ GET /api/v1/rooms/<room_id>/{motion,co2,temperature,humidity}
 
 ## Heroku
 
+username: tomato.heroku@gmail.com
+password: tomato-1230
+
 ```sh
 git subtree push --prefix tomato_cloud https://git.heroku.com/tomato-1230.git master
 ```

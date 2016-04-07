@@ -24,17 +24,16 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
-                android:background="@drawable/image_gradient">
+                android:background="@drawable/text_scrim_bottom_heavy">
 
                 <TextView
                     android:id="@+id/room_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Room X"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:padding="16dp"
+                    style="@style/HeadlineFont"
                     android:layout_alignParentBottom="true"/>
+
             </RelativeLayout>
 
             <RelativeLayout

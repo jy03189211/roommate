@@ -57,9 +57,9 @@ POST /api/v1/sensors
 GET /api/v1/sensors/<id>
 ```
 
-### Sensor data
+### Measurement data
 ```sh
-//return sensor data by room id and sensor type
+//return measurement data by room id and sensor class
 GET /api/v1/rooms/<room_id>/{motion,co2,temperature,humidity}
 ```
 

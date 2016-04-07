@@ -145,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
                                 thisRoom.setOrganization(room.getString("organization"));
                                 thisRoom.setLocation(room.getString("location"));
                                 thisRoom.setSize(room.getInt("size"));
+                                thisRoom.setCo2(room.getInt("co2"));
+                                thisRoom.setTemperature(room.getInt("temperature"));
+                                thisRoom.setHumidity(room.getInt("humidity"));
 
                                 //newRooms.add(thisRoom);
                                 realm.copyToRealmOrUpdate(thisRoom);

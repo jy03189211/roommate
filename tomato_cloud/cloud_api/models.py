@@ -19,8 +19,8 @@ class Sensor(models.Model):
     return self.sensor_type + " (" + self.room.name + ")"
 
 class Measurement(models.Model):
-  timestamp = models.DateTimeField(default=timezone.now())
-  sensor = models.ForeignKey(Sensor)
+  timestamp = models.DateTimeField(auto_now_add=True)
+  sensor = models.ForeignKey(Sensor, default=1)
 
   class Meta:
     abstract = True

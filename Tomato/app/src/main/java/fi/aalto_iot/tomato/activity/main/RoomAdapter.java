@@ -1,11 +1,16 @@
 package fi.aalto_iot.tomato.activity.main;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -40,6 +45,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         public ImageView mImageView;
         public ImageView mStatusIndicatorView;
         public Button mFollowButton;
+        public Button mDetailsButton;
         private Context cont;
         public ViewHolder(View v) {
             super(v);
@@ -50,6 +56,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mImageView = (ImageView)v.findViewById(R.id.cardImage);
             mStatusIndicatorView = (ImageView)v.findViewById(R.id.status_indicator_circle);
             mFollowButton = (Button)v.findViewById(R.id.follow_button);
+            mDetailsButton = (Button)v.findViewById(R.id.details_button);
             cont = v.getContext();
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,6 +65,33 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                     int position = getAdapterPosition();
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
                     cont.startActivity(roomIntent);
+                }
+            });
+            mDetailsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("adapterposition", Integer.toString(getAdapterPosition()));
+                    int position = getAdapterPosition();
+                    final Intent roomIntent = new Intent(cont, RoomActivity.class);
+                    cont.startActivity(roomIntent);
+                }
+            });
+
+            // test notification
+            mFollowButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont);
+                    mBuilder.setContentTitle("Room Mate");
+                    mBuilder.setContentText("lol");
+                    mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);
+                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    mBuilder.setSound(alarmSound);
+                    Notification notification = mBuilder.build();
+
+                    NotificationManager mNotificationManager =
+                            (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);
+                    mNotificationManager.notify(9999, notification);
                 }
             });
         }

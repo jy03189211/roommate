@@ -104,7 +104,7 @@ public class RegistrationIntentService extends IntentService {
         try {
             client.newCall(req).execute();
         } catch (Exception e) {
-
+            Log.d(TAG, "Could not register for notifications");
         }
     }
 

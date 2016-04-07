@@ -124,7 +124,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'cloud_api',
     'django_filters',
-    'crispy_forms'
+    'crispy_forms',
+    'gcm'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -192,3 +193,4 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+GCM_APIKEY = "AIzaSyBi6LyKIdKj7L2Cs7F6p3j-3awMCrFmxG8"

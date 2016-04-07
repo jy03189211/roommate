@@ -7,6 +7,7 @@
     <permission android:name="fi.aalto_iot.tomato.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
     <uses-permission android:name="fi.aalto_iot.tomato.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".BaseApplication"
@@ -51,8 +52,11 @@
         </service>
         <!-- [END instanceId_listener] -->
         <service
-            android:name="services.RegistrationIntentService"
-            android:exported="false">
+            android:name=".services.RegistrationIntentService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+            </intent-filter>
         </service>
     </application>
 

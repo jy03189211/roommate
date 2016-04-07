@@ -1,13 +1,25 @@
 package fi.aalto_iot.tomato.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.iid.InstanceID;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,6 +30,8 @@ import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.main.RoomAdapter;
 import fi.aalto_iot.tomato.db.data.RoomModel;
+import fi.aalto_iot.tomato.services.Preferences;
+import fi.aalto_iot.tomato.services.RegistrationIntentService;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.internal.IOException;
@@ -34,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
     RoomAdapter mAdapter;
     OkHttpClient client = new OkHttpClient();
     private Realm realm;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private boolean isReceiverRegistered;
 
     private SwipeRefreshLayout swipeContainer;
 
     private String TAG = "mainActivity";
-    private static long maxDataGetInterval = 120; // seconds
+    private static final long maxDataGetInterval = 120; // seconds
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +77,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Log.d(myTag, "oncreate called");
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(context);
+                boolean sentToken = sharedPreferences
+                        .getBoolean(Preferences.SENT_TOKEN_TO_SERVER, false);
+                if (sentToken) {
+                    Log.d(TAG, "sent token");
+                } else {
+                    Log.d(TAG, "token error");
+                }
+            }
+        };
+
+
+        registerReceiver();
+
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
+        }
+
         if (shouldFetchNewData()) {
             fetchRooms();
         }
         else {
             updateContent();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver();
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        isReceiverRegistered = false;
+        super.onPause();
     }
 
     private void updateContent() {
@@ -182,4 +237,29 @@ public class MainActivity extends AppCompatActivity {
         return (elapsedMs > maxDataGetInterval*1000);
 
     }
+
+    private void registerReceiver(){
+        if(!isReceiverRegistered) {
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(Preferences.REGISTRATION_COMPLETE));
+            isReceiverRegistered = true;
+        }
+    }
+
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
 }

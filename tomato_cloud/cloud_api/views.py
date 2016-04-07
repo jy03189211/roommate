@@ -37,23 +37,23 @@ class MetaSensorView(viewsets.ModelViewSet):
 class CO2View(MetaSensorView):
   model = models.CO2Measurement
   queryset = model.objects.all()
-  sensor_type = 'CO2'
+  sensor_type = 'co2'
   serializer_class = serializers.CO2Serializer
 
 class MotionView(MetaSensorView):
   model = models.MotionMeasurement
   queryset = model.objects.all()
-  sensor_type = 'Motion'
+  sensor_type = 'motion'
   serializer_class = serializers.MotionSerializer
 
 class TemperatureView(MetaSensorView):
   model = models.TemperatureMeasurement
   queryset = model.objects.all()
-  sensor_type = 'Temperature'
+  sensor_type = 'temperature'
   serializer_class = serializers.TemperatureSerializer
 
 class HumidityView(MetaSensorView):
   model = models.HumidityMeasurement
   queryset = model.objects.all()
-  sensor_type = 'Humidity'
+  sensor_type = 'humidity'
   serializer_class = serializers.HumiditySerializer

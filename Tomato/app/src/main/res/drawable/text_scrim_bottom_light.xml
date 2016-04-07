@@ -4,9 +4,9 @@
     <gradient
         android:angle="90"
         android:centerY="0.3"
-        android:startColor="@color/text_scrim_start_light"
-        android:centerColor="@color/text_scrim_center_light"
-        android:endColor="@color/text_scrim_end"
+        android:startColor="@color/color_scrim_start_light"
+        android:centerColor="@color/color_scrim_center_light"
+        android:endColor="@color/color_scrim_end"
         android:type="linear"/>
 
 </shape>

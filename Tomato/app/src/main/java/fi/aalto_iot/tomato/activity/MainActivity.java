@@ -1,15 +1,20 @@
 package fi.aalto_iot.tomato.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -79,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 fetchRooms();
             }
         });
-        //Log.d(myTag, "oncreate called");
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -89,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences
                         .getBoolean(Preferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    Log.d(TAG, "sent token");
+                    Log.d(TAG, "Registration complete?");
                 } else {
-                    Log.d(TAG, "token error");
+                    Log.d(TAG, "Registration error?");
                 }
             }
         };

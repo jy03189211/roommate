@@ -15,4 +15,5 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/', include('cloud_api.urls')),
+    url(r'', include('gcm.urls')),
 ]

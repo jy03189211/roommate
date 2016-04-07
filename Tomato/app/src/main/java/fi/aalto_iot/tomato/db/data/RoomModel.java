@@ -10,6 +10,33 @@ public class RoomModel extends RealmObject {
     private String location;
     private int size;
     private boolean occupation;
+    private int temperature;
+    private int humidity;
+    private int co2;
+
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
+
+    public int getCo2() {
+        return co2;
+    }
+
+    public void setCo2(int co2) {
+        this.co2 = co2;
+    }
 
     public String getRoomName() {
         return roomName;

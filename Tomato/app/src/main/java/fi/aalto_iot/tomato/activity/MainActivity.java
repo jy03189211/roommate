@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
 
-    private String myTag = "mainActivity";
+    private String TAG = "mainActivity";
     private static long maxDataGetInterval = 120; // seconds
 
     @Override
@@ -129,35 +129,29 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                // TODO: remove deleted rooms locally too
+                // TODO: remove deleted rooms locally too: DONE
                 if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
                     try {
-                        //ArrayList<RoomModel> newRooms = {};
+                        realm.where(RoomModel.class).findAll().clear();
                         for (int i = 0; i < json.length(); i++) {
                             JSONObject room = (JSONObject) json.get(i);
                             if (room != null) {
                                 RoomModel thisRoom = new RoomModel();
                                 thisRoom.setRoomName(room.getString("name"));
-                                //thisRoom.setOccupation(getOccupation(room.getString("url"))); // for now TODO: proper occupation
                                 thisRoom.setOccupation(!room.getBoolean("available"));
                                 thisRoom.setOrganization(room.getString("organization"));
                                 thisRoom.setLocation(room.getString("location"));
                                 thisRoom.setSize(room.getInt("size"));
+                                thisRoom.setCo2(room.getInt("co2"));
+                                thisRoom.setTemperature(room.getInt("temperature"));
+                                thisRoom.setHumidity(room.getInt("humidity"));
 
-                                //newRooms.add(thisRoom);
                                 realm.copyToRealmOrUpdate(thisRoom);
-
                             }
                         }
 
-                        RealmResults<RoomModel> oldRooms = realm.where(RoomModel.class).findAll();
-/*
-                        for (RoomModel m: oldRooms) {
-                            if (newRooms.contains(m))
-                        }
-*/
                         realm.commitTransaction();
 
                     } catch (Exception e) {
@@ -184,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         BaseApplication app = (BaseApplication)getApplicationContext();
         long elapsedMs = android.os.SystemClock.elapsedRealtime()
                 - app.getLastFetchedDataMainActivity();
-        Log.d(myTag, Long.toString(elapsedMs));
+        Log.d(TAG, Long.toString(elapsedMs));
         return (elapsedMs > maxDataGetInterval*1000);
 
     }

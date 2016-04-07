@@ -35,7 +35,7 @@
                     android:id="@+id/room_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Here is your text"
+                    android:text="Room X"
                     android:textColor="#ffffff"
                     android:textSize="20sp"
                     android:padding="16dp"
@@ -52,7 +52,7 @@
                     android:id="@+id/status_indicator_circle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/room_status_circle"
+                    android:src="@drawable/room_status_indicator_occupied"
                     android:padding="16dp"/>
 
                 <RelativeLayout
@@ -67,15 +67,13 @@
 
                     <TextView
                         android:id="@+id/status_indicator_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Free"/>
+                        style="@style/BodyFont"
+                        android:text="Unknown"/>
                     <TextView
                         android:id="@+id/room_condition_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/Body2Font"
                         android:layout_below="@+id/status_indicator_text"
-                        android:text="21K, fresh"/>
+                        android:text="20°C, fresh"/>
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -86,10 +84,11 @@
                 android:layout_below="@+id/room_under_image">
 
                 <Button
-                    android:id="@+id/going_there_button"
+                    android:id="@+id/follow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I'm going there"
+                    android:text="Follow"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginBottom="8dp"
@@ -100,8 +99,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Details"
-                    android:layout_toEndOf="@+id/going_there_button"
-                    android:layout_toRightOf="@+id/going_there_button"
+                    android:layout_toEndOf="@+id/follow_button"
+                    android:layout_toRightOf="@+id/follow_button"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp"

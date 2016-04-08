@@ -163,9 +163,12 @@ public class Room_default_fragment extends Fragment {
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
 
-        mTemperature.setText(Integer.toString(room.getTemperature()));
-        mCO2.setText(Integer.toString(room.getCo2()));
-        mHumidity.setText(Integer.toString(room.getHumidity()));
+        final String temperature = String.format(getResources().getString(R.string.room_temperature_value), room.getTemperature() < 0 ? '-' : '+', room.getTemperature());
+        mTemperature.setText(temperature);
+        final String co2 = String.format(getResources().getString(R.string.room_co2_value), room.getCo2());
+        mCO2.setText(co2);
+        final String humidity = String.format(getResources().getString(R.string.room_humidity_value), room.getHumidity());
+        mHumidity.setText(humidity);
 
         // Set correct status indicator ("traffic light") color
         final Drawable statusIndicator = room.getOccupation() ?

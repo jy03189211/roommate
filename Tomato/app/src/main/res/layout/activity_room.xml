@@ -20,6 +20,12 @@
         android:layout_height="200dp"
         android:background="@drawable/text_scrim_top_heavy"></RelativeLayout>
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize" />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"

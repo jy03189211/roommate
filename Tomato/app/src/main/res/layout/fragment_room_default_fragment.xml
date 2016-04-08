@@ -4,10 +4,132 @@
     android:layout_height="match_parent"
     tools:context="fi.aalto_iot.tomato.activity.room.Room_default_fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/room_status_indicator_relative_layout"
+            android:paddingLeft="32dp">
+
+            <ImageView
+                android:id="@+id/room_status_indicator_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/room_status_indicator_occupied" />
+
+            <TextView
+                android:id="@+id/room_status_indicator_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/room_status_indicator_circle"
+                android:text="@string/unknown" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/room_temperature_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/room_status_indicator_occupied" />
+
+        <RelativeLayout
+            android:id="@+id/room_status_indicator_relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/room_temperature_icon"
+            android:layout_toRightOf="@+id/room_temperature_icon"
+            android:paddingBottom="16dp"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/room_temperature_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/room_temperature_header" />
+
+            <TextView
+                android:id="@+id/room_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/room_temperature_header"
+                android:text="@string/unknown" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/room_co2_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/room_temperature_icon"
+            android:padding="16dp"
+            android:src="@drawable/room_status_indicator_occupied" />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/room_temperature_icon"
+            android:layout_toRightOf="@+id/room_co2_icon"
+            android:paddingBottom="16dp"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/room_co2_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/room_co2_header" />
+
+            <TextView
+                android:id="@+id/room_co2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/room_co2_header"
+                android:text="@string/unknown" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/room_humidity_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/room_co2_icon"
+            android:padding="16dp"
+            android:src="@drawable/room_status_indicator_occupied" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/room_co2_icon"
+            android:layout_toEndOf="@+id/room_humidity_icon"
+            android:layout_toRightOf="@+id/room_humidity_icon"
+            android:paddingBottom="16dp"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/room_humidity_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/room_humidity_header" />
+
+            <TextView
+                android:id="@+id/room_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/room_humidity_header"
+                android:text="@string/unknown" />
+
+        </RelativeLayout>
+    </RelativeLayout>
 </FrameLayout>

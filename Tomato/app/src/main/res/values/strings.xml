@@ -15,6 +15,10 @@
     <string name="room_co2_drowsy">Drowsy</string>
     <string name="room_fragment_default_name">CURRENT STATUS</string>
     <string name="room_fragment_history_name">HISTORY DATA</string>
+    <string name="room_co2_header">CO2 LEVEL</string>
+    <string name="room_temperature_header">TEMPERATURE</string>
+    <string name="room_humidity_header">HUMIDITY</string>
+    <string name="unknown">Unknown</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -35,6 +35,7 @@ import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.main.RoomAdapter;
 import fi.aalto_iot.tomato.db.data.RoomModel;
+import fi.aalto_iot.tomato.other.Constants;
 import fi.aalto_iot.tomato.services.Preferences;
 import fi.aalto_iot.tomato.services.RegistrationIntentService;
 import io.realm.Realm;
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
 
     private String TAG = "mainActivity";
-    private static final long maxDataGetInterval = 120; // seconds
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
         long elapsedMs = android.os.SystemClock.elapsedRealtime()
                 - app.getLastFetchedDataMainActivity();
         Log.d(TAG, Long.toString(elapsedMs));
-        return (elapsedMs > maxDataGetInterval*1000);
+        return (elapsedMs > Constants.MAXDATAGETINTERVAL*1000);
 
     }
 

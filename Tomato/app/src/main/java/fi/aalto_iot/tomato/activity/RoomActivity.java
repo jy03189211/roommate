@@ -24,10 +24,19 @@ public class RoomActivity extends AppCompatActivity {
 
         roomTitleImage = (ImageView) findViewById(R.id.room_title_image);
 
+        // Use viewpager and tablayout to setup tabs
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         RoomFragmentPagerAdapter adapter = new RoomFragmentPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(getResources().getString(R.string.room_fragment_default_name), new Room_default_fragment());
-        adapter.addFragment(getResources().getString(R.string.room_fragment_history_name), new Room_history_fragment());
+
+        // get passed variables and pass them forward to fragments
+        final Bundle bundle = getIntent().getExtras();
+        final Room_default_fragment room_default_fragment = new Room_default_fragment();
+        room_default_fragment.setArguments(bundle);
+        final Room_history_fragment room_history_fragment = new Room_history_fragment();
+        room_history_fragment.setArguments(bundle);
+
+        adapter.addFragment(getResources().getString(R.string.room_fragment_default_name), room_default_fragment);
+        adapter.addFragment(getResources().getString(R.string.room_fragment_history_name), room_history_fragment);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

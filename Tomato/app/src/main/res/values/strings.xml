@@ -13,4 +13,9 @@
     <string name="room_co2_fresh">Fresh</string>
     <string name="room_co2_ok">Okay</string>
     <string name="room_co2_drowsy">Drowsy</string>
+    <string name="room_fragment_default_name">CURRENT STATUS</string>
+    <string name="room_fragment_history_name">HISTORY DATA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

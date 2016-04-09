@@ -181,7 +181,7 @@ void setup()
   pinMode(MOTION_PIN, INPUT); // no internal pullup
   pinMode(SOUND_DPIN, INPUT); // no internal pullup
   dht.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Setting up everything");
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(MOTION_PIN), motion_interrupt_handler, RISING);
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(SOUND_DPIN), sound_interrupt_handler, RISING);
@@ -193,7 +193,6 @@ void setup()
     Serial.println(F("Failed to configure Ethernet using DHCP"));
     Ethernet.begin(mac, ip);
   }
-  // print the Ethernet board/shield's IP address:
   Serial.print("IP address: ");
   Serial.println(Ethernet.localIP());
   delay(2000); // 2s delay to get real data from sensors at first run already

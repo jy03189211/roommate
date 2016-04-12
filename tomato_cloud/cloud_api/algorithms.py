@@ -34,5 +34,10 @@ def update_room_status(room, sensor, validated_data):
 def push_notification(room):
     '''Push notification to Android when the status has changed.
     '''
-    Device = get_device_model()
-    Device.objects.all().send_message({'message': 'Hello world!'}, to='/topics/global')
+    try:
+    	Device = get_device_model()
+	print 'Sending push notification to /topics/' + str(room.pk) + '.' 
+    	Device.objects.all().send_message({'message': 'Hello world!'}, to='/topics/' + str(room.pk))
+	print 'Push notification was sent.'
+    except:
+	print 'Push notification was not sent.'

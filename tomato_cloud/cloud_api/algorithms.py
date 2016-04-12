@@ -80,8 +80,8 @@ def calculate_air_quality(room):
     points = 0
     
     if room.co2 >= CO2_LEVEL['poor'][0]:
-        points -= CO2_LEVEL['poor'][1]
+        points += CO2_LEVEL['poor'][1]
     else:
-        points -= CO2_LEVEL['bad'][1]
+        points += CO2_LEVEL['bad'][1]
 
     return points

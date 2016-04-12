@@ -193,7 +193,7 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-GCM_APIKEY = "AIzaSyDH1DpyfJGTWy_tt600Q7Zk-gcmm98Bnog"
+GCM_APIKEY = "AIzaSyBi6LyKIdKj7L2Cs7F6p3j-3awMCrFmxG8"
 
 import dj_database_url
 DATABASES = {'default':dj_database_url.config(default='postgres://xhrxaehzxjqpfw:-YX-vfhtA9EmX6p1Io3b_TSdUr@ec2-107-22-187-89.compute-1.amazonaws.com:5432/d5oaljg1m9vdo5')}

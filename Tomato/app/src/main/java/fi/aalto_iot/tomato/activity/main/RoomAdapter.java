@@ -40,12 +40,14 @@ import fi.aalto_iot.tomato.db.data.RoomModel;
 import fi.aalto_iot.tomato.other.Constants;
 import fi.aalto_iot.tomato.other.RegisterTopic;
 import fi.aalto_iot.tomato.services.RegistrationIntentService;
+import io.realm.Realm;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     private List<RoomModel> roomList = new ArrayList<>();
     private String myTag = "RoomAdapter";
     private SharedPreferences preferences;
+    private Realm realm;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public CardView mCardView;
@@ -68,6 +70,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mFollowButton = (Button)v.findViewById(R.id.follow_button);
             mDetailsButton = (Button)v.findViewById(R.id.details_button);
             cont = v.getContext();
+            realm = Realm.getDefaultInstance();
 
             preferences = PreferenceManager.getDefaultSharedPreferences(cont);
             v.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +100,28 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mFollowButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    RoomModel room = roomList.get(getAdapterPosition());
+
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont);
                     mBuilder.setContentTitle("Room Mate");
-                    mBuilder.setContentText("Subscribed to room " + roomList.get(getAdapterPosition()).getRoomName());
+
+                    int room_id = room.getId();
+                    if (!room.isFollowed()) {
+                        new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id));
+                        new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        realm.beginTransaction();
+                        room.setFollowed(true);
+                        realm.commitTransaction();
+                        mBuilder.setContentText("Subscribed to room " + room.getRoomName());
+                    }
+                    else {
+                        new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id));
+                        new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        realm.beginTransaction();
+                        room.setFollowed(false);
+                        realm.commitTransaction();
+                        mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
+                    }
                     mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);
                     //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     //mBuilder.setSound(alarmSound);
@@ -109,9 +131,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                             (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);
                     mNotificationManager.notify(9999, notification);
 
-                    int room_id = roomList.get(getAdapterPosition()).getId();
-
-                    new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id));
                 }
 
             });

@@ -34,7 +34,7 @@ def update_room_status(room, sensor, validated_data):
         room.co2 = validated_data.get('concentration')
         room.save()
 
-        if room.co2 <= CO2_LEVEL['bad']:
+        if room.co2 >= CO2_LEVEL['bad']:
             #Push notification about air quality
             push_notification_air_quality(room)
         

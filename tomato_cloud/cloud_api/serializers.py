@@ -3,6 +3,8 @@ import models
 import algorithms as alg
 
 class RoomSerializer(s.HyperlinkedModelSerializer):
+  id = s.ReadOnlyField()
+  
   class Meta:
     model = models.Room
 

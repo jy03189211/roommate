@@ -4,7 +4,9 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class RoomModel extends RealmObject {
+
     @PrimaryKey
+    private int id;
     private String roomName;
     private String url;
     private String organization;
@@ -21,6 +23,13 @@ public class RoomModel extends RealmObject {
 
     public void setUrl(String url) {
         this.url = url;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getTemperature() {

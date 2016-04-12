@@ -202,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                             if (room != null) {
                                 RoomModel thisRoom = new RoomModel();
                                 thisRoom.setRoomName(room.getString("name"));
+                                thisRoom.setUrl(room.getString("url"));
                                 thisRoom.setOccupation(!room.getBoolean("available"));
                                 thisRoom.setOrganization(room.getString("organization"));
                                 thisRoom.setLocation(room.getString("location"));

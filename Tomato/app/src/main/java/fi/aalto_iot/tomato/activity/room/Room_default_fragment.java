@@ -71,12 +71,12 @@ public class Room_default_fragment extends Fragment {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                fetchRoom(room.getRoomName());
+                fetchRoom(room.getUrl());
             }
         });
 
         if (shouldFetchNewData()) {
-            fetchRoom(room.getRoomName());
+            fetchRoom(room.getUrl());
         } else {
             updateContent();
         }
@@ -84,9 +84,9 @@ public class Room_default_fragment extends Fragment {
         return view;
     }
 
-    private void fetchRoom(final String roomName) {
+    private void fetchRoom(final String roomUrl) {
         Request req = new Request.Builder()
-                .url(this.getResources().getString(R.string.rooms_url))
+                .url(roomUrl)
                 .build();
         client.newCall(req).enqueue(new Callback() {
             @Override
@@ -109,9 +109,9 @@ public class Room_default_fragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws java.io.IOException {
                 final String jsonString = response.body().string();
-                JSONArray json = null;
+                JSONObject json = null;
                 try {
-                    json = new JSONArray(jsonString);
+                    json = new JSONObject(jsonString);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -119,26 +119,18 @@ public class Room_default_fragment extends Fragment {
                 if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     try {
-                        for (int i = 0; i < json.length(); i++) {
-                            JSONObject roomJSON = (JSONObject) json.get(i);
-                            if (room != null) {
-                                if (roomJSON.getString("name").equals(roomName)) {
-                                    room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
-                                    realm.beginTransaction();
-                                    room.setRoomName(roomJSON.getString("name"));
-                                    room.setOccupation(!roomJSON.getBoolean("available"));
-                                    room.setOrganization(roomJSON.getString("organization"));
-                                    room.setLocation(roomJSON.getString("location"));
-                                    room.setSize(roomJSON.getInt("size"));
-                                    room.setCo2(roomJSON.getInt("co2"));
-                                    room.setTemperature(roomJSON.getInt("temperature"));
-                                    room.setHumidity(roomJSON.getInt("humidity"));
-                                    realm.commitTransaction();
-                                    break;
-                                }
-                            }
-                        }
-
+                        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+                        realm.beginTransaction();
+                        room.setRoomName(json.getString("name"));
+                        room.setUrl(json.getString("url"));
+                        room.setOccupation(!json.getBoolean("available"));
+                        room.setOrganization(json.getString("organization"));
+                        room.setLocation(json.getString("location"));
+                        room.setSize(json.getInt("size"));
+                        room.setCo2(json.getInt("co2"));
+                        room.setTemperature(json.getInt("temperature"));
+                        room.setHumidity(json.getInt("humidity"));
+                        realm.commitTransaction();
                     } catch (Exception e) {
                         e.printStackTrace();
                         realm.cancelTransaction();

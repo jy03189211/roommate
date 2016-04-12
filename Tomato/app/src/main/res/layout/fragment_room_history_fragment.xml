@@ -4,4 +4,9 @@
     android:layout_height="match_parent"
     tools:context="fi.aalto_iot.tomato.activity.room.Room_history_fragment">
 
+    <fi.aalto_iot.tomato.activity.room.view.RoomHistoryCanvasView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/canvasView"/>
+
 </FrameLayout>

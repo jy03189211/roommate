@@ -1,4 +1,5 @@
 from gcm.models import get_device_model
+import sys
 
 def update_room_status(room, sensor, validated_data):
     '''Determine room availability based on the latest measurements.
@@ -36,8 +37,14 @@ def push_notification(room):
     '''
     try:
     	Device = get_device_model()
-	print 'Sending push notification to /topics/' + str(room.pk) + '.' 
+        
+	print 'Sending push notification to /topics/' + str(room.pk) + '.'
+        sys.stdout.flush()
+        
     	Device.objects.all().send_message({'message': 'Hello world!'}, to='/topics/' + str(room.pk))
-	print 'Push notification was sent.'
+
+        print 'Push notification was sent.'
+        sys.stdout.flush()
     except:
 	print 'Push notification was not sent.'
+        sys.stdout.flush()

@@ -202,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject room = (JSONObject) json.get(i);
                             if (room != null) {
                                 RoomModel thisRoom = new RoomModel();
+                                thisRoom.setId(room.getInt("id"));
                                 thisRoom.setRoomName(room.getString("name"));
                                 thisRoom.setUrl(room.getString("url"));
                                 thisRoom.setOccupation(!room.getBoolean("available"));

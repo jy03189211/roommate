@@ -96,13 +96,16 @@ public class RegistrationIntentService extends IntentService {
 
         }
 
+        Log.d(TAG, "Sent json: " + sendObj.toString());
 
         Request req = new Request.Builder()
                 .url(this.getResources().getString(R.string.gcm_registration_url))
                 .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), sendObj.toString()))
                 .build();
         try {
-            client.newCall(req).execute();
+            Response resp = client.newCall(req).execute();
+            final String jsonString = resp.body().string();
+            Log.d(TAG, "Received message: " + jsonString);
         } catch (Exception e) {
             Log.d(TAG, "Could not register for notifications");
         }

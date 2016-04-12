@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Room Mate</string>
     <string name="rooms_url">http://tomato-1230.herokuapp.com/api/v1/rooms/</string>
-    <string name="gcm_registration_url">http://tomato-1230.herokuapp.com/gcm/v1/device/register</string>
-    <string name="gcm_unregistration_url">http://tomato-1230.herokuapp.com/gcm/v1/device/unregister</string>
+    <string name="gcm_registration_url">https://tomato-1230.herokuapp.com/gcm/v1/device/register/</string>
+    <string name="gcm_unregistration_url">https://tomato-1230.herokuapp.com/gcm/v1/device/unregister/</string>
     <string name="room_header">%1$s</string>
     <string name="status_occupied_text">Occupied</string>
     <string name="status_free_text">Free</string>
@@ -13,4 +13,14 @@
     <string name="room_co2_fresh">Fresh</string>
     <string name="room_co2_ok">Okay</string>
     <string name="room_co2_drowsy">Drowsy</string>
+    <string name="room_fragment_default_name">CURRENT STATUS</string>
+    <string name="room_fragment_history_name">HISTORY DATA</string>
+    <string name="room_co2_header">CO2 LEVEL</string>
+    <string name="room_temperature_header">TEMPERATURE</string>
+    <string name="room_humidity_header">HUMIDITY</string>
+    <string name="unknown">Unknown</string>
+    <string name ="room_temperature_value">%1$c%2$d °C</string>
+    <string name ="room_co2_value">%1$dPPM</string>
+    <string name ="room_humidity_value">%1$d%%</string>
+
 </resources>

@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.CardView;
@@ -37,7 +38,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     private List<RoomModel> roomList = new ArrayList<>();
     private String myTag = "RoomAdapter";
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public CardView mCardView;
         public TextView mRoomTitleView;
         public TextView mOccupationView;
@@ -62,8 +63,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Log.d("adapterposition", Integer.toString(getAdapterPosition()));
-                    int position = getAdapterPosition();
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", roomList.get(getAdapterPosition()).getRoomName());
+                    roomIntent.putExtras(bundle);
                     cont.startActivity(roomIntent);
                 }
             });
@@ -71,8 +74,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Log.d("adapterposition", Integer.toString(getAdapterPosition()));
-                    int position = getAdapterPosition();
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", roomList.get(getAdapterPosition()).getRoomName());
+                    roomIntent.putExtras(bundle);
                     cont.startActivity(roomIntent);
                 }
             });

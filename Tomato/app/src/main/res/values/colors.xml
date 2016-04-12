@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#FF3C3C</color>
-    <color name="color_primary_dark">#B40000</color>
-    <color name="color_accent">#FF4081</color>
+    <color name="color_primary">#FF9800</color>
+    <color name="color_primary_dark">#F57C00</color>
+    <color name="color_primary_light">#FFE0B2</color>
+    <color name="color_accent">#8BC34A</color>
 
-    <color name="text_scrim_start_heavy">#88000000</color>
-    <color name="text_scrim_center_heavy">#44000000</color>
-    <color name="text_scrim_start_light">#60000000</color>
-    <color name="text_scrim_center_light">#30000000</color>
-    <color name="text_scrim_end">#00000000</color>
+    <color name="color_text_primary">#DE000000</color>
+    <color name="color_text_icons">@color/color_text_primary</color>
+    <color name="color_text_secondary">#8A000000</color>
+    <color name="color_text_disabled">#61000000</color>
+    <color name="color_dividers">#1F000000</color>
+
+    <color name="color_status_free">#4CAF50</color>
+    <color name="color_status_occupied">#F44336</color>
+
+    <color name="color_scrim_start_heavy">#88000000</color>
+    <color name="color_scrim_start_light">#60000000</color>
+    <color name="color_scrim_center_heavy">#44000000</color>
+    <color name="color_scrim_center_light">#30000000</color>
+    <color name="color_scrim_end">#00000000</color>
 </resources>

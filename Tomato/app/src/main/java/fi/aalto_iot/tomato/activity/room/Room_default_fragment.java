@@ -121,6 +121,7 @@ public class Room_default_fragment extends Fragment {
                     try {
                         room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
                         realm.beginTransaction();
+                        room.setId(json.getInt("id"));
                         room.setRoomName(json.getString("name"));
                         room.setUrl(json.getString("url"));
                         room.setOccupation(!json.getBoolean("available"));
@@ -130,6 +131,7 @@ public class Room_default_fragment extends Fragment {
                         room.setCo2(json.getInt("co2"));
                         room.setTemperature(json.getInt("temperature"));
                         room.setHumidity(json.getInt("humidity"));
+                        realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
                     } catch (Exception e) {
                         e.printStackTrace();

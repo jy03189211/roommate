@@ -4,7 +4,9 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class RoomModel extends RealmObject {
+
     @PrimaryKey
+    private int id;
     private String roomName;
     private String organization;
     private String location;
@@ -13,6 +15,14 @@ public class RoomModel extends RealmObject {
     private int temperature;
     private int humidity;
     private int co2;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getTemperature() {
         return temperature;

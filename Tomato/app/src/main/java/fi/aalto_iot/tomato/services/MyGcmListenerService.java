@@ -14,9 +14,6 @@ import com.google.android.gms.gcm.GcmListenerService;
 import fi.aalto_iot.tomato.R;
 
 
-/**
- * Service used for receiving GCM messages. When a message is received this service will log it.
- */
 public class MyGcmListenerService extends GcmListenerService {
 
     @Override

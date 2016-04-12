@@ -27,6 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // TODO: remove deleted rooms locally too: DONE
-                if (json != null) {
+                /*if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
                     try {
@@ -228,6 +230,9 @@ public class MainActivity extends AppCompatActivity {
                     BaseApplication app = (BaseApplication)getApplicationContext();
                     app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
                 }
+                */
+
+                copyJsonToRealm(json);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -269,6 +274,78 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         }
+        return true;
+    }
+
+    private boolean copyJsonToRealm(JSONArray json) {
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+
+        try {
+            Set<Integer> new_ids = new HashSet<>();
+
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject room = (JSONObject) json.get(i);
+                if (room != null) {
+                    RoomModel thisRoom = new RoomModel();
+                    int id = room.getInt("id");
+                    thisRoom.setId(id);
+                    new_ids.add(id);
+
+                    thisRoom.setRoomName(room.getString("name"));
+                    thisRoom.setUrl(room.getString("url"));
+                    thisRoom.setOccupation(!room.getBoolean("available"));
+                    thisRoom.setOrganization(room.getString("organization"));
+                    thisRoom.setLocation(room.getString("location"));
+                    thisRoom.setSize(room.getInt("size"));
+                    thisRoom.setCo2(room.getInt("co2"));
+                    thisRoom.setTemperature(room.getInt("temperature"));
+                    thisRoom.setHumidity(room.getInt("humidity"));
+
+                    int isAlreadyInRealm = realm.where(RoomModel.class)
+                            .equalTo("id", id).findAll().size();
+
+                    if (isAlreadyInRealm == 0) {
+                        thisRoom.setFollowed(false);
+                    } else {
+                        Log.d(TAG, Boolean.toString(realm.where(RoomModel.class)
+                                .equalTo("id", id).findAll().first().isFollowed()));
+                    }
+
+                    realm.copyToRealmOrUpdate(thisRoom);
+                }
+            }
+
+            Set<Integer> old_ids = new HashSet<>();
+
+            RealmResults<RoomModel> results = realm.where(RoomModel.class).findAll();
+            for (int i = 0; i < results.size(); i++) {
+                RoomModel r = results.get(i);
+                int r_id = r.getId();
+                if (!new_ids.contains(r_id)) {
+                    old_ids.add(r_id);
+                }
+            }
+
+            for (int o_id : old_ids) {
+                realm.where(RoomModel.class)
+                        .equalTo("id", o_id)
+                        .findAll()
+                        .clear();
+            }
+
+            realm.commitTransaction();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            realm.cancelTransaction();
+        }
+        realm.close();
+
+        BaseApplication app = (BaseApplication)getApplicationContext();
+        app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+
         return true;
     }
 

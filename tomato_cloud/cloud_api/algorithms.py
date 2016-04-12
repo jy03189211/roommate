@@ -65,7 +65,7 @@ def push_notification_air_quality(room):
     try:
         quality = calculate_air_quality(room)
         
-        print 'Sending push notification about air quality..'
+        print 'Sending push notification about air quality..' + quality
         sys.stdout.flush()
 
         GCMMessage().send({'air_quality': quality}, to='/topics/' + str(room.pk) + '-quality')

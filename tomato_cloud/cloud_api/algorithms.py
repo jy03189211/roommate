@@ -8,6 +8,7 @@ def update_room_status(room, sensor, validated_data):
     
     if not (room and sensor and validated_data):
         print 'ERROR: no room | no sensor | validated_data'
+        sys.stdout.flush()
         return
     
     sensor_type = sensor.sensor_type

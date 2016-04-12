@@ -1,4 +1,5 @@
 from gcm.models import get_device_model
+from gcm.api import GCMMessage
 import sys
 
 def update_room_status(room, sensor, validated_data):
@@ -42,7 +43,7 @@ def push_notification(room):
 	print 'Sending push notification to /topics/' + str(room.pk) + '.'
         sys.stdout.flush()
         
-    	Device.objects.all().send_message({'message': 'Hello world!'}, to='/topics/' + str(room.pk))
+    	GCMMessage().send({'message': room.available}, to='/topics/' + str(room.pk))
 
         print 'Push notification was sent.'
         sys.stdout.flush()

@@ -1,3 +1,5 @@
+from gcm.models import get_device_model
+
 def update_room_status(room, sensor, validated_data):
     '''Determine room availability based on the latest measurements.
     Also, update the latest measurement data of the room object.
@@ -15,7 +17,7 @@ def update_room_status(room, sensor, validated_data):
             room.save()
             
             #Push notification to Android
-            push_notification(room.available)
+            push_notification(room)
     
     elif sensor.sensor_type == 'co2':
         room.co2 = validated_data.get('concentration')
@@ -29,7 +31,8 @@ def update_room_status(room, sensor, validated_data):
         room.humidity = validated_data.get('humidity')
         room.save()
 
-def push_notification(available):
+def push_notification(room):
     '''Push notification to Android when the status has changed.
     '''
-    pass
+    Device = get_device_model()
+    Device.objects.all().send_message({'message': room.available}, to='/topics/' + room.pk)

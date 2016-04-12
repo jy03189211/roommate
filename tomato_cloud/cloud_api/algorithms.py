@@ -35,4 +35,4 @@ def push_notification(room):
     '''Push notification to Android when the status has changed.
     '''
     Device = get_device_model()
-    Device.objects.all().send_message({'message': 'Hello world!'})
+    Device.objects.all().send_message({'message': 'Hello world!'}, to='/topic/'+str(room.pk))

@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fi.aalto_iot.tomato.BaseApplication;
@@ -54,6 +53,8 @@ public class Room_default_fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
+        Realm realm = Realm.getDefaultInstance();
+        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
     }
 
     @Override

@@ -23,6 +23,7 @@ public class RoomModel extends RealmObject {
 
     public void setUrl(String url) {
         this.url = url;
+    }
 
     public int getId() {
         return id;

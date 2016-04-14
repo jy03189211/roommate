@@ -2,13 +2,21 @@ from gcm.models import get_device_model
 from gcm.api import GCMMessage
 import sys
 
-CO2_LEVEL = {
-    'great': (0, 0),
-    'good': (600, 0),
-    'ok': (700, -1),
-    'bad': (900, -2),
-    'poor': (1200, -3)
-}
+# CO2_LEVEL = {
+#     'very fresh': (0, 0),
+#     'fresh': (600, 0),
+#     'ok': (700, -1),
+#     'drowsy': (900, -2),
+#     'poor': (1200, -3)
+# }
+
+# TEMP_LEVEL = {
+#     'cold': (-273, -2),
+#     'chilly': (19, -1),
+#     'good': (20, 0),
+#     'warm': (22, -1),
+#     'hot': (24, -2)
+# }
 
 def update_room_status(room, sensor, validated_data):
     '''Determine room availability based on the latest measurements.
@@ -53,7 +61,8 @@ def push_notification_available(room):
         print 'Sending push notification to /topics/' + str(room.pk) + '.'
         sys.stdout.flush()
         
-    	GCMMessage().send({'message': room.available}, to='/topics/' + str(room.pk))
+    	GCMMessage().send({'notification_type': 'room_availability', 'available': room.available, 'room_id': room.pk},
+                          to='/topics/' + str(room.pk))
 
         print 'Push notification was sent.'
         sys.stdout.flush()
@@ -63,12 +72,13 @@ def push_notification_available(room):
 
 def push_notification_air_quality(room):
     try:
-        quality = calculate_air_quality(room)
+        #quality = calculate_air_quality(room)
         
         print 'Sending push notification about air quality..' + str(quality)
         sys.stdout.flush()
 
-        GCMMessage().send({'air_quality': quality}, to='/topics/' + str(room.pk) + '-quality')
+        GCMMessage().send({'notification_type': 'air_quality', 'room_id': room.pk},
+                          to='/topics/' + str(room.pk) + '-quality')
 
         print 'Push notification was sent.'
         sys.stdout.flush()
@@ -77,11 +87,4 @@ def push_notification_air_quality(room):
         sys.stdout.flush()
 
 def calculate_air_quality(room):
-    points = 0
-    
-    if room.co2 >= CO2_LEVEL['poor'][0]:
-        points += CO2_LEVEL['poor'][1]
-    else:
-        points += CO2_LEVEL['bad'][1]
-
-    return points
+    pass

@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
 from rest_framework import filters
+import filters as f
 
 import models, serializers
 
@@ -20,8 +21,15 @@ class MetaSensorView(viewsets.ModelViewSet):
     try:
       room = models.Room.objects.get(pk=room_pk)
       sensor = models.Sensor.objects.get(room=room, sensor_type=self.sensor_type)
-      queryset = self.queryset.filter(sensor=sensor).order_by('-timestamp')
+
+      from_date = request.query_params.get('from', None)
+      if from_date is not None:
+        queryset = self.queryset.filter(sensor=sensor, timestamp__gte=from_date).order_by('-timestamp')
+      else:
+        queryset = self.queryset.filter(sensor=sensor).order_by('-timestamp')
+        
       serializer = self.serializer_class(queryset, many=True, context={'request': request})
+
       return Response(serializer.data)
     except:
       return Response()

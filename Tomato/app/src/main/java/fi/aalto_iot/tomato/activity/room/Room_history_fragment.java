@@ -55,7 +55,7 @@ public class Room_history_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_history_fragment, container, false);
-        canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.temperature_canvasView);
+        canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.canvasView);
 
         int[] array = new int[100];
         Random r = new Random();

@@ -26,9 +26,9 @@ public class NotificationSender {
             int room_id = Integer.parseInt(data.getString("room_id"));
             //String notification_type = json.getString("notification_type");
             if (notification_type.equals("air_quality")) {
-                sendNotification("Take a break! The air's getting poor.", cont, room_id);
+                sendNotification(cont.getResources().getString(R.string.air_quality_bad_notification), cont, room_id);
             } else if (notification_type.equals("room_availability")) {
-                sendNotification("Run, Forrest, run! The room is free now.", cont, room_id);
+                sendNotification(cont.getResources().getString(R.string.room_available_notification), cont, room_id);
             }
 
         } catch (Exception e) {

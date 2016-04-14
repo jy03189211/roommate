@@ -75,7 +75,7 @@ public class RoomActivity extends AppCompatActivity {
 
         // Set room picture to card header
         Picasso.with(this.getBaseContext())
-                .load("http://i.imgur.com/We6zFAz.jpg")
+                .load(room.getPicture())
                 .fit().centerCrop()
                 .into(roomTitleImage);
 

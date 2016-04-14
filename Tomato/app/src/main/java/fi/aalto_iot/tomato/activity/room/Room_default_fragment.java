@@ -140,6 +140,7 @@ public class Room_default_fragment extends Fragment {
                         room.setCo2(json.getInt("co2"));
                         room.setTemperature(json.getInt("temperature"));
                         room.setHumidity(json.getInt("humidity"));
+                        room.setPicture(json.getString("picture"));
                         realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
                     } catch (Exception e) {

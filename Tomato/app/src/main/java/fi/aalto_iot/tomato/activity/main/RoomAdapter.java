@@ -168,7 +168,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         // Set room picture to card header
         Picasso.with(holder.cont)
-                .load("http://i.imgur.com/We6zFAz.jpg")
+                .load(room.getPicture())
                 .fit().centerCrop()
                 .into(holder.mImageView);
 

@@ -107,7 +107,6 @@ public class RoomModel extends RealmObject {
         isFollowed = followed;
     }
 
-
     public String getPicture() {
         return picture;
     }

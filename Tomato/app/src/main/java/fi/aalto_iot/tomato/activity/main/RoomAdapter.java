@@ -76,7 +76,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("adapterposition", Integer.toString(getAdapterPosition()));
+                    //Log.d("adapterposition", Integer.toString(getAdapterPosition()));
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("name", roomList.get(getAdapterPosition()).getRoomName());
@@ -88,7 +88,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mDetailsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("adapterposition", Integer.toString(getAdapterPosition()));
+                    //Log.d("adapterposition", Integer.toString(getAdapterPosition()));
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("name", roomList.get(getAdapterPosition()).getRoomName());
@@ -211,7 +211,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     public void add(RoomModel job) {
         roomList.add(job);
-        Log.d(myTag, "added room to adapter");
+        //Log.d(myTag, "added room to adapter");
     }
 
     public void clear() {

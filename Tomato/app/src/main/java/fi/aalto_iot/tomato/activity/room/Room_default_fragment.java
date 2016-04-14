@@ -54,7 +54,7 @@ public class Room_default_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
         Realm realm = Realm.getDefaultInstance();
-        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
     }
 
     @Override
@@ -120,7 +120,7 @@ public class Room_default_fragment extends Fragment {
                 if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     try {
-                        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+                        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
                         realm.beginTransaction();
                         room.setId(json.getInt("id"));
                         room.setRoomName(json.getString("name"));

@@ -47,7 +47,7 @@ public class Room_history_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
         Realm realm = Realm.getDefaultInstance();
-        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Room_history_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_history_fragment, container, false);
-        canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.canvasView);
+        canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.temperature_canvasView);
 
         int[] array = new int[100];
         Random r = new Random();

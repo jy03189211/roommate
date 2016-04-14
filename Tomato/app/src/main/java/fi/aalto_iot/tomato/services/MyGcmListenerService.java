@@ -12,13 +12,15 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import fi.aalto_iot.tomato.R;
+import fi.aalto_iot.tomato.other.NotificationSender;
 
 
 public class MyGcmListenerService extends GcmListenerService {
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        sendNotification("Received GCM Message: " + data.toString());
+        //sendNotification("Received GCM Message: " + data.toString());
+        NotificationSender.parseAndShowNotification(data, this);
     }
 
     @Override

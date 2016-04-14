@@ -2,13 +2,7 @@ from gcm.models import get_device_model
 from gcm.api import GCMMessage
 import sys
 
-CO2_LEVEL = {
-    'very fresh': (0, 0),
-    'fresh': (600, 0),
-    'ok': (700, -1),
-    'drowsy': (900, -2),
-    'poor': (1200, -3)
-}
+CO2_LEVEL_LIMIT = 900
 
 # TEMP_LEVEL = {
 #     'cold': (-273, -2),
@@ -42,7 +36,7 @@ def update_room_status(room, sensor, validated_data):
         room.co2 = validated_data.get('concentration')
         room.save()
 
-        if room.co2 >= 900:
+        if room.co2 >= CO2_LEVEL_LIMIT:
             #Push notification about air quality
             push_notification_air_quality(room)
         
@@ -71,20 +65,20 @@ def push_notification_available(room):
         sys.stdout.flush()
 
 def push_notification_air_quality(room):
-    #try:
+    try:
         #quality = calculate_air_quality(room)
         
-    print 'Sending push notification about air quality..'
-    sys.stdout.flush()
+        print 'Sending push notification about air quality..'
+        sys.stdout.flush()
 
-    GCMMessage().send({'notification_type': 'air_quality', 'room_id': room.pk},
+        GCMMessage().send({'notification_type': 'air_quality', 'room_id': room.pk},
                           to='/topics/' + str(room.pk) + '-quality')
 
-        #print 'Push notification was sent.'
-        #sys.stdout.flush()
-    #except:
-        #print 'Push notification was not sent.'
-        #sys.stdout.flush()
+        print 'Push notification was sent.'
+        sys.stdout.flush()
+    except:
+        print 'Push notification was not sent.'
+        sys.stdout.flush()
 
 def calculate_air_quality(room):
     pass

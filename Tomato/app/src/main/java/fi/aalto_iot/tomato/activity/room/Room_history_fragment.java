@@ -56,7 +56,7 @@ public class Room_history_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_history_fragment, container, false);
-        canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.canvasView);
+        canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.temperature_canvasView);
 
         int[] array = new int[100];
         Random r = new Random();
@@ -122,14 +122,15 @@ public class Room_history_fragment extends Fragment {
                             BaseApplication app = (BaseApplication) context;
                             app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
                         }
+
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateContent();
+                                //swipeContainer.setRefreshing(false);
+                            }
+                        });
                     }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            updateContent();
-                            //swipeContainer.setRefreshing(false);
-                        }
-                    });
                 }
             }
         });

@@ -80,6 +80,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("name", roomList.get(getAdapterPosition()).getRoomName());
+                    bundle.putInt("id", roomList.get(getAdapterPosition()).getId());
                     roomIntent.putExtras(bundle);
                     cont.startActivity(roomIntent);
                 }
@@ -91,6 +92,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                     final Intent roomIntent = new Intent(cont, RoomActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("name", roomList.get(getAdapterPosition()).getRoomName());
+                    bundle.putInt("id", roomList.get(getAdapterPosition()).getId());
                     roomIntent.putExtras(bundle);
                     cont.startActivity(roomIntent);
                 }

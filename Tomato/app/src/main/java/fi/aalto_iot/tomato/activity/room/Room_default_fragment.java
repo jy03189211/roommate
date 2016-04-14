@@ -1,6 +1,7 @@
 package fi.aalto_iot.tomato.activity.room;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -140,10 +141,14 @@ public class Room_default_fragment extends Fragment {
                     }
                     realm.close();
 
-                    Context context = getActivity().getApplicationContext();
-                    if (context != null) {
-                        BaseApplication app = (BaseApplication) context;
-                        app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                    Activity activity = getActivity();
+                    Context context = null;
+                    if (activity != null) {
+                        context = activity.getApplicationContext();
+                        if (context != null) {
+                            BaseApplication app = (BaseApplication) context;
+                            app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                        }
                     }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

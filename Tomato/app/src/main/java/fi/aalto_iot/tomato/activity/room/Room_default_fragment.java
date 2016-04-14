@@ -149,14 +149,15 @@ public class Room_default_fragment extends Fragment {
                             BaseApplication app = (BaseApplication) context;
                             app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
                         }
+
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateContent();
+                                swipeContainer.setRefreshing(false);
+                            }
+                        });
                     }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            updateContent();
-                            swipeContainer.setRefreshing(false);
-                        }
-                    });
                 }
             }
         });

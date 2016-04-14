@@ -113,8 +113,11 @@ public class Room_history_fragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                    BaseApplication app = (BaseApplication) getActivity().getApplicationContext();
-                    app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                    Context context = getActivity().getApplicationContext();
+                    if (context != null) {
+                        BaseApplication app = (BaseApplication) context;
+                        app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                    }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

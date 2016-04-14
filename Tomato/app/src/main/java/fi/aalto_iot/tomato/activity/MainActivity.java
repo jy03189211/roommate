@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         BaseApplication app = (BaseApplication)getApplicationContext();
         long elapsedMs = android.os.SystemClock.elapsedRealtime()
                 - app.getLastFetchedDataMainActivity();
-        Log.d(TAG, Long.toString(elapsedMs));
+        //Log.d(TAG, Long.toString(elapsedMs));
         return (elapsedMs > Constants.MAXDATAGETINTERVAL*1000);
 
     }
@@ -278,13 +278,13 @@ public class MainActivity extends AppCompatActivity {
                             .equalTo("id", id).findAll().size();
 
                     if (isAlreadyInRealm == 0) {
-                        Log.d(TAG, room.getString("name") + " is not in realm already");
+                        //Log.d(TAG, room.getString("name") + " is not in realm already");
                         thisRoom.setFollowed(false);
                     } else {
                         thisRoom.setFollowed(realm.where(RoomModel.class)
                                 .equalTo("id", id).findAll().first().isFollowed());
-                        Log.d(TAG, room.get("name") + "is already in realm " + Boolean.toString(realm.where(RoomModel.class)
-                                .equalTo("id", id).findAll().first().isFollowed()));
+                        //Log.d(TAG, room.get("name") + "is already in realm " + Boolean.toString(realm.where(RoomModel.class)
+                         //       .equalTo("id", id).findAll().first().isFollowed()));
                     }
 
                     realm.copyToRealmOrUpdate(thisRoom);

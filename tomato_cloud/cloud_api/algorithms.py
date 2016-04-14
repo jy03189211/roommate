@@ -71,20 +71,20 @@ def push_notification_available(room):
         sys.stdout.flush()
 
 def push_notification_air_quality(room):
-    try:
+    #try:
         #quality = calculate_air_quality(room)
         
-        print 'Sending push notification about air quality..' + str(quality)
-        sys.stdout.flush()
+        #print 'Sending push notification about air quality..' + str(quality)
+        #sys.stdout.flush()
 
-        GCMMessage().send({'notification_type': 'air_quality', 'room_id': room.pk},
+    GCMMessage().send({'notification_type': 'air_quality', 'room_id': room.pk},
                           to='/topics/' + str(room.pk) + '-quality')
 
-        print 'Push notification was sent.'
-        sys.stdout.flush()
-    except:
-        print 'Push notification was not sent.'
-        sys.stdout.flush()
+        #print 'Push notification was sent.'
+        #sys.stdout.flush()
+    #except:
+        #print 'Push notification was not sent.'
+        #sys.stdout.flush()
 
 def calculate_air_quality(room):
     pass

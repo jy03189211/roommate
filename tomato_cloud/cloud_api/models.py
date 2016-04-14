@@ -6,6 +6,8 @@ class Room(models.Model):
   organization = models.CharField(max_length=30)
   location = models.CharField(max_length=30)
   size = models.IntegerField()
+  picture = models.URLField(default='http://i.imgur.com/We6zFAz.jpg')
+  
   available = models.BooleanField(default=False)
   co2 = models.IntegerField(default=999)
   temperature = models.IntegerField(default=25)

@@ -17,6 +17,7 @@ public class RoomModel extends RealmObject {
     private int humidity;
     private int co2;
     private boolean isFollowed;
+    private String picture;
 
     public String getUrl() {
         return url;
@@ -105,5 +106,15 @@ public class RoomModel extends RealmObject {
     public void setFollowed(boolean followed) {
         isFollowed = followed;
     }
+
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
 
 }

@@ -61,7 +61,7 @@ GET /api/v1/sensors/<id>
 ### Measurement data
 ```sh
 //return measurement data by room id and sensor class
-GET /api/v1/rooms/<room_id>/{motion,co2,temperature,humidity}
+GET /api/v1/rooms/<room_id>/{motion,co2,temperature,humidity}[/?from=<start_date>]
 ```
 
 ## Heroku

@@ -2,13 +2,13 @@ from gcm.models import get_device_model
 from gcm.api import GCMMessage
 import sys
 
-# CO2_LEVEL = {
-#     'very fresh': (0, 0),
-#     'fresh': (600, 0),
-#     'ok': (700, -1),
-#     'drowsy': (900, -2),
-#     'poor': (1200, -3)
-# }
+CO2_LEVEL = {
+    'very fresh': (0, 0),
+    'fresh': (600, 0),
+    'ok': (700, -1),
+    'drowsy': (900, -2),
+    'poor': (1200, -3)
+}
 
 # TEMP_LEVEL = {
 #     'cold': (-273, -2),

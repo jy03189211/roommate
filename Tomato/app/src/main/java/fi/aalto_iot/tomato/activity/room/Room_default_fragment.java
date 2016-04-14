@@ -94,18 +94,25 @@ public class Room_default_fragment extends Fragment {
             @Override
             public void onFailure(Call call, java.io.IOException e) {
                 // TODO: failure handling
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeContainer.setRefreshing(false);
-                        Context context = getActivity().getApplicationContext();
-                        CharSequence text = getResources().getString(R.string.failed_to_download);
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                    }
-                });
+                Activity activity = getActivity();
+                if (activity != null) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeContainer.setRefreshing(false);
+                            Activity activity = getActivity();
+                            if (activity != null) {
+                                Context context = activity.getApplicationContext();
+                                CharSequence text = getResources().getString(R.string.failed_to_download);
+                                int duration = Toast.LENGTH_SHORT;
+                                if (context != null) {
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }
+                            }
+                        }
+                    });
+                }
             }
 
             @Override
@@ -188,11 +195,17 @@ public class Room_default_fragment extends Fragment {
     }
 
     private boolean shouldFetchNewData() {
-        BaseApplication app = (BaseApplication) getActivity().getApplicationContext();
-        long elapsedMs = android.os.SystemClock.elapsedRealtime()
-                - app.getLastFetchedDataMainActivity();
-        Log.d(TAG, Long.toString(elapsedMs));
-        return (elapsedMs > Constants.MAXDATAGETINTERVAL * 1000);
-
+        Activity activity = getActivity();
+        if (activity != null) {
+            Context context = activity.getApplicationContext();
+            if (context != null) {
+                BaseApplication app = (BaseApplication) context;
+                long elapsedMs = android.os.SystemClock.elapsedRealtime()
+                        - app.getLastFetchedDataMainActivity();
+                Log.d(TAG, Long.toString(elapsedMs));
+                return (elapsedMs > Constants.MAXDATAGETINTERVAL * 1000);
+            }
+        }
+        return true;
     }
 }

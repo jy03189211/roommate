@@ -78,18 +78,25 @@ public class Room_history_fragment extends Fragment {
             @Override
             public void onFailure(Call call, java.io.IOException e) {
                 // TODO: failure handling
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //swipeContainer.setRefreshing(false);
-                        Context context = getActivity().getApplicationContext();
-                        CharSequence text = getResources().getString(R.string.failed_to_download);
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                    }
-                });
+                Activity activity = getActivity();
+                if (activity != null) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //swipeContainer.setRefreshing(false);
+                            Activity activity = getActivity();
+                            if (activity != null) {
+                                Context context = activity.getApplicationContext();
+                                CharSequence text = getResources().getString(R.string.failed_to_download);
+                                int duration = Toast.LENGTH_SHORT;
+                                if (context != null) {
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }
+                            }
+                        }
+                    });
+                }
             }
 
             @Override

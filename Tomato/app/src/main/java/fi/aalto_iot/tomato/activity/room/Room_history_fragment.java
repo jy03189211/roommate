@@ -1,6 +1,7 @@
 package fi.aalto_iot.tomato.activity.room;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,7 +48,7 @@ public class Room_history_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
         Realm realm = Realm.getDefaultInstance();
-        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
     }
 
     @Override
@@ -113,8 +114,15 @@ public class Room_history_fragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                    BaseApplication app = (BaseApplication) getActivity().getApplicationContext();
-                    app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                    Activity activity = getActivity();
+                    Context context = null;
+                    if (activity != null) {
+                        context = activity.getApplicationContext();
+                        if (context != null) {
+                            BaseApplication app = (BaseApplication) context;
+                            app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                        }
+                    }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

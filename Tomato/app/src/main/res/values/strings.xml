@@ -22,5 +22,6 @@
     <string name ="room_temperature_value">%1$c%2$d °C</string>
     <string name ="room_co2_value">%1$dPPM</string>
     <string name ="room_humidity_value">%1$d%%</string>
-
+    <string name="air_quality_bad_notification">Take a break! The air\'s getting poor.</string>
+    <string name="room_available_notification">Run, Forrest, run! The room is free now.</string>
 </resources>

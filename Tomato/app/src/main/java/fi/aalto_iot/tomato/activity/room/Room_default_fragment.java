@@ -1,6 +1,7 @@
 package fi.aalto_iot.tomato.activity.room;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class Room_default_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
         Realm realm = Realm.getDefaultInstance();
-        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
     }
 
     @Override
@@ -120,7 +121,7 @@ public class Room_default_fragment extends Fragment {
                 if (json != null) {
                     Realm realm = Realm.getDefaultInstance();
                     try {
-                        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+                        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
                         realm.beginTransaction();
                         room.setId(json.getInt("id"));
                         room.setRoomName(json.getString("name"));
@@ -140,8 +141,15 @@ public class Room_default_fragment extends Fragment {
                     }
                     realm.close();
 
-                    BaseApplication app = (BaseApplication) getActivity().getApplicationContext();
-                    app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                    Activity activity = getActivity();
+                    Context context = null;
+                    if (activity != null) {
+                        context = activity.getApplicationContext();
+                        if (context != null) {
+                            BaseApplication app = (BaseApplication) context;
+                            app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                        }
+                    }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -156,7 +164,7 @@ public class Room_default_fragment extends Fragment {
 
     private void updateContent() {
         Realm realm = Realm.getDefaultInstance();
-        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
 
         final String temperature = String.format(getResources().getString(R.string.room_temperature_value), room.getTemperature() < 0 ? '-' : '+', room.getTemperature());
         mTemperature.setText(temperature);

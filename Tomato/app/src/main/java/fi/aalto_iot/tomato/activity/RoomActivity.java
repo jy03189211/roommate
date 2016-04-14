@@ -15,6 +15,8 @@ import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.room.RoomFragmentPagerAdapter;
 import fi.aalto_iot.tomato.activity.room.Room_default_fragment;
 import fi.aalto_iot.tomato.activity.room.Room_history_fragment;
+import fi.aalto_iot.tomato.db.data.RoomModel;
+import io.realm.Realm;
 
 public class RoomActivity extends AppCompatActivity {
 
@@ -45,9 +47,12 @@ public class RoomActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setPadding(0, statusBarHeight(), 0, 0);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(bundle.getString("name"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Realm realm = Realm.getDefaultInstance();
+        RoomModel room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        getSupportActionBar().setTitle(room.getRoomName());
 
         roomTitleImage = (ImageView) findViewById(R.id.room_title_image);
 

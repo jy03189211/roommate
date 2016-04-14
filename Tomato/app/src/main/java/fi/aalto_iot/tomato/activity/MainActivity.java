@@ -264,6 +264,8 @@ public class MainActivity extends AppCompatActivity {
                     thisRoom.setId(id);
                     new_ids.add(id);
 
+                    Log.d(TAG, "new id: " + Integer.toString(id));
+
                     thisRoom.setRoomName(room.getString("name"));
                     thisRoom.setUrl(room.getString("url"));
                     thisRoom.setOccupation(!room.getBoolean("available"));

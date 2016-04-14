@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
                     thisRoom.setCo2(room.getInt("co2"));
                     thisRoom.setTemperature(room.getInt("temperature"));
                     thisRoom.setHumidity(room.getInt("humidity"));
+                    thisRoom.setPicture(room.getString("picture"));
 
                     int isAlreadyInRealm = realm.where(RoomModel.class)
                             .equalTo("id", id).findAll().size();

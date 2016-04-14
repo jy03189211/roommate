@@ -38,6 +38,7 @@ import fi.aalto_iot.tomato.other.Constants;
 import fi.aalto_iot.tomato.services.Preferences;
 import fi.aalto_iot.tomato.services.RegistrationIntentService;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import io.realm.internal.IOException;
 import okhttp3.Call;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     RoomAdapter mAdapter;
     OkHttpClient client = new OkHttpClient();
     private Realm realm;
+    private RealmChangeListener changeListener;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private boolean isReceiverRegistered;
 
@@ -102,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        /*
+        changeListener = new RealmChangeListener() {
+            @Override
+            public void onChange() {
+                mAdapter.notifyDataSetChanged();
+            }
+        };
+        */
 
 
         registerReceiver();
@@ -193,45 +203,6 @@ public class MainActivity extends AppCompatActivity {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                // TODO: remove deleted rooms locally too: DONE
-                /*if (json != null) {
-                    Realm realm = Realm.getDefaultInstance();
-                    realm.beginTransaction();
-                    try {
-                        realm.where(RoomModel.class).findAll().clear();
-                        for (int i = 0; i < json.length(); i++) {
-                            JSONObject room = (JSONObject) json.get(i);
-                            if (room != null) {
-                                RoomModel thisRoom = new RoomModel();
-                                thisRoom.setId(room.getInt("id"));
-                                thisRoom.setRoomName(room.getString("name"));
-                                thisRoom.setUrl(room.getString("url"));
-                                thisRoom.setOccupation(!room.getBoolean("available"));
-                                thisRoom.setOrganization(room.getString("organization"));
-                                thisRoom.setLocation(room.getString("location"));
-                                thisRoom.setSize(room.getInt("size"));
-                                thisRoom.setCo2(room.getInt("co2"));
-                                thisRoom.setTemperature(room.getInt("temperature"));
-                                thisRoom.setHumidity(room.getInt("humidity"));
-
-                                realm.copyToRealmOrUpdate(thisRoom);
-                            }
-                        }
-
-                        realm.commitTransaction();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        realm.cancelTransaction();
-                    }
-                    realm.close();
-
-                    BaseApplication app = (BaseApplication)getApplicationContext();
-                    app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
-                }
-                */
-
                 copyJsonToRealm(json);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -307,14 +278,18 @@ public class MainActivity extends AppCompatActivity {
                             .equalTo("id", id).findAll().size();
 
                     if (isAlreadyInRealm == 0) {
+                        Log.d(TAG, room.getString("name") + " is not in realm already");
                         thisRoom.setFollowed(false);
                     } else {
-                        Log.d(TAG, Boolean.toString(realm.where(RoomModel.class)
+                        thisRoom.setFollowed(realm.where(RoomModel.class)
+                                .equalTo("id", id).findAll().first().isFollowed());
+                        Log.d(TAG, room.get("name") + "is already in realm " + Boolean.toString(realm.where(RoomModel.class)
                                 .equalTo("id", id).findAll().first().isFollowed()));
                     }
 
                     realm.copyToRealmOrUpdate(thisRoom);
                 }
+
             }
 
             Set<Integer> old_ids = new HashSet<>();
@@ -348,5 +323,4 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
 }

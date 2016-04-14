@@ -111,16 +111,20 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
                         realm.beginTransaction();
                         room.setFollowed(true);
+                        realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
                         mBuilder.setContentText("Subscribed to room " + room.getRoomName());
+                        notifyDataSetChanged();
                     }
                     else {
                         new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id));
                         new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
                         realm.beginTransaction();
                         room.setFollowed(false);
+                        realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
                         mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
+                        notifyDataSetChanged();
                     }
                     mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);
                     //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -196,7 +200,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.mRoomConditionView.setText(room_condition);
 
         // Set follow button text
-        final String following = false ?
+        final String following = room.isFollowed() ?
                 res.getString(R.string.unfollow_text) :
                 res.getString(R.string.follow_text);
         holder.mFollowButton.setText(following);

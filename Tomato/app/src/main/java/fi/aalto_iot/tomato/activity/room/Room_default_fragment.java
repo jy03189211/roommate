@@ -156,7 +156,7 @@ public class Room_default_fragment extends Fragment {
 
     private void updateContent() {
         Realm realm = Realm.getDefaultInstance();
-        room = realm.where(RoomModel.class).equalTo("roomName", bundle.getString("name")).findFirst();
+        room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
 
         final String temperature = String.format(getResources().getString(R.string.room_temperature_value), room.getTemperature() < 0 ? '-' : '+', room.getTemperature());
         mTemperature.setText(temperature);

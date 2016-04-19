@@ -19,7 +19,8 @@ public class MyGcmListenerService extends GcmListenerService {
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        //sendNotification("Received GCM Message: " + data.toString());
+
+        // Send a proper User notification, not a generic one
         NotificationSender.parseAndShowNotification(data, this);
     }
 
@@ -38,9 +39,7 @@ public class MyGcmListenerService extends GcmListenerService {
         sendNotification("Upstream message send error. Id=" + msgId + ", error" + error);
     }
 
-    // Put the message into a notification and post it.
-    // This is just one simple example of what you might choose to do with
-    // a GCM message.
+    // Send generic notification when GCM message got
     private void sendNotification(String msg) {
         Log.d("NOTIFICATION", msg);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);

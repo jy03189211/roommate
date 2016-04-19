@@ -15,12 +15,11 @@ import com.google.android.gms.iid.InstanceID;
 
 import fi.aalto_iot.tomato.R;
 
-/**
- * This class used to subscribe and unsubscribe to topics.
- */
+// Subscribe or unsubscribe to some topic, to start/stop receiving notifications
 public class RegisterTopic {
 
     private final Context mContext;
+    private String TAG = "RegisterTopic";
 
     public RegisterTopic(Context context) {
         mContext = context;
@@ -35,8 +34,9 @@ public class RegisterTopic {
                     String token = instanceID.getToken(mContext.getResources().getString(R.string.gcm_defaultSenderId),
                             GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                     GcmPubSub.getInstance(mContext).subscribe(token, topic, null);
-                    Log.d("TYUIO",  "Registered to " + topic);
+                    Log.d(TAG,  "Registered to " + topic);
                 } catch (IOException | IllegalArgumentException e) {
+                    Log.d(TAG, "Could not register to topic: " + topic);
                     e.printStackTrace();
                 }
                 return null;
@@ -53,9 +53,10 @@ public class RegisterTopic {
                     String token = instanceID.getToken(mContext.getResources().getString(R.string.gcm_defaultSenderId),
                             GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                     GcmPubSub.getInstance(mContext).unsubscribe(token, topic);
-                    Log.d("TYUIO",  "Unregistered to " + topic);
+                    Log.d(TAG,  "Unregistered to " + topic);
 
                 } catch (IOException | IllegalArgumentException e) {
+                    Log.d(TAG, "Could not unregister to topic: " + topic);
                     e.printStackTrace();
                 }
                 return null;

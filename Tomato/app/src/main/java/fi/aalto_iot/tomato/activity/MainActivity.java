@@ -185,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
         client.newCall(req).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, java.io.IOException e) {
-                // TODO: failure handling
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -247,7 +246,13 @@ public class MainActivity extends AppCompatActivity {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
                         .show();
             } else {
-                Log.i(TAG, "This device is not supported.");
+                Log.i(TAG, "This device is not supported for Google Play Services.");
+                Context context = getApplicationContext();
+                CharSequence text = getResources().getString(R.string.google_services_not_available);
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 finish();
             }
             return false;

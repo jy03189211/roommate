@@ -24,4 +24,5 @@
     <string name ="room_humidity_value">%1$d%%</string>
     <string name="air_quality_bad_notification">Take a break! The air\'s getting poor.</string>
     <string name="room_available_notification">Run, Forrest, run! The room is free now.</string>
+    <string name="google_services_not_available">Push notifications not available for this device</string>
 </resources>

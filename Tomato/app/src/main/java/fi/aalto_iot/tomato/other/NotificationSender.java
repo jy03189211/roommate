@@ -22,9 +22,8 @@ public class NotificationSender {
     public static void parseAndShowNotification(Bundle data, Context cont) {
         try {
             String notification_type = data.getString("notification_type");
-            //JSONObject json = new JSONObject(json_s);
             int room_id = Integer.parseInt(data.getString("room_id"));
-            //String notification_type = json.getString("notification_type");
+
             if (notification_type.equals("air_quality")) {
                 sendNotification(cont.getResources().getString(R.string.air_quality_bad_notification), cont, room_id);
             } else if (notification_type.equals("room_availability")) {
@@ -57,7 +56,8 @@ public class NotificationSender {
         mBuilder.setSound(alarmSound);
         Notification notification = mBuilder.build();
 
-        NotificationManager mNotificationManager = (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager =
+                (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(9999, notification);
     }
 }

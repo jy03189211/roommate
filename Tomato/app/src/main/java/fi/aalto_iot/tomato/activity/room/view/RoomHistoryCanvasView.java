@@ -21,7 +21,7 @@ public class RoomHistoryCanvasView extends View {
     private Paint coordPaint = new Paint();
     private static final int NUMBER_OF_HORIZONTAL_LINES = 5;
     private static final int NUMBER_OF_VERTICAL_LINES = 5;
-    private static final int LEFT_PADDING = 90;
+    private static final int LEFT_PADDING = 120;
     private static final int RIGHT_PADDING = 40;
     private static final int BOTTOM_PADDING = 80;
     private static final int TOP_PADDING = 80;

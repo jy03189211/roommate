@@ -19,19 +19,22 @@ public class RoomHistoryCanvasView extends View {
     private Paint dataPaint = new Paint();
     private Paint textPaint = new Paint();
     private Paint coordPaint = new Paint();
-    private static final int NUMBER_OF_HORIZONTAL_LINES = 5;
-    private static final int NUMBER_OF_VERTICAL_LINES = 5;
-    private static final int LEFT_PADDING = 90;
-    private static final int RIGHT_PADDING = 40;
-    private static final int BOTTOM_PADDING = 80;
-    private static final int TOP_PADDING = 80;
-    private static final int V_LINE_LEN = 8;
 
-    // text size expressed in dp
     // Screen's density scale,
     private final float scale = getResources().getDisplayMetrics().density;
+
+    private static final int NUMBER_OF_HORIZONTAL_LINES = 5;
+    private static final int NUMBER_OF_VERTICAL_LINES = 5;
+    private final float LEFT_PADDING = 40 * scale + 0.5f;
+    private final float RIGHT_PADDING = 40 * scale + 0.5f;
+    private final float BOTTOM_PADDING = 50 * scale + 0.5f;
+    private final float TOP_PADDING = 40 * scale + 0.5f;
+    private final float V_LINE_LEN = 8 * scale + 0.5f;
+    private final float TEXT_LEFT_PADDING = 8 * scale + 0.5f;
+
+    // text size expressed in dp
     private static final float TEXT_SIZE = 12.0f;
-    private final float TEXT_CENTER_PADDING  = (TEXT_SIZE * scale + 0.5f) / 2;
+    private final float TEXT_CENTER_PADDING  = (TEXT_SIZE * scale + 0.5f);
 
 
     public RoomHistoryCanvasView(Context context) {
@@ -95,7 +98,7 @@ public class RoomHistoryCanvasView extends View {
                 canvas.drawLine(LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v, w - RIGHT_PADDING, h - BOTTOM_PADDING - i * interval_v,coordPaint);
                 //canvas.drawLine(startx, starty,stopx,stopy, paint);
 
-                canvas.drawText("1000", 8 * scale + 0.5f, h - BOTTOM_PADDING - i * interval_v + TEXT_CENTER_PADDING, textPaint);
+                canvas.drawText("1000", TEXT_LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v +  4 * scale, textPaint);
 
             }
 
@@ -106,7 +109,7 @@ public class RoomHistoryCanvasView extends View {
 
                 //canvas.drawText(text, x, y, textPaint);
 
-                canvas.drawText("18:00", LEFT_PADDING * 2 + i * interval_h - 2 * TEXT_CENTER_PADDING, h - BOTTOM_PADDING + 6 * V_LINE_LEN, textPaint);
+                canvas.drawText("18:00", LEFT_PADDING * 2 + i * interval_h - TEXT_CENTER_PADDING - scale * 2, h - BOTTOM_PADDING + 4 * V_LINE_LEN, textPaint);
 
             }
         }

@@ -13,6 +13,8 @@ class Room(models.Model):
   temperature = models.IntegerField(default=25)
   humidity = models.IntegerField(default=30)
 
+  co2_over_limit = models.BooleanField(default=False)
+
   def __str__(self):
     return self.name
 

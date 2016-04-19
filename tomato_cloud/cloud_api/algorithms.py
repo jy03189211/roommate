@@ -36,9 +36,17 @@ def update_room_status(room, sensor, validated_data):
         room.co2 = validated_data.get('concentration')
         room.save()
 
-        if room.co2 >= CO2_LEVEL_LIMIT:
+        if room.co2 >= CO2_LEVEL_LIMIT and not room.co2_over_limit:
+            print "over_lim: " + str(room.co2_over_limit)
+            print "CO2_lev: " + str(room.co2)
+            room.co2_over_limit = True
+            room.save()
+            
             #Push notification about air quality
             push_notification_air_quality(room)
+        else:
+            room.co2_over_limit = False
+            room.save()
         
     elif sensor.sensor_type == 'temperature':
         room.temperature = validated_data.get('temperature')

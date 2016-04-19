@@ -7,6 +7,7 @@ class RoomSerializer(s.HyperlinkedModelSerializer):
   
   class Meta:
     model = models.Room
+    exclude = ('co2_over_limit',)
 
 class SensorSerializer(s.HyperlinkedModelSerializer):
   class Meta:

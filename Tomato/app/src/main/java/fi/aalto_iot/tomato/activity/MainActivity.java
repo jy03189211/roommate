@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
+    ProgressBar mProgressBar;
     RoomAdapter mAdapter;
     OkHttpClient client = new OkHttpClient();
     private Realm realm;
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         realm = Realm.getDefaultInstance();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        mProgressBar = (ProgressBar) findViewById(R.id.initial_loading_progress);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -150,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
             mAdapter.add(job);
         }
         mAdapter.notifyDataSetChanged();
+
+        mRecyclerView.setVisibility(View.VISIBLE);
+        mProgressBar.setVisibility(View.GONE);
     }
 
     // not used

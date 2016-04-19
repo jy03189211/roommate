@@ -27,7 +27,10 @@ public class NotificationSender {
             if (notification_type.equals("air_quality")) {
                 sendNotification(cont.getResources().getString(R.string.air_quality_bad_notification), cont, room_id);
             } else if (notification_type.equals("room_availability")) {
-                sendNotification(cont.getResources().getString(R.string.room_available_notification), cont, room_id);
+                boolean availability = data.getBoolean("available");
+                if (availability) {
+                    sendNotification(cont.getResources().getString(R.string.room_available_notification), cont, room_id);
+                }
             }
 
         } catch (Exception e) {

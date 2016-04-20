@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -48,6 +49,7 @@ public class Room_history_fragment extends Fragment {
     List<SensorData> temperature_sensor_data = new ArrayList<>();
     List<SensorData> co2_sensor_data = new ArrayList<>();
     List<SensorData> humidity_sensor_data = new ArrayList<>();
+    private int days;
 
     public Room_history_fragment() {
         // Required empty public constructor
@@ -57,6 +59,7 @@ public class Room_history_fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
+        days = bundle.getInt("days");
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
     }
@@ -67,13 +70,33 @@ public class Room_history_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_history_fragment, container, false);
         temperature_canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.temperature_canvasView);
+        TextView temperatureInfo = (TextView) view.findViewById(R.id.temperature_time_interval);
         co2_canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.co2_canvasView);
+        TextView co2Info = (TextView) view.findViewById(R.id.co2_time_interval);
         humidity_canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.humidity_canvasView);
+        TextView humidity_Info = (TextView) view.findViewById(R.id.humidity_time_interval);
 
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.HOUR, -24);
+        c.add(Calendar.HOUR, - 24 * days);
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         String time = df.format(c.getTime());
+
+        if (days > 1) {
+            temperature_canvasView.showDates(true);
+            co2_canvasView.showDates(true);
+            humidity_canvasView.showDates(true);
+
+            final String info = String.format(getResources().getString(R.string.room_fragment_history_info), days, getResources().getString(R.string.room_fragment_history_days));
+            temperatureInfo.setText(info);
+            humidity_Info.setText(info);
+            co2Info.setText(info);
+        } else {
+            final String info = String.format(getResources().getString(R.string.room_fragment_history_info), days * 24, getResources().getString(R.string.room_fragment_history_hours));
+            temperatureInfo.setText(info);
+            humidity_Info.setText(info);
+            co2Info.setText(info);
+        }
+
         fetchSensor("temperature", time);
         fetchSensor("humidity", time);
         fetchSensor("co2", time);

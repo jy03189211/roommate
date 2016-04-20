@@ -63,11 +63,23 @@ public class RoomActivity extends AppCompatActivity {
         // pass bundle forward to fragments
         final Room_default_fragment room_default_fragment = new Room_default_fragment();
         room_default_fragment.setArguments(bundle);
-        final Room_history_fragment room_history_fragment = new Room_history_fragment();
-        room_history_fragment.setArguments(bundle);
+        final Room_history_fragment room_day_history_fragment = new Room_history_fragment();
+        Bundle bundle_1_day = new Bundle(bundle);
+        bundle_1_day.putInt("days", 1);
+        room_day_history_fragment.setArguments(bundle_1_day);
+        final Room_history_fragment room_week_history_fragment = new Room_history_fragment();
+        Bundle bundle_7_days = new Bundle(bundle);
+        bundle_7_days.putInt("days", 7);
+        room_week_history_fragment.setArguments(bundle_7_days);
+        final Room_history_fragment room_month_history_fragment = new Room_history_fragment();
+        Bundle bundle_30_days = new Bundle(bundle);
+        bundle_30_days.putInt("days", 30);
+        room_month_history_fragment.setArguments(bundle_30_days);
 
         adapter.addFragment(getResources().getString(R.string.room_fragment_default_name), room_default_fragment);
-        adapter.addFragment(getResources().getString(R.string.room_fragment_history_name), room_history_fragment);
+        adapter.addFragment(getResources().getString(R.string.room_fragment_day_history_name), room_day_history_fragment);
+        adapter.addFragment(getResources().getString(R.string.room_fragment_week_history_name), room_week_history_fragment);
+        adapter.addFragment(getResources().getString(R.string.room_fragment_month_history_name), room_month_history_fragment);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

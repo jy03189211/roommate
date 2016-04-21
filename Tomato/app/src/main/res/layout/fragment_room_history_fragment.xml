@@ -1,17 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="fi.aalto_iot.tomato.activity.room.Room_history_fragment">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -22,6 +19,10 @@
                 card_view:cardCornerRadius="2dp"
                 card_view:cardElevation="2dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 <RelativeLayout
                     android:id="@+id/temperature_top"
                     android:layout_width="match_parent"
@@ -40,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/temperature_icon"
                         android:layout_toRightOf="@+id/temperature_icon"
-                        android:text="Header" />
+                        android:text="@string/room_fragment_history_temperature_header" />
 
                     <TextView
                         android:id="@+id/temperature_time_interval"
@@ -48,16 +49,15 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/temperature_icon"
                         android:layout_toRightOf="@+id/temperature_icon"
-                        android:text="Explanation" />
+                        android:text="@string/unknown" />
 
                 </RelativeLayout>
 
                 <fi.aalto_iot.tomato.activity.room.view.RoomHistoryCanvasView
                     android:id="@+id/temperature_canvasView"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_below="@+id/temperature_top" />
-
+                    android:layout_height="240dp"/>
+</LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -65,10 +65,14 @@
                 android:id="@+id/humidity_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/temperature_card_view"
                 android:layout_margin="8dp"
                 card_view:cardCornerRadius="2dp"
                 card_view:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <RelativeLayout
                     android:id="@+id/humidity_top"
@@ -88,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/humidity_icon"
                         android:layout_toRightOf="@+id/humidity_icon"
-                        android:text="Header" />
+                        android:text="@string/room_fragment_history_humidity_header" />
 
                     <TextView
                         android:id="@+id/humidity_time_interval"
@@ -96,15 +100,16 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/humidity_icon"
                         android:layout_toRightOf="@+id/humidity_icon"
-                        android:text="Explanation" />
+                        android:text="@string/unknown" />
 
                 </RelativeLayout>
 
                 <fi.aalto_iot.tomato.activity.room.view.RoomHistoryCanvasView
                     android:id="@+id/humidity_canvasView"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="240dp" />
 
+                </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -112,10 +117,14 @@
                 android:id="@+id/co2_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/humidity_card_view"
                 android:layout_margin="8dp"
                 card_view:cardCornerRadius="2dp"
                 card_view:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <RelativeLayout
                     android:id="@+id/co2_top"
@@ -135,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/co2_icon"
                         android:layout_toRightOf="@+id/co2_icon"
-                        android:text="Header" />
+                        android:text="@string/room_fragment_history_co2_header" />
 
                     <TextView
                         android:id="@+id/co2_time_interval"
@@ -143,16 +152,16 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/co2_icon"
                         android:layout_toRightOf="@+id/co2_icon"
-                        android:text="Explanation" />
+                        android:text="@string/unknown" />
 
                 </RelativeLayout>
 
                 <fi.aalto_iot.tomato.activity.room.view.RoomHistoryCanvasView
                     android:id="@+id/co2_canvasView"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="240dp" />
+                </LinearLayout>
 
             </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
-</LinearLayout>

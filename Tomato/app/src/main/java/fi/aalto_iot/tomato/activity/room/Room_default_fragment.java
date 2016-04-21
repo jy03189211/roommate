@@ -63,9 +63,9 @@ public class Room_default_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_default_fragment, container, false);
-        mTemperature = (TextView) view.findViewById(R.id.room_temperature);
-        mCO2 = (TextView) view.findViewById(R.id.room_co2);
-        mHumidity = (TextView) view.findViewById(R.id.room_humidity);
+        //mTemperature = (TextView) view.findViewById(R.id.room_temperature);
+        //mCO2 = (TextView) view.findViewById(R.id.room_co2);
+        //mHumidity = (TextView) view.findViewById(R.id.room_humidity);
         mOccupationImage = (ImageView) view.findViewById(R.id.room_status_indicator_circle);
         mOccupation = (TextView) view.findViewById(R.id.room_status_indicator_text);
 
@@ -176,11 +176,11 @@ public class Room_default_fragment extends Fragment {
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
 
         final String temperature = String.format(getResources().getString(R.string.room_temperature_value), room.getTemperature() < 0 ? '-' : '+', room.getTemperature());
-        mTemperature.setText(temperature);
+        //mTemperature.setText(temperature);
         final String co2 = String.format(getResources().getString(R.string.room_co2_value), room.getCo2());
-        mCO2.setText(co2);
+        //mCO2.setText(co2);
         final String humidity = String.format(getResources().getString(R.string.room_humidity_value), room.getHumidity());
-        mHumidity.setText(humidity);
+        //mHumidity.setText(humidity);
 
         // Set correct status indicator ("traffic light") color
         final Drawable statusIndicator = room.getOccupation() ?

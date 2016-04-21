@@ -9,7 +9,7 @@
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="243dp">
+        android:layout_height="243dp" >
 
 
         <LinearLayout

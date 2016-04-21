@@ -1,35 +1,31 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="fi.aalto_iot.tomato.activity.room.Room_default_fragment">
 
-
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipeContainer"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="243dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="2dp">
 
-
-        <LinearLayout
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/generic_card_view"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardElevation="2dp">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:id="@+id/generic_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/room_status_indicator_relative_layout"
+                    android:paddingLeft="32dp">
 
                     <ImageView
                         android:id="@+id/room_status_indicator_circle"
@@ -46,278 +42,109 @@
                         android:layout_toRightOf="@+id/room_status_indicator_circle"
                         android:text="@string/unknown" />
 
-                    <ImageView
-                        android:id="@+id/airquality"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/room_status_indicator_occupied"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/room_status_indicator_text"
-                        android:layout_toEndOf="@+id/room_status_indicator_text"
-                        android:layout_marginLeft="86dp"
-                        android:layout_marginStart="86dp" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/room_temperature_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/room_status_indicator_occupied" />
+
                 <RelativeLayout
                     android:id="@+id/room_status_indicator_relative_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/airquality"
-                    android:layout_toRightOf="@+id/airquality"
+                    android:layout_toEndOf="@+id/room_temperature_icon"
+                    android:layout_toRightOf="@+id/room_temperature_icon"
                     android:paddingBottom="16dp"
                     android:paddingLeft="0dp"
-                    android:paddingStart="16dp"
+                    android:paddingStart="0dp"
                     android:paddingTop="16dp">
-                    <TextView
-                        android:id="@+id/airquality_header"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AIR QUALITY"
-                        />
 
                     <TextView
-                        android:id="@+id/airquality_interval"
+                        android:id="@+id/room_temperature_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/airquality_header"
-                        android:text="Explanation" />
-                </RelativeLayout>
+                        android:text="@string/room_temperature_header" />
 
-
-
+                    <TextView
+                        android:id="@+id/room_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/room_temperature_header"
+                        android:text="@string/unknown" />
 
                 </RelativeLayout>
 
+                <ImageView
+                    android:id="@+id/room_co2_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/room_temperature_icon"
+                    android:padding="16dp"
+                    android:src="@drawable/room_status_indicator_occupied" />
 
 
-            </android.support.v7.widget.CardView>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/room_temperature_icon"
+                    android:layout_toRightOf="@+id/room_co2_icon"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="16dp">
 
-            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/detail_card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/generic_card_view"
-                android:layout_margin="8dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardElevation="2dp">
-
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/room_co2_header"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp">
-                        <ImageView
-                            android:id="@+id/temperature_icon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="16dp"
-                            android:src="@drawable/room_status_indicator_occupied" />
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                        android:text="@string/room_co2_header" />
 
-                            <TextView
-                                android:id="@+id/temperature_header"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Header" />
+                    <TextView
+                        android:id="@+id/room_co2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/room_co2_header"
+                        android:text="@string/unknown" />
 
-                            <ProgressBar
-                                style="@android:style/Widget.ProgressBar.Horizontal"
-                                android:layout_width="180dp"
-                                android:layout_height="wrap_content"
+                </RelativeLayout>
 
-                                android:id="@+id/temperature_progressBar"
-                                android:visibility="visible"
-                                android:secondaryProgress="50"
-                                android:indeterminate="false" />
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:id="@+id/temperature_scale_small"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="left"
-                                    android:text="too cold" />
-                                <TextView
-                                    android:id="@+id/temperature_scale_midd"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="optimal" />
-                                <TextView
-                                    android:id="@+id/temperature_scale_big"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="too hot" />
+                <ImageView
+                    android:id="@+id/room_humidity_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/room_co2_icon"
+                    android:padding="16dp"
+                    android:src="@drawable/room_status_indicator_occupied" />
 
-                            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/room_co2_icon"
+                    android:layout_toEndOf="@+id/room_humidity_icon"
+                    android:layout_toRightOf="@+id/room_humidity_icon"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="16dp">
 
+                    <TextView
+                        android:id="@+id/room_humidity_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/room_humidity_header" />
 
-                        </LinearLayout>
-                        <TextView
-                            android:id="@+id/temperature_time_interval"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="fill_vertical|right"
-                            style="@style/ParameterNumberFont"
-                            android:text="23°C" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:id="@+id/humidity_icon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="16dp"
-                            android:src="@drawable/room_status_indicator_occupied" />
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/room_humidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/room_humidity_header"
+                        android:text="@string/unknown" />
 
-                            <TextView
-                                android:id="@+id/humidity_header"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Header" />
-
-                            <ProgressBar
-                                style="@android:style/Widget.ProgressBar.Horizontal"
-                                android:layout_width="180dp"
-                                android:layout_height="wrap_content"
-
-                                android:id="@+id/humidity_progressBar"
-                                android:visibility="visible"
-                                android:secondaryProgress="50"
-                                android:indeterminate="false" />
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:id="@+id/humidity_scale_small"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="left"
-                                    android:text="desert" />
-                                <TextView
-                                    android:id="@+id/humidity_scale_midd"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="optimal" />
-                                <TextView
-                                    android:id="@+id/humidity_scale_big"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="jungle" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/humidity_time_interval"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="fill_vertical|right"
-                            style="@style/ParameterNumberFont"
-                            android:text="27 %" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:id="@+id/co2_icon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="16dp"
-                            android:src="@drawable/room_status_indicator_occupied" />
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/co2_header"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Header" />
-
-                            <ProgressBar
-                                style="@android:style/Widget.ProgressBar.Horizontal"
-                                android:layout_width="180dp"
-                                android:layout_height="wrap_content"
-
-                                android:id="@+id/co2_progressBar"
-                                android:visibility="visible"
-                                android:secondaryProgress="50"
-                                android:indeterminate="false" />
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:id="@+id/co2_scale_small"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="left"
-                                    android:text="desert" />
-                                <TextView
-                                    android:id="@+id/co2_scale_midd"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="optimal" />
-                                <TextView
-                                    android:id="@+id/co2_scale_big"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="jungle" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/co2_time_interval"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/abc_text_size_display_2_material"
-                            android:gravity="fill_vertical|right"
-                            android:text="27%" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-
-            </android.support.v7.widget.CardView>
-
-
-        </LinearLayout>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-
-
-</LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

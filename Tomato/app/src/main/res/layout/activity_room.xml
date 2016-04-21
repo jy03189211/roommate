@@ -33,7 +33,7 @@
         android:layout_below="@+id/room_title_image"
         android:background="@color/color_primary"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/color_accent"
+        app:tabIndicatorColor="@color/color_tab_bar_indicator"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed" />
 

@@ -19,4 +19,6 @@
     <color name="color_scrim_center_heavy">#44000000</color>
     <color name="color_scrim_center_light">#30000000</color>
     <color name="color_scrim_end">#00000000</color>
+    
+    <color name="color_tab_bar_indicator">#FFFFFF</color>
 </resources>

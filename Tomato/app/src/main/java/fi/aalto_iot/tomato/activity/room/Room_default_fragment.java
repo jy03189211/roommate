@@ -62,20 +62,20 @@ public class Room_default_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_room_default_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_room_default_fragment_2, container, false);
         //mTemperature = (TextView) view.findViewById(R.id.room_temperature);
         //mCO2 = (TextView) view.findViewById(R.id.room_co2);
         //mHumidity = (TextView) view.findViewById(R.id.room_humidity);
         mOccupationImage = (ImageView) view.findViewById(R.id.room_status_indicator_circle);
         mOccupation = (TextView) view.findViewById(R.id.room_status_indicator_text);
 
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        //swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        /*swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 fetchRoom(room.getUrl());
             }
-        });
+        });*/
 
         if (shouldFetchNewData()) {
             fetchRoom(room.getUrl());
@@ -99,7 +99,7 @@ public class Room_default_fragment extends Fragment {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            swipeContainer.setRefreshing(false);
+                            //swipeContainer.setRefreshing(false);
                             Activity activity = getActivity();
                             if (activity != null) {
                                 Context context = activity.getApplicationContext();

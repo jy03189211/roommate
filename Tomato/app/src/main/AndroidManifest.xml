@@ -50,7 +50,7 @@
         <!-- [END gcm_listener] -->
         <!-- [START instanceId_listener] -->
         <service
-            android:name="services.MyInstanceIDListenerService"
+            android:name=".services.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
@@ -65,7 +65,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.AboutActivity"></activity>
+        <activity android:name=".activity.AboutActivity" android:theme="@style/AppThemeWithActionBar">
+
+        </activity>
     </application>
 
 </manifest>

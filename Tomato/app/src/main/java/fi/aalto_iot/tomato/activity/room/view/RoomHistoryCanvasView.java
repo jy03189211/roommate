@@ -8,10 +8,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -113,7 +115,7 @@ public class RoomHistoryCanvasView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (data != null && canvas != null && canvas.getHeight() > 0 && canvas.getWidth() > 0) {
+        if (data != null && data.size() > 0 && canvas != null && canvas.getHeight() > 0 && canvas.getWidth() > 0) {
             int h = canvas.getHeight();
             int w = canvas.getWidth();
 
@@ -150,7 +152,7 @@ public class RoomHistoryCanvasView extends View {
                 float height = canvas.getHeight() - TOP_PADDING - BOTTOM_PADDING;
                 float size = width / data.size();
                 float heightUnit = height / max_data_value;
-
+                double t0 = System.nanoTime();
                 for (int i = 0; i < data.size() - 1; i++) {
                     int current = data.get(i).getData();
                     int next = data.get(i + 1).getData();
@@ -158,6 +160,8 @@ public class RoomHistoryCanvasView extends View {
                     path.moveTo(size * i + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - current * heightUnit);
                     path.lineTo(size * (i + 1) + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - next * heightUnit);
                 }
+                double t1 = System.nanoTime();
+                Log.d("erotus_piirto", Double.toString(t1 - t0));
                 path.close();
             }
             canvas.drawPath(path, dataPaint);

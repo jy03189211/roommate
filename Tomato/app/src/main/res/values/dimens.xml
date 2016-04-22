@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding_bar">2dp</dimen>
+    <dimen name="room_fragment_data_value">60dp</dimen>
 </resources>

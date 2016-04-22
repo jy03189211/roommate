@@ -37,4 +37,14 @@
     <string name="temperature_level_header">TEMPERATURE</string>
     <string name="humidity_level_header">RELATIVE HUMIDITY</string>
     <string name="co2_level_header">CO2 LEVEL, ppm</string>
+    <string name="room_fragment_temperature_cold">too cold</string>
+    <string name="room_fragment_temperature_ok">optimal</string>
+    <string name="room_fragment_temperature_hot">too hot</string>
+    <string name="room_fragment_humidity_dry">desert</string>
+    <string name="room_fragment_humidity_ok">optimal</string>
+    <string name="room_fragment_humidity_humid">sauna</string>
+    <string name="room_fragment_co2_low">fresh</string>
+    <string name="room_fragment_co2_normal">bearable</string>
+    <string name="room_fragment_co2_high">drowsy</string>
+
 </resources>

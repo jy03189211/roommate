@@ -80,10 +80,11 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:paddingTop="10dp"
             android:layout_height="wrap_content">
 
             <!-- Temperature -->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -100,55 +101,66 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/room_temperature_indicator_icon"
-                    android:layout_toRightOf="@+id/room_temperature_indicator_icon">
+                    android:layout_toRightOf="@+id/room_temperature_indicator_icon"
+                    android:layout_weight="1">
                     <TextView
                         android:id="@+id/temperature_bar_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Header"/>
-                    <ImageView
-                        android:id="@+id/temperature_bar_1"
+                        android:text="@string/temperature_level_header"/>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/temperature_bar_header"
-                        android:padding="@dimen/padding_bar"
-                        android:src="@drawable/scale_dash_off"/>
-                    <ImageView
-                        android:id="@+id/temperature_bar_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/temperature_bar_1"
-                        android:layout_toRightOf="@+id/temperature_bar_1"
-                        android:layout_below="@+id/temperature_bar_header"
-                        android:padding="@dimen/padding_bar"
-                        android:src="@drawable/scale_dash_off"/>
-                    <ImageView
-                        android:id="@+id/temperature_bar_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/temperature_bar_2"
-                        android:layout_toRightOf="@+id/temperature_bar_2"
-                        android:layout_below="@+id/temperature_bar_header"
-                        android:padding="@dimen/padding_bar"
-                        android:src="@drawable/scale_dash_off"/>
-                    <ImageView
-                        android:id="@+id/temperature_bar_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/temperature_bar_3"
-                        android:layout_toRightOf="@+id/temperature_bar_3"
-                        android:layout_below="@+id/temperature_bar_header"
-                        android:padding="@dimen/padding_bar"
-                        android:src="@drawable/scale_dash_off"/>
-                    <ImageView
-                        android:id="@+id/temperature_bar_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/temperature_bar_4"
-                        android:layout_toRightOf="@+id/temperature_bar_4"
-                        android:layout_below="@+id/temperature_bar_header"
-                        android:padding="@dimen/padding_bar"
-                        android:src="@drawable/scale_dash_off"/>
+                        android:layout_below="@+id/temperature_bar_header">
+                        <ImageView
+                            android:id="@+id/temperature_bar_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/temperature_bar_header"
+                            android:padding="@dimen/padding_bar"
+                            android:layout_weight="1"
+                            android:src="@drawable/scale_dash_off"/>
+                        <ImageView
+                            android:id="@+id/temperature_bar_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/temperature_bar_1"
+                            android:layout_toRightOf="@+id/temperature_bar_1"
+                            android:layout_below="@+id/temperature_bar_header"
+                            android:padding="@dimen/padding_bar"
+                            android:layout_weight="1"
+                            android:src="@drawable/scale_dash_off"/>
+                        <ImageView
+                            android:id="@+id/temperature_bar_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/temperature_bar_2"
+                            android:layout_toRightOf="@+id/temperature_bar_2"
+                            android:layout_below="@+id/temperature_bar_header"
+                            android:padding="@dimen/padding_bar"
+                            android:layout_weight="1"
+                            android:src="@drawable/scale_dash_off"/>
+                        <ImageView
+                            android:id="@+id/temperature_bar_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/temperature_bar_3"
+                            android:layout_toRightOf="@+id/temperature_bar_3"
+                            android:layout_below="@+id/temperature_bar_header"
+                            android:padding="@dimen/padding_bar"
+                            android:layout_weight="1"
+                            android:src="@drawable/scale_dash_off"/>
+                        <ImageView
+                            android:id="@+id/temperature_bar_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/temperature_bar_4"
+                            android:layout_toRightOf="@+id/temperature_bar_4"
+                            android:layout_below="@+id/temperature_bar_header"
+                            android:padding="@dimen/padding_bar"
+                            android:layout_weight="1"
+                            android:src="@drawable/scale_dash_off"/>
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <TextView
@@ -157,9 +169,11 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/temperature_bar_all"
                     android:layout_toRightOf="@+id/temperature_bar_all"
-                    android:text="23 C"
+                    android:padding="4dp"
+                    android:layout_centerInParent="true"
+                    android:text="@string/room_temperature_value"
                     android:textSize="24dp"/>
-            </RelativeLayout>
+            </LinearLayout>
 
             <!-- Humidity -->
             <RelativeLayout
@@ -184,7 +198,7 @@
                         android:id="@+id/humidity_bar_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Header"/>
+                        android:text="@string/humidity_level_header"/>
                     <ImageView
                         android:id="@+id/humidity_bar_1"
                         android:layout_width="wrap_content"
@@ -236,7 +250,9 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/humidity_bar_all"
                     android:layout_toRightOf="@+id/humidity_bar_all"
-                    android:text="23 C"
+                    android:layout_centerInParent="true"
+                    android:padding="4dp"
+                    android:text="@string/room_humidity_value"
                     android:textSize="24dp"/>
             </RelativeLayout>
 
@@ -263,7 +279,7 @@
                         android:id="@+id/co2_bar_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Header"/>
+                        android:text="@string/co2_level_header"/>
                     <ImageView
                         android:id="@+id/co2_bar_1"
                         android:layout_width="wrap_content"
@@ -315,7 +331,9 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/co2_bar_all"
                     android:layout_toRightOf="@+id/co2_bar_all"
-                    android:text="23 C"
+                    android:padding="4dp"
+                    android:layout_centerInParent="true"
+                    android:text="@string/room_co2_value"
                     android:textSize="24dp"/>
             </RelativeLayout>
 

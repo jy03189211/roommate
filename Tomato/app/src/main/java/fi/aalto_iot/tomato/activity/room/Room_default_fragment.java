@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.db.data.RoomModel;
@@ -42,6 +44,26 @@ public class Room_default_fragment extends Fragment {
     private TextView mHumidity;
     private TextView mOccupation;
     private ImageView mOccupationImage;
+
+    private ImageView mTemperature_bar_1;
+    private ImageView mTemperature_bar_2;
+    private ImageView mTemperature_bar_3;
+    private ImageView mTemperature_bar_4;
+    private ImageView mTemperature_bar_5;
+
+    private ImageView mHumidity_bar_1;
+    private ImageView mHumidity_bar_2;
+    private ImageView mHumidity_bar_3;
+    private ImageView mHumidity_bar_4;
+    private ImageView mHumidity_bar_5;
+
+    private ImageView mCo2_bar_1;
+    private ImageView mCo2_bar_2;
+    private ImageView mCo2_bar_3;
+    private ImageView mCo2_bar_4;
+    private ImageView mCo2_bar_5;
+
+
     private SwipeRefreshLayout swipeContainer;
     OkHttpClient client = new OkHttpClient();
     private static final String TAG = "room default fragment";
@@ -63,11 +85,35 @@ public class Room_default_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_default_fragment_2, container, false);
-        //mTemperature = (TextView) view.findViewById(R.id.room_temperature);
-        //mCO2 = (TextView) view.findViewById(R.id.room_co2);
-        //mHumidity = (TextView) view.findViewById(R.id.room_humidity);
+        mTemperature = (TextView) view.findViewById(R.id.temperature_text);
+        mCO2 = (TextView) view.findViewById(R.id.co2_text);
+        mHumidity = (TextView) view.findViewById(R.id.humidity_text);
         mOccupationImage = (ImageView) view.findViewById(R.id.room_status_indicator_circle);
         mOccupation = (TextView) view.findViewById(R.id.room_status_indicator_text);
+
+        // set all the bars
+
+        // temperature bar
+        mTemperature_bar_1 = (ImageView)view.findViewById(R.id.temperature_bar_1);
+        mTemperature_bar_2 = (ImageView)view.findViewById(R.id.temperature_bar_2);
+        mTemperature_bar_3 = (ImageView)view.findViewById(R.id.temperature_bar_3);
+        mTemperature_bar_4 = (ImageView)view.findViewById(R.id.temperature_bar_4);
+        mTemperature_bar_5 = (ImageView)view.findViewById(R.id.temperature_bar_5);
+
+        mHumidity_bar_1 = (ImageView)view.findViewById(R.id.humidity_bar_1);
+        mHumidity_bar_2 = (ImageView)view.findViewById(R.id.humidity_bar_2);
+        mHumidity_bar_3 = (ImageView)view.findViewById(R.id.humidity_bar_3);
+        mHumidity_bar_4 = (ImageView)view.findViewById(R.id.humidity_bar_4);
+        mHumidity_bar_5 = (ImageView)view.findViewById(R.id.humidity_bar_5);
+
+        mCo2_bar_1 = (ImageView)view.findViewById(R.id.co2_bar_1);
+        mCo2_bar_2 = (ImageView)view.findViewById(R.id.co2_bar_2);
+        mCo2_bar_3 = (ImageView)view.findViewById(R.id.co2_bar_3);
+        mCo2_bar_4 = (ImageView)view.findViewById(R.id.co2_bar_4);
+        mCo2_bar_5 = (ImageView)view.findViewById(R.id.co2_bar_5);
+
+        // humidity bar
+        // co2 bar
 
         //swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         /*swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -162,7 +208,7 @@ public class Room_default_fragment extends Fragment {
                             @Override
                             public void run() {
                                 updateContent();
-                                swipeContainer.setRefreshing(false);
+                                //swipeContainer.setRefreshing(false);
                             }
                         });
                     }
@@ -175,12 +221,17 @@ public class Room_default_fragment extends Fragment {
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
 
-        final String temperature = String.format(getResources().getString(R.string.room_temperature_value), room.getTemperature() < 0 ? '-' : '+', room.getTemperature());
-        //mTemperature.setText(temperature);
-        final String co2 = String.format(getResources().getString(R.string.room_co2_value), room.getCo2());
-        //mCO2.setText(co2);
-        final String humidity = String.format(getResources().getString(R.string.room_humidity_value), room.getHumidity());
-        //mHumidity.setText(humidity);
+        final int roomTemp = room.getTemperature();
+        final int roomHumidity = room.getHumidity();
+        final int roomCo2 = room.getCo2();
+
+        final String temperature = String.format(getResources().
+                getString(R.string.room_temperature_value), roomTemp < 0 ? '-' : '+', roomTemp);
+        mTemperature.setText(temperature);
+        final String co2 = String.format(getResources().getString(R.string.room_co2_value), roomCo2);
+        mCO2.setText(co2);
+        final String humidity = String.format(getResources().getString(R.string.room_humidity_value), roomHumidity);
+        mHumidity.setText(humidity);
 
         // Set correct status indicator ("traffic light") color
         final Drawable statusIndicator = room.getOccupation() ?
@@ -193,6 +244,60 @@ public class Room_default_fragment extends Fragment {
                 getResources().getString(R.string.status_occupied_text) :
                 getResources().getString(R.string.status_free_text);
         mOccupation.setText(occupationStatus);
+
+        // calculate correct bars
+        int[] tempBounds = { 18, 19, 22, 25 };
+        int[] humidityBounds = { 20, 30, 50, 70 };
+        int[] co2Bounds = { 300, 500, 800, 1200 };
+
+        int tempMainBar = 0;
+        int humidMainbar = 0;
+        int co2MainBar = 0;
+
+        for (int idx = 0; idx < tempBounds.length; idx++) {
+            if (roomTemp > tempBounds[idx]) {
+                tempMainBar++;
+            }
+        }
+
+        for (int idx = 0; idx < humidityBounds.length; idx++) {
+            if (roomHumidity > humidityBounds[idx]) {
+                humidMainbar++;
+            }
+        }
+
+        for (int idx = 0; idx < co2Bounds.length; idx++) {
+            if (roomCo2 > co2Bounds[idx]) {
+                co2MainBar++;
+            }
+        }
+
+        // get different drawables
+        final Drawable onDr = ContextCompat.getDrawable(getContext(), R.drawable.scale_dash_on);
+        final Drawable mainDr = ContextCompat.getDrawable(getContext(), R.drawable.scale_dash_main);
+
+        ImageView[] tempBars = { mTemperature_bar_1, mTemperature_bar_2, mTemperature_bar_3, mTemperature_bar_4, mTemperature_bar_5 };
+        ImageView[] humidBars = { mHumidity_bar_1, mHumidity_bar_2, mHumidity_bar_3, mHumidity_bar_4, mHumidity_bar_5 };
+        ImageView[] co2Bars = { mCo2_bar_1, mCo2_bar_2, mCo2_bar_3, mCo2_bar_4, mCo2_bar_5 };
+
+        // set correct bar styles
+        int i = 0;
+        for (; i < tempMainBar; i++) {
+            tempBars[i].setImageDrawable(onDr);
+        }
+        tempBars[i].setImageDrawable(mainDr);
+
+        i = 0;
+        for (; i < humidMainbar; i++) {
+            humidBars[i].setImageDrawable(onDr);
+        }
+        humidBars[i].setImageDrawable(mainDr);
+
+        i = 0;
+        for (; i < co2MainBar; i++) {
+            co2Bars[i].setImageDrawable(onDr);
+        }
+        co2Bars[i].setImageDrawable(mainDr);
     }
 
     private boolean shouldFetchNewData() {

@@ -22,7 +22,7 @@ import io.realm.Realm;
 public class RoomActivity extends AppCompatActivity {
 
     ImageView roomTitleImage;
-    SwipeRefreshLayout mRefresh;
+    //SwipeRefreshLayout mRefresh;
 
     public int statusBarHeight() {
         int res = 0;
@@ -57,7 +57,7 @@ public class RoomActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(room.getRoomName());
 
         roomTitleImage = (ImageView) findViewById(R.id.room_title_image);
-        mRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeContainerRoom) ;
+        //mRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeContainerRoom) ;
 
         // Use viewpager and tablayout to setup tabs
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -88,7 +88,7 @@ public class RoomActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener() {
+        /*viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled( int position, float v, int i1 ) {
             }
@@ -109,7 +109,7 @@ public class RoomActivity extends AppCompatActivity {
             public void onRefresh() {
                 room_default_fragment.fetchRoom(room.getUrl(), mRefresh);
             }
-        });
+        });*/
 
         // Set room picture to card header
         Picasso.with(this.getBaseContext())

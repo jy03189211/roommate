@@ -120,13 +120,13 @@ public class Room_default_fragment extends Fragment {
         // humidity bar
         // co2 bar
 
-        //swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        /*swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerRoomDefault);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 fetchRoom(room.getUrl());
             }
-        });*/
+        });
 
         if (shouldFetchNewData()) {
             fetchRoom(room.getUrl());
@@ -138,10 +138,6 @@ public class Room_default_fragment extends Fragment {
     }
 
     public void fetchRoom(final String roomUrl) {
-        fetchRoom(roomUrl, null);
-    }
-
-    public void fetchRoom(final String roomUrl, final SwipeRefreshLayout refresh) {
         Request req = new Request.Builder()
                 .url(roomUrl)
                 .build();
@@ -154,7 +150,7 @@ public class Room_default_fragment extends Fragment {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //swipeContainer.setRefreshing(false);
+                            swipeContainer.setRefreshing(false);
                             Activity activity = getActivity();
                             if (activity != null) {
                                 Context context = activity.getApplicationContext();
@@ -167,9 +163,6 @@ public class Room_default_fragment extends Fragment {
                             }
                         }
                     });
-                }
-                if (refresh != null) {
-                    refresh.setRefreshing(false);
                 }
             }
 
@@ -230,9 +223,7 @@ public class Room_default_fragment extends Fragment {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (refresh != null) {
-                                refresh.setRefreshing(false);
-                            }
+                            swipeContainer.setRefreshing(false);
                         }
                     });
                 }

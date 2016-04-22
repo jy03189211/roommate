@@ -44,6 +44,8 @@ public class Room_default_fragment extends Fragment {
     private TextView mHumidity;
     private TextView mOccupation;
     private ImageView mOccupationImage;
+    private TextView mAirQuality;
+    private ImageView mAirQualityImage;
 
     private ImageView mTemperature_bar_1;
     private ImageView mTemperature_bar_2;
@@ -91,6 +93,9 @@ public class Room_default_fragment extends Fragment {
         mOccupationImage = (ImageView) view.findViewById(R.id.room_status_indicator_circle);
         mOccupation = (TextView) view.findViewById(R.id.room_status_indicator_text);
 
+        mAirQuality = (TextView) view.findViewById(R.id.room_air_indicator_text);
+        mAirQualityImage = (ImageView) view.findViewById(R.id.room_air_indicator_circle);
+
         // set all the bars
 
         // temperature bar
@@ -132,7 +137,11 @@ public class Room_default_fragment extends Fragment {
         return view;
     }
 
-    private void fetchRoom(final String roomUrl) {
+    public void fetchRoom(final String roomUrl) {
+        fetchRoom(roomUrl, null);
+    }
+
+    public void fetchRoom(final String roomUrl, final SwipeRefreshLayout refresh) {
         Request req = new Request.Builder()
                 .url(roomUrl)
                 .build();
@@ -158,6 +167,9 @@ public class Room_default_fragment extends Fragment {
                             }
                         }
                     });
+                }
+                if (refresh != null) {
+                    refresh.setRefreshing(false);
                 }
             }
 
@@ -208,10 +220,21 @@ public class Room_default_fragment extends Fragment {
                             @Override
                             public void run() {
                                 updateContent();
-                                //swipeContainer.setRefreshing(false);
                             }
                         });
                     }
+
+                }
+                Activity activity = getActivity();
+                if (activity != null) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (refresh != null) {
+                                refresh.setRefreshing(false);
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -244,6 +267,9 @@ public class Room_default_fragment extends Fragment {
                 getResources().getString(R.string.status_occupied_text) :
                 getResources().getString(R.string.status_free_text);
         mOccupation.setText(occupationStatus);
+
+        // TODO: set air quality status and text
+
 
         // calculate correct bars
         int[] tempBounds = { 18, 19, 22, 25 };

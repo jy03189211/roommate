@@ -3,6 +3,7 @@ package fi.aalto_iot.tomato.activity;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,7 @@ import io.realm.Realm;
 public class RoomActivity extends AppCompatActivity {
 
     ImageView roomTitleImage;
+    SwipeRefreshLayout mRefresh;
 
     public int statusBarHeight() {
         int res = 0;
@@ -51,13 +53,14 @@ public class RoomActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Realm realm = Realm.getDefaultInstance();
-        RoomModel room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        final RoomModel room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
         getSupportActionBar().setTitle(room.getRoomName());
 
         roomTitleImage = (ImageView) findViewById(R.id.room_title_image);
+        mRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeContainerRoom) ;
 
         // Use viewpager and tablayout to setup tabs
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         RoomFragmentPagerAdapter adapter = new RoomFragmentPagerAdapter(getSupportFragmentManager());
 
         // pass bundle forward to fragments
@@ -84,6 +87,29 @@ public class RoomActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled( int position, float v, int i1 ) {
+            }
+
+            @Override
+            public void onPageSelected( int position ) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged( int state ) {
+                mRefresh.setEnabled( state == ViewPager.SCROLL_STATE_IDLE );
+
+            }
+        } );
+
+        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                room_default_fragment.fetchRoom(room.getUrl(), mRefresh);
+            }
+        });
 
         // Set room picture to card header
         Picasso.with(this.getBaseContext())

@@ -137,7 +137,7 @@ public class Room_default_fragment extends Fragment {
         return view;
     }
 
-    public void fetchRoom(final String roomUrl) {
+    private void fetchRoom(final String roomUrl) {
         Request req = new Request.Builder()
                 .url(roomUrl)
                 .build();

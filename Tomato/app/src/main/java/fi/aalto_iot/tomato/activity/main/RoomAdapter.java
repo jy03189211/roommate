@@ -101,17 +101,20 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mFollowButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RoomModel room = roomList.get(getAdapterPosition());
+                    final RoomModel room = roomList.get(getAdapterPosition());
 
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont.getApplicationContext());
                     mBuilder.setContentTitle("Room Mate");
 
-                    final RegisterTopic registerTopic = new RegisterTopic(cont.getApplicationContext());
+                    final RegisterTopic registerTopic =
+                            new RegisterTopic(cont.getApplicationContext(), RoomAdapter.this);
 
                     int room_id = room.getId();
                     if (!room.isFollowed()) {
-                        registerTopic.subscribeTopic("/topics/" + Integer.toString(room_id));
-                        registerTopic.subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        registerTopic
+                                .subscribeTopic("/topics/" + Integer.toString(room_id), room_id);
+                        registerTopic
+                                .subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality", room_id);
                         realm.beginTransaction();
                         room.setFollowed(true);
                         realm.copyToRealmOrUpdate(room);
@@ -120,8 +123,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         notifyDataSetChanged();
                     }
                     else {
-                        registerTopic.unsubscribeTopic("/topics/" + Integer.toString(room_id));
-                        registerTopic.unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        registerTopic
+                                .unsubscribeTopic("/topics/" + Integer.toString(room_id), room_id);
+                        registerTopic
+                                .unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality", room_id);
                         realm.beginTransaction();
                         room.setFollowed(false);
                         realm.copyToRealmOrUpdate(room);

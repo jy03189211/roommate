@@ -54,11 +54,11 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    ProgressBar mProgressBar;
-    RoomAdapter mAdapter;
-    OkHttpClient client = new OkHttpClient();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressBar mProgressBar;
+    private RoomAdapter mAdapter;
+    private OkHttpClient client = new OkHttpClient();
     private Realm realm;
     private RealmChangeListener changeListener;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -111,21 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences
                         .getBoolean(Preferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    Log.d(TAG, "Registration complete?");
+                    Log.d(TAG, "Registration complete");
                 } else {
-                    Log.d(TAG, "Registration error?");
+                    Log.d(TAG, "Registration error");
                 }
             }
         };
-        /*
-        changeListener = new RealmChangeListener() {
-            @Override
-            public void onChange() {
-                mAdapter.notifyDataSetChanged();
-            }
-        };
-        */
-
 
         registerReceiver();
 
@@ -189,25 +180,6 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
     }
 
-    // not used
-    private boolean getOccupation(String url) {
-        Request req = new Request.Builder()
-                .url(url + "motion")
-                .build();
-        try {
-            Response resp = client.newCall(req).execute();
-            final String jsonString = resp.body().string();
-            JSONArray json = new JSONArray(jsonString);
-            JSONObject measurement = (JSONObject) json.get(0);
-
-            return measurement.getBoolean("detected");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     private void fetchRooms() throws IOException {
         Request req = new Request.Builder()
                 .url(this.getApplicationContext().getResources().getString(R.string.rooms_url))
@@ -255,8 +227,7 @@ public class MainActivity extends AppCompatActivity {
         BaseApplication app = (BaseApplication)getApplicationContext();
         long elapsedMs = android.os.SystemClock.elapsedRealtime()
                 - app.getLastFetchedDataMainActivity();
-        //Log.d(TAG, Long.toString(elapsedMs));
-        return (elapsedMs > Constants.MAXDATAGETINTERVAL*1000);
+        return (elapsedMs > Constants.MAXDATAGETINTERVAL);
 
     }
 
@@ -324,13 +295,10 @@ public class MainActivity extends AppCompatActivity {
                             .equalTo("id", id).findAll().size();
 
                     if (isAlreadyInRealm == 0) {
-                        //Log.d(TAG, room.getString("name") + " is not in realm already");
                         thisRoom.setFollowed(false);
                     } else {
                         thisRoom.setFollowed(realm.where(RoomModel.class)
                                 .equalTo("id", id).findAll().first().isFollowed());
-                        //Log.d(TAG, room.get("name") + "is already in realm " + Boolean.toString(realm.where(RoomModel.class)
-                         //       .equalTo("id", id).findAll().first().isFollowed()));
                     }
 
                     realm.copyToRealmOrUpdate(thisRoom);

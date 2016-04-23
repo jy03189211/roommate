@@ -21,10 +21,10 @@ import io.realm.Realm;
 
 public class RoomActivity extends AppCompatActivity {
 
-    ImageView roomTitleImage;
+    private ImageView roomTitleImage;
     //SwipeRefreshLayout mRefresh;
 
-    public int statusBarHeight() {
+    private int statusBarHeight() {
         int res = 0;
         int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resId > 0)

@@ -17,7 +17,7 @@ import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.RoomActivity;
 
 public class NotificationSender {
-    static String TAG = "NotficationSender";
+    private static String TAG = "NotficationSender";
 
     public static void parseAndShowNotification(Bundle data, Context cont) {
         try {

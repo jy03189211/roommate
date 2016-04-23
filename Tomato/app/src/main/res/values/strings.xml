@@ -52,5 +52,12 @@
     <string name="room_condition_ok">OK</string>
     <string name="room_condition_bad">Bad</string>
     <string name="room_condition_poor">Poor</string>
+    <string name="occupation">OCCUPATION</string>
+    <string name="air_quality">AIR QUALITY</string>
+    <string name="placeholder_temperature">0°C</string>
+    <string name="placeholder_percentage">0%</string>
+    <string name="placeholder_number">0</string>
+    <string name="follow">Follow</string>
+    <string name="details">Details</string>
 
 </resources>

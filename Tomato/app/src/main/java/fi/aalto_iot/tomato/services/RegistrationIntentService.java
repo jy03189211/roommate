@@ -30,7 +30,7 @@ import org.json.JSONObject;
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
-    OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient();
 
     public RegistrationIntentService() {
         super(TAG);

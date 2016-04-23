@@ -154,7 +154,7 @@ public class RoomHistoryCanvasView extends View {
                 float height = canvas.getHeight() - TOP_PADDING - BOTTOM_PADDING;
                 float size = width / data.size();
                 float heightUnit = height / max_data_value;
-                double t0 = System.nanoTime();
+                // double t0 = System.nanoTime();
                 for (int i = 0; i < data.size() - 1; i++) {
                     int current = data.get(i).getData();
                     int next = data.get(i + 1).getData();
@@ -162,8 +162,8 @@ public class RoomHistoryCanvasView extends View {
                     path.moveTo(size * i + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - current * heightUnit);
                     path.lineTo(size * (i + 1) + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - next * heightUnit);
                 }
-                double t1 = System.nanoTime();
-                Log.d("erotus_piirto", Double.toString(t1 - t0));
+                // double t1 = System.nanoTime();
+                // Log.d("erotus_piirto", Double.toString(t1 - t0));
                 path.close();
             }
             canvas.drawPath(path, dataPaint);

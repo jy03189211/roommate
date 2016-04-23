@@ -136,7 +136,7 @@ public class Room_history_fragment extends Fragment {
                 JSONArray jsonTemp = null;
                 try {
                         jsonTemp = new JSONArray(temp);
-                        double t0 = System.nanoTime();
+                        //double t0 = System.nanoTime();
                         for (int i = 0; i < jsonTemp.length(); i += 100) {
                             JSONObject sensor_object = (JSONObject) jsonTemp.get(i);
                             SensorData data = new SensorData();
@@ -144,8 +144,8 @@ public class Room_history_fragment extends Fragment {
                             data.setTime(sensor_object.getString("timestamp"));
                             temperature_sensor_data.add(data);
                         }
-                        double t1 = System.nanoTime();
-                        Log.d("erotus", Double.toString(t1 - t0));
+                        //double t1 = System.nanoTime();
+                        //Log.d("erotus", Double.toString(t1 - t0));
                         if (temperature_sensor_data.size() > 0)
                             updateContent("temperature", temperature_sensor_data);
                 } catch (Exception e) {

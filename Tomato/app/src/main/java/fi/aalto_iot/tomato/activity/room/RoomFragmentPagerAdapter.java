@@ -33,7 +33,7 @@ public class RoomFragmentPagerAdapter extends FragmentPagerAdapter {
         public void setFragment(Fragment fragment) {
             this.fragment = fragment;
         }
-    };
+    }
 
     private final List<FragmentPair> mFragmentList = new ArrayList<FragmentPair>();
 

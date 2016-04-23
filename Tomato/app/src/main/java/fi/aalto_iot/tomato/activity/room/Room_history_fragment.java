@@ -43,17 +43,17 @@ import okhttp3.Response;
 public class Room_history_fragment extends Fragment {
 
     private Bundle bundle;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private RoomHistoryCanvasView temperature_canvasView;
     private RoomHistoryCanvasView co2_canvasView;
     private RoomHistoryCanvasView humidity_canvasView;
     private SwipeRefreshLayout swipeContainer;
 
     private RoomModel room;
-    OkHttpClient client = new OkHttpClient();
-    List<SensorData> temperature_sensor_data = new ArrayList<>();
-    List<SensorData> co2_sensor_data = new ArrayList<>();
-    List<SensorData> humidity_sensor_data = new ArrayList<>();
+    private OkHttpClient client = new OkHttpClient();
+    private List<SensorData> temperature_sensor_data = new ArrayList<>();
+    private List<SensorData> co2_sensor_data = new ArrayList<>();
+    private List<SensorData> humidity_sensor_data = new ArrayList<>();
     private int days;
 
     public Room_history_fragment() {

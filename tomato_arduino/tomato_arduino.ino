@@ -248,7 +248,7 @@ void loop() {
     char params[BUF_SIZE];
     char sensor[32];
 
-    snprintf(params, BUF_SIZE, "detected=%s&sensor=%s%s%s%s%s", motion_detected_cloud ? "false" : "true", protocol, server, api_url, sensor_url, motion_url);
+    snprintf(params, BUF_SIZE, "detected=%s&sensor=%s%s%s%s%s", motion_detected_cloud ? "true" : "false", protocol, server, api_url, sensor_url, motion_url);
     snprintf(sensor, 32, "%s%s%s", api_url, room_url, motion);
     send_sensor_data_to_cloud(post, sensor, params);
 

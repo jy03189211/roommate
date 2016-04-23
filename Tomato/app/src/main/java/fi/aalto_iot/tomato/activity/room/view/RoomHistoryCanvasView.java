@@ -92,16 +92,18 @@ public class RoomHistoryCanvasView extends View {
     }
 
     public void setData(List data) {
-        path = null;
-        this.data = data;
+        if (data != null && data.size() > 0) {
+            path = null;
+            this.data = data;
 
-        this.time_last = this.data.get(0).getTime();
-        this.time_first = this.data.get(this.data.size() - 1).getTime();
+            this.time_last = this.data.get(0).getTime();
+            this.time_first = this.data.get(this.data.size() - 1).getTime();
 
-        this.max_data_value = Collections.max(this.data).getData();
-        this.min_data_value = Collections.min(this.data).getData();
+            this.max_data_value = Collections.max(this.data).getData();
+            this.min_data_value = Collections.min(this.data).getData();
 
-        postInvalidate();
+            postInvalidate();
+        }
     }
 
     public void showDates(Boolean showDates) {

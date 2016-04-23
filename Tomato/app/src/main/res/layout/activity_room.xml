@@ -22,7 +22,7 @@
                 android:id="@+id/room_image_bg_layout"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@drawable/text_scrim_top_heavy">
+                android:background="@drawable/text_scrim_top_extra_heavy">
             </RelativeLayout>
 
         </RelativeLayout>

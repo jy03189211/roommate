@@ -88,29 +88,6 @@ public class RoomActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        /*viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled( int position, float v, int i1 ) {
-            }
-
-            @Override
-            public void onPageSelected( int position ) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged( int state ) {
-                mRefresh.setEnabled( state == ViewPager.SCROLL_STATE_IDLE );
-
-            }
-        } );
-
-        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                room_default_fragment.fetchRoom(room.getUrl(), mRefresh);
-            }
-        });*/
-
         // Set room picture to card header
         Picasso.with(this.getBaseContext())
                 .load(room.getPicture())

@@ -69,7 +69,8 @@ public class Room_history_fragment extends Fragment {
         days = bundle.getInt("days");
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(getContext().getApplicationContext());
     }
 
     @Override

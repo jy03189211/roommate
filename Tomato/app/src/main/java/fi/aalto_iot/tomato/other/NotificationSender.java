@@ -27,7 +27,8 @@ public class NotificationSender {
             if (notification_type.equals("air_quality")) {
                 sendNotification(cont.getResources().getString(R.string.air_quality_bad_notification), cont, room_id);
             } else if (notification_type.equals("room_availability")) {
-                boolean availability = data.getBoolean("available");
+                String availabilityString = data.getString("available");
+                boolean availability = availabilityString.equals("true");
                 if (availability) {
                     sendNotification(cont.getResources().getString(R.string.room_available_notification), cont, room_id);
                 }
@@ -35,6 +36,7 @@ public class NotificationSender {
 
         } catch (Exception e) {
             Log.d(TAG, "Parsing notification failed");
+            e.printStackTrace();
         }
 
     }
@@ -52,12 +54,13 @@ public class NotificationSender {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont);
         mBuilder.setContentTitle("Room Mate");
         mBuilder.setContentText(msg);
-        mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);
+        mBuilder.setSmallIcon(R.mipmap.room_mate_logo);
         mBuilder.setContentIntent(contentIntent);
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         mBuilder.setSound(alarmSound);
         Notification notification = mBuilder.build();
+
 
         NotificationManager mNotificationManager =
                 (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);

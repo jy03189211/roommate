@@ -258,8 +258,6 @@ public class Room_default_fragment extends Fragment {
                 getResources().getString(R.string.status_free_text);
         mOccupation.setText(occupationStatus);
 
-        // TODO: set air quality status and text
-
         int tempPoints = 0;
         // determine temperature points
         if (roomTemp < 19) {
@@ -304,27 +302,29 @@ public class Room_default_fragment extends Fragment {
 
         int allPoints = tempPoints+humidPoints+co2Points;
 
+        Context appCont = getContext().getApplicationContext();
+
         // great
         if (allPoints >= 0) {
             mAirQuality.setText(getResources().getString(R.string.room_condition_great));
             mAirQualityImage.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_0_great_black_36dp));
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_0_great_black_36dp));
         } else if (allPoints >= -1) { // good
             mAirQuality.setText(getResources().getString(R.string.room_condition_good));
             mAirQualityImage.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_1_good_black_36dp));
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_1_good_black_36dp));
         } else if (allPoints >= -2) { // ok
             mAirQuality.setText(getResources().getString(R.string.room_condition_ok));
             mAirQualityImage.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_2_ok_black_36dp));
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_2_ok_black_36dp));
         } else if (allPoints >= -3) { // bad
             mAirQuality.setText(getResources().getString(R.string.room_condition_bad));
             mAirQualityImage.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_3_bad_black_36dp));
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_3_bad_black_36dp));
         } else { // poor
             mAirQuality.setText(getResources().getString(R.string.room_condition_poor));
             mAirQualityImage.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_4_poor_black_36dp));
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_4_poor_black_36dp));
         }
 
 
@@ -356,8 +356,10 @@ public class Room_default_fragment extends Fragment {
         }
 
         // get different drawables
-        final Drawable onDr = ContextCompat.getDrawable(getContext(), R.drawable.scale_dash_on);
-        final Drawable mainDr = ContextCompat.getDrawable(getContext(), R.drawable.scale_dash_main);
+        final Drawable onDr = ContextCompat
+                .getDrawable(appCont, R.drawable.scale_dash_on);
+        final Drawable mainDr = ContextCompat
+                .getDrawable(appCont, R.drawable.scale_dash_main);
 
         ImageView[] tempBars = { mTemperature_bar_1, mTemperature_bar_2, mTemperature_bar_3, mTemperature_bar_4, mTemperature_bar_5 };
         ImageView[] humidBars = { mHumidity_bar_1, mHumidity_bar_2, mHumidity_bar_3, mHumidity_bar_4, mHumidity_bar_5 };

@@ -49,7 +49,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     private SharedPreferences preferences;
     private Realm realm;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
         public TextView mRoomTitleView;
         public TextView mOccupationView;
@@ -72,7 +72,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             cont = v.getContext();
             realm = Realm.getDefaultInstance();
 
-            preferences = PreferenceManager.getDefaultSharedPreferences(cont);
+            preferences = PreferenceManager.getDefaultSharedPreferences(cont.getApplicationContext());
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,13 +102,15 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 public void onClick(View v) {
                     RoomModel room = roomList.get(getAdapterPosition());
 
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont.getApplicationContext());
                     mBuilder.setContentTitle("Room Mate");
+
+                    final RegisterTopic registerTopic = new RegisterTopic(cont.getApplicationContext());
 
                     int room_id = room.getId();
                     if (!room.isFollowed()) {
-                        new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id));
-                        new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        registerTopic.subscribeTopic("/topics/" + Integer.toString(room_id));
+                        registerTopic.subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
                         realm.beginTransaction();
                         room.setFollowed(true);
                         realm.copyToRealmOrUpdate(room);
@@ -117,8 +119,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         notifyDataSetChanged();
                     }
                     else {
-                        new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id));
-                        new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        registerTopic.unsubscribeTopic("/topics/" + Integer.toString(room_id));
+                        registerTopic.unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
                         realm.beginTransaction();
                         room.setFollowed(false);
                         realm.copyToRealmOrUpdate(room);
@@ -126,22 +128,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
                         notifyDataSetChanged();
                     }
-                    mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);
+                    mBuilder.setSmallIcon(R.mipmap.room_mate_logo);
                     //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     //mBuilder.setSound(alarmSound);
                     Notification notification = mBuilder.build();
 
                     NotificationManager mNotificationManager =
-                            (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);
+                            (NotificationManager) cont.getApplicationContext()
+                                    .getSystemService(Context.NOTIFICATION_SERVICE);
                     mNotificationManager.notify(9999, notification);
 
                 }
 
             });
-        }
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(), "Actvity 1", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -167,7 +166,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         res.getString(R.string.room_header), roomName));
 
         // Set room picture to card header
-        Picasso.with(holder.cont)
+        Picasso.with(holder.cont.getApplicationContext())
                 .load(room.getPicture())
                 .fit().centerCrop()
                 .into(holder.mImageView);
@@ -176,8 +175,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         // Set correct status indicator ("traffic light") color
         final Drawable statusIndicator = isOccupied ?
-                ContextCompat.getDrawable(holder.cont, R.drawable.room_status_indicator_occupied) :
-                ContextCompat.getDrawable(holder.cont, R.drawable.room_status_indicator_free);
+                ContextCompat.getDrawable
+                        (holder.cont.getApplicationContext(), R.drawable.room_status_indicator_occupied) :
+                ContextCompat.getDrawable
+                        (holder.cont.getApplicationContext(), R.drawable.room_status_indicator_free);
         holder.mStatusIndicatorView.setImageDrawable(statusIndicator);
 
         // Set occupation status text

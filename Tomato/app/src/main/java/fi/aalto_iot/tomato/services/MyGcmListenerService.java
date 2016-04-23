@@ -21,7 +21,7 @@ public class MyGcmListenerService extends GcmListenerService {
     public void onMessageReceived(String from, Bundle data) {
 
         // Send a proper User notification, not a generic one
-        NotificationSender.parseAndShowNotification(data, this);
+        NotificationSender.parseAndShowNotification(data, this.getApplicationContext());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MyGcmListenerService extends GcmListenerService {
     // Send generic notification when GCM message got
     private void sendNotification(String msg) {
         Log.d("NOTIFICATION", msg);
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.getApplicationContext());
         mBuilder.setContentTitle("Room Mate");
         mBuilder.setContentText(msg);
         mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);

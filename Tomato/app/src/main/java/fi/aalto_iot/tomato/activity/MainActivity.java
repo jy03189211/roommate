@@ -78,12 +78,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
+                PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
 
 
         sharedPreferences
                 .edit()
-                .putString("android_id", Settings.Secure.getString(this.getContentResolver(),
+                .putString("android_id", Settings.Secure
+                        .getString(this.getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID))
                 .apply();
 
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
-            Intent intent = new Intent(this, RegistrationIntentService.class);
+            Intent intent = new Intent(this.getApplicationContext(), RegistrationIntentService.class);
             startService(intent);
         }
 
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetchRooms() throws IOException {
         Request req = new Request.Builder()
-                .url(this.getResources().getString(R.string.rooms_url))
+                .url(this.getApplicationContext().getResources().getString(R.string.rooms_url))
                 .build();
         client.newCall(req).enqueue(new Callback() {
             @Override
@@ -261,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void registerReceiver(){
         if(!isReceiverRegistered) {
+            // getInstance automatically gets Application context
             LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                     new IntentFilter(Preferences.REGISTRATION_COMPLETE));
             isReceiverRegistered = true;
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this.getApplicationContext());
         if (resultCode != ConnectionResult.SUCCESS) {
             if (apiAvailability.isUserResolvableError(resultCode)) {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)

@@ -65,9 +65,8 @@ public class Room_default_fragment extends Fragment {
     private ImageView mCo2_bar_4;
     private ImageView mCo2_bar_5;
 
-
     private SwipeRefreshLayout swipeContainer;
-    OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient();
     private static final String TAG = "room default fragment";
 
     public Room_default_fragment() {

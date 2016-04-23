@@ -56,6 +56,8 @@ public class Room_history_fragment extends Fragment {
     private List<SensorData> humidity_sensor_data = new ArrayList<>();
     private int days;
 
+    private String TAG = "Room history fragment";
+
     public Room_history_fragment() {
         // Required empty public constructor
     }
@@ -244,70 +246,73 @@ public class Room_history_fragment extends Fragment {
                 try {
                     json = new JSONArray(jsonString);
                 } catch (Exception e) {
+                    // no data
+                    //e.printStackTrace();
+                    Log.d(TAG, "No data");
+                    Log.d(TAG, jsonString);
+                }
+
+                try {
+                    if (json != null) {
+                        if (sensor.equals("temperature")) {
+                            sharedPreferences.edit().putString("temperature" + Integer.toString(days), jsonString).apply();
+                            temperature_sensor_data.clear();
+                            for (int i = 0; i < json.length(); i++) {
+                                JSONObject sensor_object = (JSONObject) json.get(i);
+                                SensorData data = new SensorData();
+                                data.setData(sensor_object.getInt("temperature"));
+                                data.setTime(sensor_object.getString("timestamp"));
+                                temperature_sensor_data.add(data);
+                            }
+                        } else if (sensor.equals("co2")) {
+                            sharedPreferences.edit().putString("co2" + Integer.toString(days), jsonString).apply();
+                            co2_sensor_data.clear();
+                            for (int i = 0; i < json.length(); i++) {
+                                JSONObject sensor_object = (JSONObject) json.get(i);
+                                SensorData data = new SensorData();
+                                data.setData(sensor_object.getInt("concentration"));
+                                data.setTime(sensor_object.getString("timestamp"));
+                                co2_sensor_data.add(data);
+                            }
+                        } else if (sensor.equals("humidity")) {
+                            sharedPreferences.edit().putString("humidity" + Integer.toString(days), jsonString).apply();
+                            humidity_sensor_data.clear();
+                            for (int i = 0; i < json.length(); i++) {
+                                JSONObject sensor_object = (JSONObject) json.get(i);
+                                SensorData data = new SensorData();
+                                data.setData(sensor_object.getInt("humidity"));
+                                data.setTime(sensor_object.getString("timestamp"));
+                                humidity_sensor_data.add(data);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                    try {
-                        if (json != null) {
-                            if (sensor.equals("temperature")) {
-                                sharedPreferences.edit().putString("temperature" + Integer.toString(days), jsonString).apply();
-                                temperature_sensor_data.clear();
-                                for (int i = 0; i < json.length(); i++) {
-                                    JSONObject sensor_object = (JSONObject) json.get(i);
-                                    SensorData data = new SensorData();
-                                    data.setData(sensor_object.getInt("temperature"));
-                                    data.setTime(sensor_object.getString("timestamp"));
-                                    temperature_sensor_data.add(data);
-                                }
-                            } else if (sensor.equals("co2")) {
-                                sharedPreferences.edit().putString("co2" + Integer.toString(days), jsonString).apply();
-                                co2_sensor_data.clear();
-                                for (int i = 0; i < json.length(); i++) {
-                                    JSONObject sensor_object = (JSONObject) json.get(i);
-                                    SensorData data = new SensorData();
-                                    data.setData(sensor_object.getInt("concentration"));
-                                    data.setTime(sensor_object.getString("timestamp"));
-                                    co2_sensor_data.add(data);
-                                }
-                            } else if (sensor.equals("humidity")) {
-                                sharedPreferences.edit().putString("humidity" + Integer.toString(days), jsonString).apply();
-                                humidity_sensor_data.clear();
-                                for (int i = 0; i < json.length(); i++) {
-                                    JSONObject sensor_object = (JSONObject) json.get(i);
-                                    SensorData data = new SensorData();
-                                    data.setData(sensor_object.getInt("humidity"));
-                                    data.setTime(sensor_object.getString("timestamp"));
-                                    humidity_sensor_data.add(data);
-                                }
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                Activity activity = getActivity();
+                Context context = null;
+                if (activity != null) {
+                    context = activity.getApplicationContext();
+                    if (context != null) {
+                        BaseApplication app = (BaseApplication) context;
+                        app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
                     }
 
-                    Activity activity = getActivity();
-                    Context context = null;
-                    if (activity != null) {
-                        context = activity.getApplicationContext();
-                        if (context != null) {
-                            BaseApplication app = (BaseApplication) context;
-                            app.setLastFetchedDataMainActivity(android.os.SystemClock.elapsedRealtime());
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (sensor.equals("temperature"))
+                                updateContent(sensor, temperature_sensor_data);
+                            else if (sensor.equals("humidity"))
+                                updateContent(sensor, humidity_sensor_data);
+                            else if (sensor.equals("co2"))
+                                updateContent(sensor, co2_sensor_data);
+                            //swipeContainer.setRefreshing(false);
+                            decrementOrSetRefreshFalse(swipeContainer, counter);
                         }
-
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (sensor.equals("temperature"))
-                                    updateContent(sensor, temperature_sensor_data);
-                                else if (sensor.equals("humidity"))
-                                    updateContent(sensor, humidity_sensor_data);
-                                else if (sensor.equals("co2"))
-                                    updateContent(sensor, co2_sensor_data);
-                                //swipeContainer.setRefreshing(false);
-                                decrementOrSetRefreshFalse(swipeContainer, counter);
-                            }
-                        });
-                    }
+                    });
+                }
             }
         });
     }

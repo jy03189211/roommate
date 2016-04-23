@@ -46,5 +46,11 @@
     <string name="room_fragment_co2_low">fresh</string>
     <string name="room_fragment_co2_normal">bearable</string>
     <string name="room_fragment_co2_high">drowsy</string>
+    
+    <string name="room_condition_great">Great</string>
+    <string name="room_condition_good">Good</string>
+    <string name="room_condition_ok">OK</string>
+    <string name="room_condition_bad">Bad</string>
+    <string name="room_condition_poor">Poor</string>
 
 </resources>

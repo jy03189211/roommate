@@ -260,6 +260,73 @@ public class Room_default_fragment extends Fragment {
 
         // TODO: set air quality status and text
 
+        int tempPoints = 0;
+        // determine temperature points
+        if (roomTemp < 19) {
+            tempPoints = -2;
+        } else if (roomTemp <= 20) {
+            tempPoints = -1;
+        } else if (roomTemp <= 22) {
+            tempPoints = 0;
+        } else if (roomTemp <= 24) {
+            tempPoints = -1;
+        } else {
+            tempPoints = -2;
+        }
+
+        // determine humidity points
+        int humidPoints = 0;
+        if (roomHumidity < 25) {
+            humidPoints = -2;
+        } else if (roomHumidity <= 35) {
+            humidPoints = -1;
+        } else if (roomHumidity <= 50) {
+            humidPoints = 0;
+        } else if (roomHumidity <= 70) {
+            humidPoints = -1;
+        } else {
+            humidPoints = -2;
+        }
+
+        // determine humidity points
+        int co2Points = 0;
+        if (roomCo2 < 600) {
+            co2Points = 1;
+        } else if (roomCo2 <= 700) {
+            co2Points = 0;
+        } else if (roomCo2 <= 900) {
+            co2Points = -1;
+        } else if (roomCo2 <= 1200) {
+            co2Points = -2;
+        } else {
+            co2Points = -3;
+        }
+
+        int allPoints = tempPoints+humidPoints+co2Points;
+
+        // great
+        if (allPoints >= 0) {
+            mAirQuality.setText(getResources().getString(R.string.room_condition_great));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_0_great_black_36dp));
+        } else if (allPoints >= -1) { // good
+            mAirQuality.setText(getResources().getString(R.string.room_condition_good));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_1_good_black_36dp));
+        } else if (allPoints >= -2) { // ok
+            mAirQuality.setText(getResources().getString(R.string.room_condition_ok));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_2_ok_black_36dp));
+        } else if (allPoints >= -3) { // bad
+            mAirQuality.setText(getResources().getString(R.string.room_condition_bad));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_3_bad_black_36dp));
+        } else { // poor
+            mAirQuality.setText(getResources().getString(R.string.room_condition_poor));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.ic_air_4_poor_black_36dp));
+        }
+
 
         // calculate correct bars
         int[] tempBounds = { 18, 19, 22, 25 };

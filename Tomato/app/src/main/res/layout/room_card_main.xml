@@ -62,7 +62,8 @@
                     <TextView
                         android:id="@+id/status_indicator_text"
                         style="@style/BodyFont"
-                        android:text="Unknown"/>
+                        android:text="Unknown"
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/room_condition_text"
                         style="@style/Body2Font"

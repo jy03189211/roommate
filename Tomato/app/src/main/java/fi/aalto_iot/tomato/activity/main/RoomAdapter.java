@@ -38,6 +38,7 @@ import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.RoomActivity;
 import fi.aalto_iot.tomato.db.data.RoomModel;
 import fi.aalto_iot.tomato.other.Constants;
+import fi.aalto_iot.tomato.other.FreeFunctions;
 import fi.aalto_iot.tomato.other.RegisterTopic;
 import fi.aalto_iot.tomato.services.RegistrationIntentService;
 import io.realm.Realm;
@@ -187,17 +188,29 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 res.getString(R.string.status_free_text);
         holder.mOccupationView.setText(occupationStatus);
 
-        // Set room condition text
-        final String co2_status;
-        final int co2_level = room.getCo2();
-        if (co2_level < Constants.CO2_FRESH)
-            co2_status = res.getString(R.string.room_co2_fresh);
-        else if (co2_level > Constants.CO2_DROWSY)
-            co2_status = res.getString(R.string.room_co2_drowsy);
-        else
-            co2_status = res.getString(R.string.room_co2_ok);
+        final int roomTemp = room.getTemperature();
+        final int roomHumidity = room.getHumidity();
+        final int roomCo2 = room.getCo2();
 
-        final String room_condition = String.format(res.getString(R.string.room_condition_text), room.getTemperature(), co2_status);
+        final int airQualityPoints =
+                FreeFunctions.getAirQualityPoints(roomTemp, roomCo2, roomHumidity);
+
+        // Set room condition text
+        final String air_status;
+
+        if (airQualityPoints >= 0) {
+            air_status = res.getString(R.string.room_condition_great);
+        } else if (airQualityPoints >= -1) { // good
+            air_status = res.getString(R.string.room_condition_good);
+        } else if (airQualityPoints >= -2) { // ok
+            air_status = res.getString(R.string.room_condition_ok);
+        } else if (airQualityPoints >= -3) { // bad
+            air_status = res.getString(R.string.room_condition_bad);
+        } else { // poor
+            air_status = res.getString(R.string.room_condition_poor);
+        }
+
+        final String room_condition = String.format(res.getString(R.string.room_condition_text), room.getTemperature(), air_status);
         holder.mRoomConditionView.setText(room_condition);
 
         // Set follow button text

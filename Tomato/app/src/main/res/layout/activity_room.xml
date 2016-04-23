@@ -43,6 +43,7 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/color_tab_bar_indicator"
             app:tabMaxWidth="0dp"
+            app:tabSelectedTextColor="@android:color/white"
             android:elevation="4dp"
             app:tabMode="fixed" />
 

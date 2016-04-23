@@ -23,7 +23,7 @@
                 card_view:cardElevation="2dp">
 
                 <RelativeLayout
-                    android:id="@+id/temperature_top"
+                    android:id="@+id/generic_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -56,13 +56,13 @@
                     android:id="@+id/temperature_canvasView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_below="@+id/temperature_top" />
+                    android:layout_below="@+id/generic_top" />
 
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/humidity_card_view"
+                android:id="@+id/detail_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/temperature_card_view"
@@ -112,7 +112,7 @@
                 android:id="@+id/co2_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/humidity_card_view"
+                android:layout_below="@+id/detail_card_view"
                 android:layout_margin="8dp"
                 card_view:cardCornerRadius="2dp"
                 card_view:cardElevation="2dp">

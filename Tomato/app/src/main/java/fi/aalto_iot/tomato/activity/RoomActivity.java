@@ -95,6 +95,4 @@ public class RoomActivity extends AppCompatActivity {
                 .into(roomTitleImage);
 
     }
-
-
 }

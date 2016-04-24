@@ -9,16 +9,14 @@ import android.graphics.Path;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.other.SensorData;
@@ -31,6 +29,7 @@ public class RoomHistoryCanvasView extends View {
     private Paint textPaint = new Paint();
     private Paint coordPaint = new Paint();
     private DateFormat df;
+    private Date date = new Date();
 
     private int max_data_value;
     private int min_data_value;
@@ -95,7 +94,7 @@ public class RoomHistoryCanvasView extends View {
         showDates(false);
     }
 
-    public void setData(List data) {
+    public void setData(List<SensorData> data) {
         if (data != null && data.size() > 0) {
             path = null;
             this.data = data;
@@ -103,18 +102,15 @@ public class RoomHistoryCanvasView extends View {
             this.time_last = this.data.get(0).getTime();
             this.time_first = this.data.get(this.data.size() - 1).getTime();
 
-            //this.max_data_value = Collections.max(this.data).getData();
-            //this.min_data_value = Collections.min(this.data).getData();
-
             postInvalidate();
         }
     }
 
     public void showDates(Boolean showDates) {
         if (showDates)
-            df = new SimpleDateFormat("dd.MM");
+            df = new SimpleDateFormat("dd.MM", Locale.getDefault());
         else
-            df = new SimpleDateFormat("HH:mm");
+            df = new SimpleDateFormat("HH:mm", Locale.getDefault());
     }
 
     public void setScale(int min, int max) {
@@ -155,7 +151,7 @@ public class RoomHistoryCanvasView extends View {
                 diff /= NUMBER_OF_VERTICAL_LINES - 1;
                 diff *= i;
                 diff = this.time_first.getTimeInMillis() + diff;
-                Date date = new Date(diff);
+                date.setTime(diff);
                 String time = df.format(date);
 
                 canvas.drawText(time,
@@ -176,7 +172,7 @@ public class RoomHistoryCanvasView extends View {
                 float height = canvas.getHeight() - TOP_PADDING - BOTTOM_PADDING;
                 float size = width / data.size();
                 float heightUnit = height / max_data_value;
-                // double t0 = System.nanoTime();
+
                 for (int i = 0; i < data.size() - 1; i++) {
                     int current = data.get(i).getData();
                     int next = data.get(i + 1).getData();
@@ -184,8 +180,6 @@ public class RoomHistoryCanvasView extends View {
                     path.moveTo(size * i + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - current * heightUnit);
                     path.lineTo(size * (i + 1) + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - next * heightUnit);
                 }
-                // double t1 = System.nanoTime();
-                // Log.d("erotus_piirto", Double.toString(t1 - t0));
                 path.close();
             }
             canvas.drawPath(path, dataPaint);

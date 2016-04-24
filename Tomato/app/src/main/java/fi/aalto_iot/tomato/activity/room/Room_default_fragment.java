@@ -18,8 +18,6 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.db.data.RoomModel;
@@ -36,7 +34,6 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class Room_default_fragment extends Fragment {
-
 
     private RoomModel room;
     private Bundle bundle;
@@ -80,6 +77,7 @@ public class Room_default_fragment extends Fragment {
         bundle = getArguments();
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        realm.close();
     }
 
     @Override
@@ -144,7 +142,6 @@ public class Room_default_fragment extends Fragment {
         client.newCall(req).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, java.io.IOException e) {
-                // TODO: failure handling
                 Activity activity = getActivity();
                 if (activity != null) {
                     activity.runOnUiThread(new Runnable() {
@@ -201,7 +198,7 @@ public class Room_default_fragment extends Fragment {
                     realm.close();
 
                     Activity activity = getActivity();
-                    Context context = null;
+                    Context context;
                     if (activity != null) {
                         context = activity.getApplicationContext();
                         if (context != null) {
@@ -234,6 +231,7 @@ public class Room_default_fragment extends Fragment {
     private void updateContent() {
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        realm.close();
 
         final int roomTemp = room.getTemperature();
         final int roomHumidity = room.getHumidity();

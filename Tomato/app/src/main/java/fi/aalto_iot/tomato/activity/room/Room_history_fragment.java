@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import fi.aalto_iot.tomato.BaseApplication;
@@ -42,7 +43,10 @@ import okhttp3.Response;
  */
 public class Room_history_fragment extends Fragment {
 
-    private Bundle bundle;
+    private final static String TEMPERATURE = "temperature";
+    private final static String HUMIDITY = "humidity";
+    private final static String CO2 = "co2";
+
     private SharedPreferences sharedPreferences;
     private RoomHistoryCanvasView temperature_canvasView;
     private RoomHistoryCanvasView co2_canvasView;
@@ -51,10 +55,8 @@ public class Room_history_fragment extends Fragment {
 
     private RoomModel room;
     private OkHttpClient client = new OkHttpClient();
-    private List<SensorData> temperature_sensor_data = new ArrayList<>();
-    private List<SensorData> co2_sensor_data = new ArrayList<>();
-    private List<SensorData> humidity_sensor_data = new ArrayList<>();
     private int days;
+    private int next_sample;
 
     private String TAG = "Room history fragment";
 
@@ -65,12 +67,19 @@ public class Room_history_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bundle = getArguments();
+        Bundle bundle = getArguments();
         days = bundle.getInt("days");
+        next_sample = 1;
+        if (days > 1) {
+            next_sample = 10;
+        } else if (days > 7) {
+            next_sample = 100;
+        }
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
         sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getContext().getApplicationContext());
+        realm.close();
     }
 
     @Override
@@ -89,7 +98,7 @@ public class Room_history_fragment extends Fragment {
 
         Calendar c = Calendar.getInstance();
         c.add(Calendar.HOUR, - 24 * days);
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault());
         String time = df.format(c.getTime());
 
         temperature_canvasView.setScale(0, 40);
@@ -118,48 +127,49 @@ public class Room_history_fragment extends Fragment {
             public void onRefresh() {
                 Calendar c = Calendar.getInstance();
                 c.add(Calendar.HOUR, - 24 * days);
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault());
                 String time = df.format(c.getTime());
 
                 AtomicInteger counter = new AtomicInteger();
                 counter.set(3);
 
-                fetchSensor("temperature", time, counter);
-                fetchSensor("humidity", time, counter);
-                fetchSensor("co2", time, counter);
+                fetchSensor(TEMPERATURE, time, counter);
+                fetchSensor(HUMIDITY, time, counter);
+                fetchSensor(CO2, time, counter);
             }
         });
 
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                String temp = sharedPreferences.getString("temperature" + Integer.toString(days), "[]");
-                String hum = sharedPreferences.getString("humidity" + Integer.toString(days), "[]");
-                String co2 = sharedPreferences.getString("co2" + Integer.toString(days), "[]");
+                String temp = sharedPreferences.getString(TEMPERATURE + Integer.toString(days), "[]");
+                String hum = sharedPreferences.getString(HUMIDITY + Integer.toString(days), "[]");
+                String co2 = sharedPreferences.getString(CO2 + Integer.toString(days), "[]");
 
-                JSONArray jsonTemp = null;
+                final List<SensorData> temperature_sensor_data = new ArrayList<>();
+                final List<SensorData> co2_sensor_data = new ArrayList<>();
+                final List<SensorData> humidity_sensor_data = new ArrayList<>();
+
+                JSONArray jsonTemp;
                 try {
                         jsonTemp = new JSONArray(temp);
-                        //double t0 = System.nanoTime();
-                        for (int i = 0; i < jsonTemp.length(); i += 100) {
+                        for (int i = 0; i < jsonTemp.length(); i += next_sample) {
                             JSONObject sensor_object = (JSONObject) jsonTemp.get(i);
                             SensorData data = new SensorData();
                             data.setData(sensor_object.getInt("temperature"));
                             data.setTime(sensor_object.getString("timestamp"));
                             temperature_sensor_data.add(data);
                         }
-                        //double t1 = System.nanoTime();
-                        //Log.d("erotus", Double.toString(t1 - t0));
                         if (temperature_sensor_data.size() > 0)
                             updateContent("temperature", temperature_sensor_data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                JSONArray jsonHum = null;
+                JSONArray jsonHum;
                 try {
                     jsonHum = new JSONArray(hum);
-                        for (int i = 0; i < jsonHum.length(); i+= 100) {
+                        for (int i = 0; i < jsonHum.length(); i+= next_sample) {
                             JSONObject sensor_object = (JSONObject) jsonHum.get(i);
                             SensorData data = new SensorData();
                             data.setData(sensor_object.getInt("humidity"));
@@ -172,10 +182,10 @@ public class Room_history_fragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                JSONArray jsonCo2 = null;
+                JSONArray jsonCo2;
                 try {
                         jsonCo2 = new JSONArray(co2);
-                        for (int i = 0; i < jsonCo2.length(); i+= 100) {
+                        for (int i = 0; i < jsonCo2.length(); i+= next_sample) {
                             JSONObject sensor_object = (JSONObject) jsonCo2.get(i);
                             SensorData data = new SensorData();
                             data.setData(sensor_object.getInt("concentration"));
@@ -192,9 +202,9 @@ public class Room_history_fragment extends Fragment {
         });
         thread.start();
 
-        fetchSensor("temperature", time);
-        fetchSensor("humidity", time);
-        fetchSensor("co2", time);
+        fetchSensor(TEMPERATURE, time);
+        fetchSensor(HUMIDITY, time);
+        fetchSensor(CO2, time);
 
         return view;
     }
@@ -245,6 +255,10 @@ public class Room_history_fragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws java.io.IOException {
+                final List<SensorData> temperature_sensor_data = new ArrayList<>();
+                final List<SensorData> co2_sensor_data = new ArrayList<>();
+                final List<SensorData> humidity_sensor_data = new ArrayList<>();
+
                 final String jsonString = response.body().string();
                 JSONArray json = null;
                 try {
@@ -258,36 +272,40 @@ public class Room_history_fragment extends Fragment {
 
                 try {
                     if (json != null) {
-                        if (sensor.equals("temperature")) {
-                            sharedPreferences.edit().putString("temperature" + Integer.toString(days), jsonString).apply();
-                            temperature_sensor_data.clear();
-                            for (int i = 0; i < json.length(); i++) {
-                                JSONObject sensor_object = (JSONObject) json.get(i);
-                                SensorData data = new SensorData();
-                                data.setData(sensor_object.getInt("temperature"));
-                                data.setTime(sensor_object.getString("timestamp"));
-                                temperature_sensor_data.add(data);
-                            }
-                        } else if (sensor.equals("co2")) {
-                            sharedPreferences.edit().putString("co2" + Integer.toString(days), jsonString).apply();
-                            co2_sensor_data.clear();
-                            for (int i = 0; i < json.length(); i++) {
-                                JSONObject sensor_object = (JSONObject) json.get(i);
-                                SensorData data = new SensorData();
-                                data.setData(sensor_object.getInt("concentration"));
-                                data.setTime(sensor_object.getString("timestamp"));
-                                co2_sensor_data.add(data);
-                            }
-                        } else if (sensor.equals("humidity")) {
-                            sharedPreferences.edit().putString("humidity" + Integer.toString(days), jsonString).apply();
-                            humidity_sensor_data.clear();
-                            for (int i = 0; i < json.length(); i++) {
-                                JSONObject sensor_object = (JSONObject) json.get(i);
-                                SensorData data = new SensorData();
-                                data.setData(sensor_object.getInt("humidity"));
-                                data.setTime(sensor_object.getString("timestamp"));
-                                humidity_sensor_data.add(data);
-                            }
+                        switch (sensor) {
+                            case TEMPERATURE:
+                                sharedPreferences.edit().putString("temperature" + Integer.toString(days), jsonString).apply();
+                                temperature_sensor_data.clear();
+                                for (int i = 0; i < json.length(); i += next_sample) {
+                                    JSONObject sensor_object = (JSONObject) json.get(i);
+                                    SensorData data = new SensorData();
+                                    data.setData(sensor_object.getInt("temperature"));
+                                    data.setTime(sensor_object.getString("timestamp"));
+                                    temperature_sensor_data.add(data);
+                                }
+                                break;
+                            case HUMIDITY:
+                                sharedPreferences.edit().putString("humidity" + Integer.toString(days), jsonString).apply();
+                                humidity_sensor_data.clear();
+                                for (int i = 0; i < json.length(); i += next_sample) {
+                                    JSONObject sensor_object = (JSONObject) json.get(i);
+                                    SensorData data = new SensorData();
+                                    data.setData(sensor_object.getInt("humidity"));
+                                    data.setTime(sensor_object.getString("timestamp"));
+                                    humidity_sensor_data.add(data);
+                                }
+                                break;
+                            case CO2:
+                                sharedPreferences.edit().putString("co2" + Integer.toString(days), jsonString).apply();
+                                co2_sensor_data.clear();
+                                for (int i = 0; i < json.length(); i += next_sample) {
+                                    JSONObject sensor_object = (JSONObject) json.get(i);
+                                    SensorData data = new SensorData();
+                                    data.setData(sensor_object.getInt("concentration"));
+                                    data.setTime(sensor_object.getString("timestamp"));
+                                    co2_sensor_data.add(data);
+                                }
+                                break;
                         }
                     }
                 } catch (Exception e) {
@@ -295,7 +313,7 @@ public class Room_history_fragment extends Fragment {
                 }
 
                 Activity activity = getActivity();
-                Context context = null;
+                Context context;
                 if (activity != null) {
                     context = activity.getApplicationContext();
                     if (context != null) {
@@ -306,13 +324,17 @@ public class Room_history_fragment extends Fragment {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (sensor.equals("temperature"))
-                                updateContent(sensor, temperature_sensor_data);
-                            else if (sensor.equals("humidity"))
-                                updateContent(sensor, humidity_sensor_data);
-                            else if (sensor.equals("co2"))
-                                updateContent(sensor, co2_sensor_data);
-                            //swipeContainer.setRefreshing(false);
+                            switch (sensor) {
+                                case TEMPERATURE:
+                                    updateContent(sensor, temperature_sensor_data);
+                                    break;
+                                case HUMIDITY:
+                                    updateContent(sensor, humidity_sensor_data);
+                                    break;
+                                case CO2:
+                                    updateContent(sensor, co2_sensor_data);
+                                    break;
+                            }
                             decrementOrSetRefreshFalse(swipeContainer, counter);
                         }
                     });
@@ -322,15 +344,16 @@ public class Room_history_fragment extends Fragment {
     }
 
     private void updateContent(String sensor, List<SensorData> list) {
-        if (sensor.equals("temperature")) {
-            List<SensorData> copy = new ArrayList<SensorData>(list);
-            temperature_canvasView.setData(copy);
-        } else if (sensor.equals("humidity")) {
-            List<SensorData> copy = new ArrayList<SensorData>(list);
-            humidity_canvasView.setData(copy);
-        } else if (sensor.equals("co2")) {
-            List<SensorData> copy = new ArrayList<SensorData>(list);
-            co2_canvasView.setData(copy);
+        switch (sensor) {
+            case TEMPERATURE:
+                temperature_canvasView.setData(list);
+                break;
+            case HUMIDITY:
+                humidity_canvasView.setData(list);
+                break;
+            case CO2:
+                co2_canvasView.setData(list);
+                break;
         }
     }
 }

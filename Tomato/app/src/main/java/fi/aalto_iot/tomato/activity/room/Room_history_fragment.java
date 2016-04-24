@@ -217,7 +217,6 @@ public class Room_history_fragment extends Fragment {
         client.newCall(req).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, java.io.IOException e) {
-                // TODO: failure handling
                 Activity activity = getActivity();
                 if (activity != null) {
                     activity.runOnUiThread(new Runnable() {

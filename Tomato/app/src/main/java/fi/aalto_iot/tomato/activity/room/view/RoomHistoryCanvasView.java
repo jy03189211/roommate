@@ -121,6 +121,7 @@ public class RoomHistoryCanvasView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        // draw texts, bars etc.
         if (data != null && data.size() > 0 && canvas != null
                 && canvas.getHeight() > 0 && canvas.getWidth() > 0)
         {
@@ -160,6 +161,7 @@ public class RoomHistoryCanvasView extends View {
             }
         }
 
+        // draw the path itself
         if (data != null && data.size() > 0 && canvas != null
                 && canvas.getHeight() > 0 && canvas.getWidth() > 0)
         {

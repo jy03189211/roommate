@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.other.SensorData;
 
 public class RoomHistoryCanvasView extends View {
@@ -74,7 +76,9 @@ public class RoomHistoryCanvasView extends View {
     }
 
     private void init() {
-        dataPaint.setColor(Color.RED);
+        int graphColor = ContextCompat
+                .getColor(getContext().getApplicationContext(), R.color.color_primary);
+        dataPaint.setColor(graphColor);
         dataPaint.setStyle(Paint.Style.STROKE);
         dataPaint.setStrokeWidth(2 * scale);
 
@@ -117,7 +121,9 @@ public class RoomHistoryCanvasView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (data != null && data.size() > 0 && canvas != null && canvas.getHeight() > 0 && canvas.getWidth() > 0) {
+        if (data != null && data.size() > 0 && canvas != null
+                && canvas.getHeight() > 0 && canvas.getWidth() > 0)
+        {
             int h = canvas.getHeight();
             int w = canvas.getWidth();
 
@@ -128,8 +134,11 @@ public class RoomHistoryCanvasView extends View {
                 canvas.drawLine(LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v,
                         w - RIGHT_PADDING, h - BOTTOM_PADDING - i * interval_v,coordPaint);
 
-                canvas.drawText(Integer.toString(this.min_data_value + i * (this.max_data_value - this.min_data_value) / (NUMBER_OF_VERTICAL_LINES - 1)),
-                        TEXT_LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v +  4 * scale, textPaint);
+                canvas.drawText(
+                        Integer.toString(
+                                this.min_data_value + i * (this.max_data_value - this.min_data_value) / (NUMBER_OF_VERTICAL_LINES - 1)),
+                        TEXT_LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v +  4 * scale, textPaint
+                );
             }
 
             for (int i = 0; i < NUMBER_OF_VERTICAL_LINES; i++) {
@@ -143,11 +152,17 @@ public class RoomHistoryCanvasView extends View {
                 Date date = new Date(diff);
                 String time = df.format(date);
 
-                canvas.drawText(time, LEFT_PADDING + i * interval_h - TEXT_CENTER_PADDING - scale * 2, h - BOTTOM_PADDING + 4 * V_LINE_LEN, textPaint);
+                canvas.drawText(time,
+                        LEFT_PADDING + i * interval_h - TEXT_CENTER_PADDING - scale * 2,
+                        h - BOTTOM_PADDING + 4 * V_LINE_LEN,
+                        textPaint
+                );
             }
         }
 
-        if (data != null && data.size() > 0 && canvas != null && canvas.getHeight() > 0 && canvas.getWidth() > 0) {
+        if (data != null && data.size() > 0 && canvas != null
+                && canvas.getHeight() > 0 && canvas.getWidth() > 0)
+        {
             if (path == null) {
                 path = new Path();
                 float width = canvas.getWidth() - RIGHT_PADDING - LEFT_PADDING;

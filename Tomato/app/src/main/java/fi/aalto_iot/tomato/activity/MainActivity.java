@@ -93,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.initial_loading_progress);
 
         mLayoutManager = new LinearLayoutManager(this);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RoomAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setRealm(realm);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -145,6 +147,12 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         isReceiverRegistered = false;
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
     @Override

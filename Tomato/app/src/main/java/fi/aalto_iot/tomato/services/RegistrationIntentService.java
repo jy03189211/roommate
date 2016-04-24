@@ -42,14 +42,9 @@ public class RegistrationIntentService extends IntentService {
                 = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
 
         try {
-            // Initially this call goes out to the network to retrieve the token, subsequent calls
-            // are local.
-            // R.string.gcm_defaultSenderId (the Sender ID) is typically derived from google-services.json.
-            // See https://developers.google.com/cloud-messaging/android/start for details on this file.
             InstanceID instanceID = InstanceID.getInstance(this.getApplicationContext());
             String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
-            // Log.i(TAG, "GCM Registration Token: " + token);
 
             String device_id = sharedPreferences.getString("android_id", "None");
 
@@ -60,11 +55,9 @@ public class RegistrationIntentService extends IntentService {
                     .apply();
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);
-            // If an exception happens while fetching the new token or updating our registration data
-            // on a third-party server, this ensures that we'll attempt the update at a later time.
             sharedPreferences.edit().putBoolean(Preferences.SENT_TOKEN_TO_SERVER, false).apply();
         }
-        // Notify UI that registration has completed, so the progress indicator can be hidden.
+        // Notify that registration has completed
         Intent registrationComplete = new Intent(Preferences.REGISTRATION_COMPLETE);
         LocalBroadcastManager
                 .getInstance(this.getApplicationContext()).sendBroadcast(registrationComplete);
@@ -83,8 +76,6 @@ public class RegistrationIntentService extends IntentService {
             Log.d(TAG, "couldn't put JSON to JSONObject");
         }
 
-        //Log.d(TAG, "Sent json: " + sendObj.toString());
-
         Request req = new Request.Builder()
                 .url(this.getApplicationContext().getResources().getString(R.string.gcm_registration_url))
                 .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), sendObj.toString()))
@@ -92,7 +83,6 @@ public class RegistrationIntentService extends IntentService {
         try {
             Response resp = client.newCall(req).execute();
             final String jsonString = resp.body().string();
-            // Log.d(TAG, "Received message: " + jsonString);
         } catch (Exception e) {
             Log.d(TAG, "Could not register for notifications");
         }

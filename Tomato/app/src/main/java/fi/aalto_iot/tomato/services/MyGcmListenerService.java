@@ -26,17 +26,20 @@ public class MyGcmListenerService extends GcmListenerService {
 
     @Override
     public void onDeletedMessages() {
-        sendNotification("Deleted messages on server");
+        // functionality not needed in currently
+        //sendNotification("Deleted messages on server");
     }
 
     @Override
     public void onMessageSent(String msgId) {
-        sendNotification("Upstream message sent. Id=" + msgId);
+        // functionality not needed in currently
+        //sendNotification("Upstream message sent. Id=" + msgId);
     }
 
     @Override
     public void onSendError(String msgId, String error) {
-        sendNotification("Upstream message send error. Id=" + msgId + ", error" + error);
+        // functionality not needed in currently
+        //sendNotification("Upstream message send error. Id=" + msgId + ", error" + error);
     }
 
     // Send generic notification when GCM message got

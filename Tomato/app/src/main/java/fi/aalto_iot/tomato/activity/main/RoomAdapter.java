@@ -46,7 +46,7 @@ import io.realm.Realm;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     private List<RoomModel> roomList = new ArrayList<>();
-    private String myTag = "RoomAdapter";
+    private String TAG = "RoomAdapter";
     private SharedPreferences preferences;
     private Realm realm;
 
@@ -71,7 +71,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mFollowButton = (Button)v.findViewById(R.id.follow_button);
             mDetailsButton = (Button)v.findViewById(R.id.details_button);
             cont = v.getContext();
-            realm = Realm.getDefaultInstance();
 
             preferences = PreferenceManager.getDefaultSharedPreferences(cont.getApplicationContext());
             v.setOnClickListener(new View.OnClickListener() {
@@ -228,15 +227,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     public void add(RoomModel job) {
         roomList.add(job);
-        //Log.d(myTag, "added room to adapter");
     }
 
     public void clear() {
         roomList.clear();
     }
 
+    public void setRealm(Realm r) {
+        realm = r;
+    }
+
     @Override
     public int getItemCount() {
         return roomList.size();
     }
+
 }

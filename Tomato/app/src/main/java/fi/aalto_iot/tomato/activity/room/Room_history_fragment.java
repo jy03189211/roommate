@@ -92,6 +92,10 @@ public class Room_history_fragment extends Fragment {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         String time = df.format(c.getTime());
 
+        temperature_canvasView.setScale(0, 40);
+        humidity_canvasView.setScale(0, 100);
+        co2_canvasView.setScale(0, 2000);
+
         if (days > 1) {
             temperature_canvasView.showDates(true);
             co2_canvasView.showDates(true);
@@ -129,9 +133,9 @@ public class Room_history_fragment extends Fragment {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                String temp = sharedPreferences.getString("temperature" + Integer.toString(days), "");
-                String hum = sharedPreferences.getString("humidity" + Integer.toString(days), "");
-                String co2 = sharedPreferences.getString("co2" + Integer.toString(days), "");
+                String temp = sharedPreferences.getString("temperature" + Integer.toString(days), "[]");
+                String hum = sharedPreferences.getString("humidity" + Integer.toString(days), "[]");
+                String co2 = sharedPreferences.getString("co2" + Integer.toString(days), "[]");
 
                 JSONArray jsonTemp = null;
                 try {

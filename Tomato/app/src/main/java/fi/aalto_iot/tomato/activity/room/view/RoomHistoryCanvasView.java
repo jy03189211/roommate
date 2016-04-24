@@ -103,8 +103,8 @@ public class RoomHistoryCanvasView extends View {
             this.time_last = this.data.get(0).getTime();
             this.time_first = this.data.get(this.data.size() - 1).getTime();
 
-            this.max_data_value = Collections.max(this.data).getData();
-            this.min_data_value = Collections.min(this.data).getData();
+            //this.max_data_value = Collections.max(this.data).getData();
+            //this.min_data_value = Collections.min(this.data).getData();
 
             postInvalidate();
         }
@@ -115,6 +115,11 @@ public class RoomHistoryCanvasView extends View {
             df = new SimpleDateFormat("dd.MM");
         else
             df = new SimpleDateFormat("HH:mm");
+    }
+
+    public void setScale(int min, int max) {
+        this.min_data_value = min;
+        this.max_data_value = max;
     }
 
     @Override
@@ -128,17 +133,17 @@ public class RoomHistoryCanvasView extends View {
             int h = canvas.getHeight();
             int w = canvas.getWidth();
 
-            float interval_v = (h - BOTTOM_PADDING - TOP_PADDING)  / (NUMBER_OF_HORIZONTAL_LINES -1);
+            float interval_v = (h - BOTTOM_PADDING - TOP_PADDING)  / (NUMBER_OF_HORIZONTAL_LINES - 1);
             float interval_h = (w - LEFT_PADDING - RIGHT_PADDING)  / (NUMBER_OF_VERTICAL_LINES - 1);
 
             for (int i = 0; i < NUMBER_OF_HORIZONTAL_LINES; i++) {
                 canvas.drawLine(LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v,
-                        w - RIGHT_PADDING, h - BOTTOM_PADDING - i * interval_v,coordPaint);
+                        w - RIGHT_PADDING, h - BOTTOM_PADDING - i * interval_v, coordPaint);
 
                 canvas.drawText(
                         Integer.toString(
-                                this.min_data_value + i * (this.max_data_value - this.min_data_value) / (NUMBER_OF_VERTICAL_LINES - 1)),
-                        TEXT_LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v +  4 * scale, textPaint
+                                this.min_data_value + i * (this.max_data_value - this.min_data_value) / NUMBER_OF_VERTICAL_LINES),
+                        TEXT_LEFT_PADDING, h - BOTTOM_PADDING - i * interval_v + 4 * scale, textPaint
                 );
             }
 

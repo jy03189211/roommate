@@ -20,6 +20,7 @@ public class AboutActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(getResources().getString(R.string.about_header_text));
     }
 
     // React to back button press as we have only one item we don't need additional checks

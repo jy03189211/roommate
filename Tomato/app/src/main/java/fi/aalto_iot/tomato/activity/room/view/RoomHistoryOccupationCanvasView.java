@@ -93,7 +93,7 @@ public class RoomHistoryOccupationCanvasView extends View {
     }
 
     public void setData(List<SensorData> data) {
-        if (data != null && data.size() > 0) {
+        if (data != null && data.size() > 1) {
             path = null;
             this.data = data;
 
@@ -121,7 +121,7 @@ public class RoomHistoryOccupationCanvasView extends View {
         super.onDraw(canvas);
 
         // draw texts, bars etc.
-        if (data != null && data.size() > 0 && canvas != null
+        if (data != null && data.size() > 1 && canvas != null
                 && canvas.getHeight() > 0 && canvas.getWidth() > 0)
         {
             int h = canvas.getHeight();
@@ -152,7 +152,7 @@ public class RoomHistoryOccupationCanvasView extends View {
         }
 
         // draw the path itself
-        if (data != null && data.size() > 0 && canvas != null
+        if (data != null && data.size() > 1 && canvas != null
                 && canvas.getHeight() > 0 && canvas.getWidth() > 0)
         {
             if (path == null) {

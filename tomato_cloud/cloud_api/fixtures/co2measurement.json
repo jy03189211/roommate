@@ -1,11 +1,4502 @@
 [
-    {
-	"model": "cloud_api.co2measurement",
-	"pk": null,
-	"fields": {
-	    "timestamp": "2016-04-01T18:00",
-	    "concentration": 300,
-	    "sensor": 2
-	}
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T04:29:52.000000",
+      "concentration": 330,
+      "sensor": 2
     }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T06:53:02.000000",
+      "concentration": 208,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T08:50:58.000000",
+      "concentration": 450,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T09:39:12.000000",
+      "concentration": 354,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T10:52:16.000000",
+      "concentration": 407,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T09:31:26.000000",
+      "concentration": 460,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T08:42:11.000000",
+      "concentration": 323,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T04:37:56.000000",
+      "concentration": 256,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T01:01:54.000000",
+      "concentration": 427,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T05:23:32.000000",
+      "concentration": 430,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T06:34:37.000000",
+      "concentration": 287,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T11:35:03.000000",
+      "concentration": 231,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T03:51:19.000000",
+      "concentration": 467,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T01:17:49.000000",
+      "concentration": 297,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T09:47:05.000000",
+      "concentration": 269,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T02:13:34.000000",
+      "concentration": 391,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T07:42:12.000000",
+      "concentration": 271,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T03:38:16.000000",
+      "concentration": 263,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T12:50:03.000000",
+      "concentration": 287,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T05:31:46.000000",
+      "concentration": 209,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T10:38:20.000000",
+      "concentration": 422,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T06:41:06.000000",
+      "concentration": 241,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T07:10:32.000000",
+      "concentration": 225,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T11:20:53.000000",
+      "concentration": 280,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T09:45:08.000000",
+      "concentration": 500,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T10:18:17.000000",
+      "concentration": 439,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T07:58:08.000000",
+      "concentration": 361,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T08:31:02.000000",
+      "concentration": 268,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T01:36:58.000000",
+      "concentration": 494,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T03:33:56.000000",
+      "concentration": 449,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T03:24:28.000000",
+      "concentration": 399,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T04:03:40.000000",
+      "concentration": 403,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T09:15:41.000000",
+      "concentration": 355,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T03:50:13.000000",
+      "concentration": 498,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T01:19:34.000000",
+      "concentration": 390,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T05:26:20.000000",
+      "concentration": 357,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T08:54:12.000000",
+      "concentration": 212,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T10:01:25.000000",
+      "concentration": 263,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T08:38:18.000000",
+      "concentration": 413,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T07:46:34.000000",
+      "concentration": 400,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T01:52:24.000000",
+      "concentration": 262,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T07:57:07.000000",
+      "concentration": 245,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T01:28:52.000000",
+      "concentration": 291,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T12:23:01.000000",
+      "concentration": 216,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T10:29:57.000000",
+      "concentration": 214,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T11:04:38.000000",
+      "concentration": 379,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T12:21:33.000000",
+      "concentration": 298,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T05:42:21.000000",
+      "concentration": 306,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T07:40:09.000000",
+      "concentration": 456,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T08:49:10.000000",
+      "concentration": 458,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T12:53:51.000000",
+      "concentration": 344,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T07:45:43.000000",
+      "concentration": 269,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T09:25:30.000000",
+      "concentration": 348,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T02:29:44.000000",
+      "concentration": 499,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T04:25:02.000000",
+      "concentration": 317,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T12:09:49.000000",
+      "concentration": 458,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T03:27:26.000000",
+      "concentration": 203,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T09:44:31.000000",
+      "concentration": 202,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T09:26:39.000000",
+      "concentration": 251,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T12:34:42.000000",
+      "concentration": 440,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T11:26:05.000000",
+      "concentration": 437,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T11:00:14.000000",
+      "concentration": 415,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T05:17:05.000000",
+      "concentration": 447,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T07:40:06.000000",
+      "concentration": 480,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T11:31:39.000000",
+      "concentration": 500,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T10:56:14.000000",
+      "concentration": 259,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T08:21:47.000000",
+      "concentration": 290,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T08:44:55.000000",
+      "concentration": 480,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T06:53:44.000000",
+      "concentration": 352,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T03:52:39.000000",
+      "concentration": 261,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T07:29:15.000000",
+      "concentration": 226,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T07:34:15.000000",
+      "concentration": 246,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T10:17:38.000000",
+      "concentration": 371,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T01:05:49.000000",
+      "concentration": 314,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T02:03:31.000000",
+      "concentration": 237,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T06:25:00.000000",
+      "concentration": 320,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T07:16:22.000000",
+      "concentration": 431,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T12:40:01.000000",
+      "concentration": 444,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T12:44:45.000000",
+      "concentration": 322,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T05:44:41.000000",
+      "concentration": 347,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T11:15:43.000000",
+      "concentration": 228,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T01:59:26.000000",
+      "concentration": 336,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T10:18:57.000000",
+      "concentration": 324,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T04:59:00.000000",
+      "concentration": 221,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T09:47:19.000000",
+      "concentration": 488,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T03:50:26.000000",
+      "concentration": 461,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T09:48:22.000000",
+      "concentration": 256,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T02:49:43.000000",
+      "concentration": 225,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T06:52:11.000000",
+      "concentration": 237,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T06:40:44.000000",
+      "concentration": 340,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T08:22:52.000000",
+      "concentration": 351,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T12:52:15.000000",
+      "concentration": 269,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T08:25:38.000000",
+      "concentration": 437,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T12:59:55.000000",
+      "concentration": 214,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T07:30:43.000000",
+      "concentration": 261,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T03:30:26.000000",
+      "concentration": 385,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T03:26:50.000000",
+      "concentration": 301,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T05:10:38.000000",
+      "concentration": 450,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T03:29:32.000000",
+      "concentration": 308,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T09:13:19.000000",
+      "concentration": 230,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T09:31:59.000000",
+      "concentration": 201,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T10:58:59.000000",
+      "concentration": 419,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T09:52:08.000000",
+      "concentration": 230,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T05:45:30.000000",
+      "concentration": 430,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T05:57:00.000000",
+      "concentration": 454,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T05:13:13.000000",
+      "concentration": 416,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T08:07:50.000000",
+      "concentration": 464,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T01:18:20.000000",
+      "concentration": 278,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T08:07:06.000000",
+      "concentration": 479,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T08:16:14.000000",
+      "concentration": 299,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T02:26:10.000000",
+      "concentration": 296,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T11:37:05.000000",
+      "concentration": 288,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T09:07:22.000000",
+      "concentration": 210,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T12:33:02.000000",
+      "concentration": 399,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T10:13:08.000000",
+      "concentration": 488,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T10:11:05.000000",
+      "concentration": 392,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T01:59:58.000000",
+      "concentration": 375,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T12:57:25.000000",
+      "concentration": 438,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T02:47:25.000000",
+      "concentration": 301,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T11:12:45.000000",
+      "concentration": 477,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T09:26:29.000000",
+      "concentration": 473,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T02:44:16.000000",
+      "concentration": 357,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T02:36:12.000000",
+      "concentration": 394,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T08:21:23.000000",
+      "concentration": 269,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T09:33:34.000000",
+      "concentration": 336,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T08:53:25.000000",
+      "concentration": 267,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T04:31:43.000000",
+      "concentration": 432,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T06:51:58.000000",
+      "concentration": 337,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T04:05:38.000000",
+      "concentration": 240,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T03:32:36.000000",
+      "concentration": 368,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T03:32:42.000000",
+      "concentration": 218,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T11:49:02.000000",
+      "concentration": 500,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T02:16:57.000000",
+      "concentration": 423,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T11:17:49.000000",
+      "concentration": 385,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T02:21:27.000000",
+      "concentration": 459,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T07:53:20.000000",
+      "concentration": 368,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T04:38:50.000000",
+      "concentration": 468,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T12:33:28.000000",
+      "concentration": 389,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T01:24:44.000000",
+      "concentration": 431,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T09:19:22.000000",
+      "concentration": 487,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T07:27:03.000000",
+      "concentration": 437,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T01:42:46.000000",
+      "concentration": 463,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T03:59:00.000000",
+      "concentration": 388,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T03:11:37.000000",
+      "concentration": 320,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T01:47:07.000000",
+      "concentration": 375,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T10:03:13.000000",
+      "concentration": 350,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T06:48:20.000000",
+      "concentration": 381,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T01:54:28.000000",
+      "concentration": 258,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T03:32:24.000000",
+      "concentration": 265,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T05:01:00.000000",
+      "concentration": 451,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T11:19:52.000000",
+      "concentration": 461,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T01:18:01.000000",
+      "concentration": 296,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T04:35:22.000000",
+      "concentration": 378,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T03:36:19.000000",
+      "concentration": 376,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T06:57:48.000000",
+      "concentration": 321,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T07:06:10.000000",
+      "concentration": 284,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T01:50:22.000000",
+      "concentration": 446,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T05:28:34.000000",
+      "concentration": 260,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T09:18:42.000000",
+      "concentration": 452,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T03:17:56.000000",
+      "concentration": 248,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T02:22:26.000000",
+      "concentration": 382,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T12:03:15.000000",
+      "concentration": 234,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T04:28:04.000000",
+      "concentration": 257,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T01:58:16.000000",
+      "concentration": 487,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T09:23:32.000000",
+      "concentration": 428,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T12:14:31.000000",
+      "concentration": 292,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T01:00:37.000000",
+      "concentration": 312,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T01:30:41.000000",
+      "concentration": 248,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T01:48:34.000000",
+      "concentration": 471,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T05:05:43.000000",
+      "concentration": 277,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T04:35:28.000000",
+      "concentration": 448,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T11:55:20.000000",
+      "concentration": 323,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T12:44:11.000000",
+      "concentration": 287,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T05:03:18.000000",
+      "concentration": 363,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T10:02:42.000000",
+      "concentration": 368,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T12:03:12.000000",
+      "concentration": 350,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T08:02:56.000000",
+      "concentration": 355,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T10:19:33.000000",
+      "concentration": 338,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T12:38:11.000000",
+      "concentration": 235,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T12:59:04.000000",
+      "concentration": 380,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T04:25:00.000000",
+      "concentration": 213,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T07:27:40.000000",
+      "concentration": 411,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T02:11:56.000000",
+      "concentration": 255,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T07:32:01.000000",
+      "concentration": 245,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T11:08:05.000000",
+      "concentration": 253,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T06:11:06.000000",
+      "concentration": 240,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T02:45:23.000000",
+      "concentration": 409,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T01:29:28.000000",
+      "concentration": 328,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T09:26:57.000000",
+      "concentration": 290,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T02:59:37.000000",
+      "concentration": 256,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T02:51:39.000000",
+      "concentration": 254,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T11:33:27.000000",
+      "concentration": 474,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T08:59:58.000000",
+      "concentration": 402,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T02:14:09.000000",
+      "concentration": 352,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T01:03:53.000000",
+      "concentration": 378,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T01:19:42.000000",
+      "concentration": 416,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T05:23:56.000000",
+      "concentration": 321,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T11:49:19.000000",
+      "concentration": 427,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T11:21:41.000000",
+      "concentration": 292,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T02:50:08.000000",
+      "concentration": 313,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T02:34:38.000000",
+      "concentration": 248,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T06:44:03.000000",
+      "concentration": 436,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T08:18:42.000000",
+      "concentration": 364,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T07:55:00.000000",
+      "concentration": 392,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T06:46:17.000000",
+      "concentration": 346,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T05:21:29.000000",
+      "concentration": 454,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T09:12:34.000000",
+      "concentration": 328,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T07:50:24.000000",
+      "concentration": 310,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T07:58:01.000000",
+      "concentration": 305,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T12:42:43.000000",
+      "concentration": 416,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T01:18:55.000000",
+      "concentration": 419,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T11:48:41.000000",
+      "concentration": 398,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T08:56:03.000000",
+      "concentration": 312,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T03:15:16.000000",
+      "concentration": 280,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T02:21:57.000000",
+      "concentration": 315,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T08:43:17.000000",
+      "concentration": 264,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T06:28:27.000000",
+      "concentration": 390,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T03:53:14.000000",
+      "concentration": 251,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T03:33:46.000000",
+      "concentration": 377,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T08:15:47.000000",
+      "concentration": 492,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T09:47:34.000000",
+      "concentration": 449,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T10:25:03.000000",
+      "concentration": 237,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T04:30:40.000000",
+      "concentration": 296,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T08:18:51.000000",
+      "concentration": 247,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T07:50:04.000000",
+      "concentration": 437,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T06:07:10.000000",
+      "concentration": 289,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T12:48:28.000000",
+      "concentration": 321,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T01:52:47.000000",
+      "concentration": 466,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T03:57:42.000000",
+      "concentration": 308,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T02:20:42.000000",
+      "concentration": 231,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T07:00:44.000000",
+      "concentration": 351,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T06:19:24.000000",
+      "concentration": 398,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T10:04:59.000000",
+      "concentration": 340,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T01:02:37.000000",
+      "concentration": 351,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T09:51:14.000000",
+      "concentration": 421,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T09:48:06.000000",
+      "concentration": 485,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T12:07:44.000000",
+      "concentration": 451,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T11:37:02.000000",
+      "concentration": 404,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T11:22:07.000000",
+      "concentration": 305,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T06:12:40.000000",
+      "concentration": 299,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T04:28:53.000000",
+      "concentration": 429,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T10:30:19.000000",
+      "concentration": 353,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T11:02:33.000000",
+      "concentration": 428,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T05:13:10.000000",
+      "concentration": 432,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T05:26:09.000000",
+      "concentration": 233,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T08:49:36.000000",
+      "concentration": 364,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T11:10:53.000000",
+      "concentration": 404,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T06:24:13.000000",
+      "concentration": 423,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T12:49:30.000000",
+      "concentration": 228,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T11:02:48.000000",
+      "concentration": 404,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T12:08:48.000000",
+      "concentration": 366,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T04:17:33.000000",
+      "concentration": 267,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T07:02:24.000000",
+      "concentration": 262,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T11:59:19.000000",
+      "concentration": 258,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T08:15:00.000000",
+      "concentration": 462,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T09:01:10.000000",
+      "concentration": 438,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T04:21:23.000000",
+      "concentration": 459,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T06:01:57.000000",
+      "concentration": 301,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T04:05:00.000000",
+      "concentration": 317,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T07:33:53.000000",
+      "concentration": 452,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T09:58:01.000000",
+      "concentration": 302,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T05:56:53.000000",
+      "concentration": 453,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T03:22:46.000000",
+      "concentration": 463,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T01:36:49.000000",
+      "concentration": 482,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T10:03:28.000000",
+      "concentration": 457,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T03:33:52.000000",
+      "concentration": 206,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T03:38:09.000000",
+      "concentration": 209,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T03:43:54.000000",
+      "concentration": 257,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T11:46:24.000000",
+      "concentration": 217,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T02:14:31.000000",
+      "concentration": 208,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T06:05:46.000000",
+      "concentration": 295,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T06:56:28.000000",
+      "concentration": 266,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T11:27:07.000000",
+      "concentration": 471,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T09:40:13.000000",
+      "concentration": 223,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T11:09:47.000000",
+      "concentration": 331,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T03:25:31.000000",
+      "concentration": 458,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T04:53:06.000000",
+      "concentration": 440,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T04:22:43.000000",
+      "concentration": 482,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T06:06:34.000000",
+      "concentration": 201,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T11:39:43.000000",
+      "concentration": 221,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T04:43:37.000000",
+      "concentration": 234,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T04:49:19.000000",
+      "concentration": 375,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T03:58:24.000000",
+      "concentration": 436,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T12:47:40.000000",
+      "concentration": 292,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T02:55:30.000000",
+      "concentration": 303,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T01:10:29.000000",
+      "concentration": 481,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T06:12:25.000000",
+      "concentration": 259,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T07:17:42.000000",
+      "concentration": 248,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T10:07:28.000000",
+      "concentration": 488,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T12:05:30.000000",
+      "concentration": 327,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T08:19:56.000000",
+      "concentration": 204,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T02:10:39.000000",
+      "concentration": 338,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T02:26:19.000000",
+      "concentration": 411,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T02:22:52.000000",
+      "concentration": 280,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T01:45:13.000000",
+      "concentration": 282,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T02:05:55.000000",
+      "concentration": 273,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T09:34:44.000000",
+      "concentration": 352,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T11:58:15.000000",
+      "concentration": 386,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T01:42:33.000000",
+      "concentration": 470,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T12:09:00.000000",
+      "concentration": 289,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T08:04:58.000000",
+      "concentration": 358,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T06:11:26.000000",
+      "concentration": 445,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T11:33:02.000000",
+      "concentration": 254,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T01:09:03.000000",
+      "concentration": 410,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T07:31:20.000000",
+      "concentration": 287,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T07:34:08.000000",
+      "concentration": 334,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T12:06:45.000000",
+      "concentration": 315,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T03:17:06.000000",
+      "concentration": 478,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T03:54:48.000000",
+      "concentration": 226,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T06:56:31.000000",
+      "concentration": 394,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T08:45:47.000000",
+      "concentration": 217,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T11:15:40.000000",
+      "concentration": 320,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T02:20:19.000000",
+      "concentration": 274,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T04:31:37.000000",
+      "concentration": 500,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T10:08:47.000000",
+      "concentration": 411,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T02:53:42.000000",
+      "concentration": 260,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T03:01:04.000000",
+      "concentration": 242,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T09:05:06.000000",
+      "concentration": 347,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T04:30:38.000000",
+      "concentration": 239,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T01:35:44.000000",
+      "concentration": 394,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T11:54:31.000000",
+      "concentration": 293,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T04:33:58.000000",
+      "concentration": 312,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T10:06:10.000000",
+      "concentration": 208,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T02:24:15.000000",
+      "concentration": 374,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T11:30:12.000000",
+      "concentration": 424,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T12:09:10.000000",
+      "concentration": 349,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T10:26:12.000000",
+      "concentration": 322,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T12:58:33.000000",
+      "concentration": 352,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T09:50:55.000000",
+      "concentration": 448,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T03:07:20.000000",
+      "concentration": 305,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T06:11:25.000000",
+      "concentration": 486,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T09:19:07.000000",
+      "concentration": 255,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T10:43:25.000000",
+      "concentration": 316,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T12:36:02.000000",
+      "concentration": 347,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T10:14:36.000000",
+      "concentration": 362,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T08:51:56.000000",
+      "concentration": 331,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T10:06:20.000000",
+      "concentration": 301,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T05:00:09.000000",
+      "concentration": 410,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T07:10:28.000000",
+      "concentration": 401,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T03:06:26.000000",
+      "concentration": 337,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T12:37:57.000000",
+      "concentration": 240,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T08:12:40.000000",
+      "concentration": 430,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T11:32:57.000000",
+      "concentration": 384,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T12:17:27.000000",
+      "concentration": 272,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T10:53:10.000000",
+      "concentration": 284,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T07:58:43.000000",
+      "concentration": 320,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T09:56:53.000000",
+      "concentration": 490,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T11:26:42.000000",
+      "concentration": 467,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T03:49:37.000000",
+      "concentration": 299,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T08:01:58.000000",
+      "concentration": 273,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T02:06:29.000000",
+      "concentration": 400,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T01:55:56.000000",
+      "concentration": 326,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T09:26:19.000000",
+      "concentration": 426,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T06:12:58.000000",
+      "concentration": 408,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T03:12:53.000000",
+      "concentration": 389,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T11:56:49.000000",
+      "concentration": 259,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T03:01:49.000000",
+      "concentration": 214,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T06:55:27.000000",
+      "concentration": 483,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T04:30:33.000000",
+      "concentration": 425,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T04:38:48.000000",
+      "concentration": 441,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T06:41:53.000000",
+      "concentration": 426,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T10:47:45.000000",
+      "concentration": 492,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T04:36:27.000000",
+      "concentration": 213,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T04:35:17.000000",
+      "concentration": 292,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T02:36:31.000000",
+      "concentration": 296,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-16T10:11:00.000000",
+      "concentration": 318,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T08:22:59.000000",
+      "concentration": 289,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T04:30:23.000000",
+      "concentration": 204,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T10:43:33.000000",
+      "concentration": 445,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T04:14:55.000000",
+      "concentration": 214,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T04:16:14.000000",
+      "concentration": 402,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T04:25:06.000000",
+      "concentration": 486,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T07:30:45.000000",
+      "concentration": 499,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T03:29:42.000000",
+      "concentration": 346,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T12:53:43.000000",
+      "concentration": 214,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T09:08:39.000000",
+      "concentration": 344,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T08:46:54.000000",
+      "concentration": 468,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T09:26:17.000000",
+      "concentration": 319,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T08:10:57.000000",
+      "concentration": 448,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T06:06:27.000000",
+      "concentration": 363,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T01:44:03.000000",
+      "concentration": 464,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T02:35:09.000000",
+      "concentration": 459,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T08:07:48.000000",
+      "concentration": 473,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T03:52:54.000000",
+      "concentration": 484,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T12:18:28.000000",
+      "concentration": 473,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T02:53:46.000000",
+      "concentration": 468,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T04:10:06.000000",
+      "concentration": 491,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T06:03:27.000000",
+      "concentration": 459,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T06:56:09.000000",
+      "concentration": 485,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T07:36:44.000000",
+      "concentration": 487,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T10:32:04.000000",
+      "concentration": 378,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T05:30:28.000000",
+      "concentration": 418,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T07:18:39.000000",
+      "concentration": 408,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T05:06:56.000000",
+      "concentration": 360,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T05:41:53.000000",
+      "concentration": 355,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T05:15:25.000000",
+      "concentration": 221,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T12:19:10.000000",
+      "concentration": 278,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T08:34:47.000000",
+      "concentration": 435,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-20T08:34:19.000000",
+      "concentration": 244,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T11:38:32.000000",
+      "concentration": 211,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T12:23:30.000000",
+      "concentration": 268,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T02:11:47.000000",
+      "concentration": 387,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T08:35:51.000000",
+      "concentration": 235,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T03:10:55.000000",
+      "concentration": 217,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T06:11:33.000000",
+      "concentration": 490,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T02:07:15.000000",
+      "concentration": 261,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T10:04:15.000000",
+      "concentration": 399,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T09:37:24.000000",
+      "concentration": 232,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T01:39:56.000000",
+      "concentration": 441,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T02:06:30.000000",
+      "concentration": 216,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T09:35:14.000000",
+      "concentration": 414,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T11:43:34.000000",
+      "concentration": 351,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T12:10:02.000000",
+      "concentration": 393,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T07:45:20.000000",
+      "concentration": 497,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T11:36:15.000000",
+      "concentration": 354,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T08:25:45.000000",
+      "concentration": 488,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T01:17:32.000000",
+      "concentration": 377,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T02:54:39.000000",
+      "concentration": 464,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T12:27:50.000000",
+      "concentration": 256,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T08:30:22.000000",
+      "concentration": 393,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T04:46:42.000000",
+      "concentration": 245,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T03:27:29.000000",
+      "concentration": 247,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T08:47:33.000000",
+      "concentration": 385,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T01:46:52.000000",
+      "concentration": 342,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T03:55:41.000000",
+      "concentration": 281,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T06:20:09.000000",
+      "concentration": 235,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T10:17:34.000000",
+      "concentration": 287,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T01:51:30.000000",
+      "concentration": 340,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T08:14:05.000000",
+      "concentration": 285,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T11:51:05.000000",
+      "concentration": 318,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T08:57:47.000000",
+      "concentration": 426,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T02:43:18.000000",
+      "concentration": 373,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T08:48:33.000000",
+      "concentration": 314,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T03:00:48.000000",
+      "concentration": 450,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T08:58:58.000000",
+      "concentration": 330,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T06:52:16.000000",
+      "concentration": 434,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-12T07:39:43.000000",
+      "concentration": 265,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T03:40:59.000000",
+      "concentration": 260,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T06:53:47.000000",
+      "concentration": 221,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T11:24:17.000000",
+      "concentration": 444,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T07:32:56.000000",
+      "concentration": 377,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-18T08:26:45.000000",
+      "concentration": 207,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T02:34:45.000000",
+      "concentration": 330,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T09:29:35.000000",
+      "concentration": 338,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T10:10:38.000000",
+      "concentration": 479,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T10:25:51.000000",
+      "concentration": 420,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T11:38:20.000000",
+      "concentration": 222,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T08:23:29.000000",
+      "concentration": 370,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T10:23:10.000000",
+      "concentration": 428,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T11:05:00.000000",
+      "concentration": 231,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T03:15:27.000000",
+      "concentration": 221,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T06:55:24.000000",
+      "concentration": 353,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T03:00:29.000000",
+      "concentration": 265,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T08:49:40.000000",
+      "concentration": 493,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T12:24:19.000000",
+      "concentration": 270,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T03:52:54.000000",
+      "concentration": 468,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T11:27:48.000000",
+      "concentration": 412,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-07T09:06:04.000000",
+      "concentration": 311,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T04:26:20.000000",
+      "concentration": 447,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T08:09:50.000000",
+      "concentration": 363,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T02:46:20.000000",
+      "concentration": 487,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T03:28:25.000000",
+      "concentration": 246,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T05:16:39.000000",
+      "concentration": 444,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T12:34:23.000000",
+      "concentration": 478,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-08T01:31:31.000000",
+      "concentration": 371,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T05:44:12.000000",
+      "concentration": 485,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-23T07:37:09.000000",
+      "concentration": 495,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T11:22:51.000000",
+      "concentration": 406,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-17T04:24:02.000000",
+      "concentration": 245,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T09:45:21.000000",
+      "concentration": 205,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T11:44:45.000000",
+      "concentration": 411,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T05:49:01.000000",
+      "concentration": 279,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-04T08:39:42.000000",
+      "concentration": 232,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T01:31:21.000000",
+      "concentration": 263,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T11:06:57.000000",
+      "concentration": 273,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-15T11:18:37.000000",
+      "concentration": 280,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T01:47:34.000000",
+      "concentration": 475,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-25T12:22:36.000000",
+      "concentration": 431,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-03T12:56:47.000000",
+      "concentration": 447,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T04:36:42.000000",
+      "concentration": 278,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T02:07:34.000000",
+      "concentration": 398,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T08:57:28.000000",
+      "concentration": 457,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-14T03:30:05.000000",
+      "concentration": 327,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T04:08:19.000000",
+      "concentration": 288,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-24T11:13:03.000000",
+      "concentration": 310,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-05T03:45:51.000000",
+      "concentration": 419,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T02:59:07.000000",
+      "concentration": 480,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-22T10:59:36.000000",
+      "concentration": 494,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-06T05:34:15.000000",
+      "concentration": 314,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-09T02:25:04.000000",
+      "concentration": 451,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-01T10:58:54.000000",
+      "concentration": 417,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-02T01:22:52.000000",
+      "concentration": 495,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-21T06:07:32.000000",
+      "concentration": 235,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T12:26:55.000000",
+      "concentration": 341,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T10:29:56.000000",
+      "concentration": 238,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-13T04:21:55.000000",
+      "concentration": 486,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T01:27:48.000000",
+      "concentration": 280,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-11T12:45:02.000000",
+      "concentration": 261,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-19T09:19:11.000000",
+      "concentration": 310,
+      "sensor": 2
+    }
+  },
+  {
+    "model": "cloud_api.co2measurement",
+    "pk": null,
+    "fields": {
+      "timestamp": "2016-04-10T04:30:53.000000",
+      "concentration": 373,
+      "sensor": 2
+    }
+  }
 ]

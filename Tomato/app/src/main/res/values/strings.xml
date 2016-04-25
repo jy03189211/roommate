@@ -23,6 +23,7 @@
     <string name="room_fragment_history_hours">hours</string>
     <string name="room_fragment_history_humidity_header">Relative humidity, %</string>
     <string name="room_fragment_history_co2_header">CO2 level, ppm</string>
+    <string name="room_fragment_history_occupation_header">Occupation</string>
     <string name="room_co2_header">CO2 LEVEL</string>
     <string name="room_temperature_header">TEMPERATURE</string>
     <string name="room_humidity_header">HUMIDITY</string>

@@ -97,8 +97,8 @@ public class RoomHistoryOccupationCanvasView extends View {
             path = null;
             this.data = data;
 
-            this.time_last = this.data.get(0).getTime();
-            this.time_first = this.data.get(this.data.size() - 1).getTime();
+            this.time_last = this.data.get(this.data.size() - 1).getTime();
+            this.time_first = this.data.get(0).getTime();
 
             postInvalidate();
         }

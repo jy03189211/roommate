@@ -31,10 +31,21 @@ public class SensorData implements Comparable<SensorData> {
 
     public void setTime(String time) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault()) ;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
+        SimpleDateFormat format;
+        if (time.length() == 19) {
+            format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+        } else {
+            format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault());
+        }
+
         try {
             //Ugly hack to get simpleDateFormat working by removing last three digits from micros
-            Date date = format.parse(time.substring(0, time.length() - 3));
+            Date date;
+            if (time.length() > 19)
+                date = format.parse(time.substring(0, time.length() - 3));
+            else
+                date = format.parse(time);
+
             calendar.setTime(date);
             this.time = calendar;
         } catch (ParseException e) {

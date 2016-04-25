@@ -87,9 +87,10 @@ public class RoomHistoryCanvasView extends View {
 
         textPaint.setColor(Color.GRAY);
         textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        textPaint.setStrokeWidth(scale);
+        textPaint.setStrokeWidth(1);
         // Convert the dps to pixels
-        textPaint.setTextSize((int) (TEXT_SIZE * scale + 0.5f));
+        textPaint.setTextSize((int) (TEXT_SIZE*scale));
+        textPaint.setAntiAlias(true);
 
         showDates(false);
     }

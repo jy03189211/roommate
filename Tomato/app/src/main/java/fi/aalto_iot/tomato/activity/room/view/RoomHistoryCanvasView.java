@@ -171,12 +171,12 @@ public class RoomHistoryCanvasView extends View {
                 path = new Path();
                 float width = canvas.getWidth() - RIGHT_PADDING - LEFT_PADDING;
                 float height = canvas.getHeight() - TOP_PADDING - BOTTOM_PADDING;
-                float size = width / data.size();
-                float heightUnit = height / max_data_value;
+                float size = width / (data.size() - 1);
+                float heightUnit = height / (max_data_value - min_data_value);
 
                 for (int i = 0; i < data.size() - 1; i++) {
-                    int current = data.get(i).getData();
-                    int next = data.get(i + 1).getData();
+                    int current = data.get(i).getData() - min_data_value;
+                    int next = data.get(i + 1).getData() - min_data_value;
 
                     path.moveTo(size * i + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - current * heightUnit);
                     path.lineTo(size * (i + 1) + LEFT_PADDING, canvas.getHeight() - BOTTOM_PADDING - next * heightUnit);

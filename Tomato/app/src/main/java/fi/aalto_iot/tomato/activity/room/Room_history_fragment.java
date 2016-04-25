@@ -83,7 +83,6 @@ public class Room_history_fragment extends Fragment {
         } else {
             next_sample = 20;
         }
-        Log.d(TAG, next_sample + " ");
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
         sharedPreferences = PreferenceManager
@@ -167,7 +166,6 @@ public class Room_history_fragment extends Fragment {
 
                 JSONArray jsonMot;
                 try {
-                    Log.e(TAG, "nextsample: " + next_sample + ", days: " + days);
                     jsonMot = new JSONArray(mot);
                     for (int i = 0; i < jsonMot.length(); i += next_sample*occupationSamplingModifier) {
                         JSONObject sensor_object = (JSONObject) jsonMot.get(i);
@@ -310,7 +308,6 @@ public class Room_history_fragment extends Fragment {
                     if (json != null) {
                         switch (sensor) {
                             case MOTION:
-                                Log.e(TAG, "nextsample: " + next_sample + ", days: " + days);
                                 sharedPreferences.edit().putString(MOTION + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample*occupationSamplingModifier) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);

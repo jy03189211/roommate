@@ -158,7 +158,7 @@ public class RoomHistoryOccupationCanvasView extends View {
             if (path == null) {
                 path = new Path();
                 float width = canvas.getWidth() - RIGHT_PADDING - LEFT_PADDING;
-                float size = width / data.size();
+                float size = width / (data.size() - 1);
 
                 for (int i = 0; i < data.size() - 1; i++) {
                     int current = data.get(i).getData();

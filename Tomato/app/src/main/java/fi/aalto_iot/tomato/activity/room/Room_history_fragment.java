@@ -22,6 +22,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -29,6 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.room.view.RoomHistoryCanvasView;
+import fi.aalto_iot.tomato.activity.room.view.RoomHistoryOccupationCanvasView;
 import fi.aalto_iot.tomato.db.data.RoomModel;
 import fi.aalto_iot.tomato.other.SensorData;
 import io.realm.Realm;
@@ -43,11 +45,13 @@ import okhttp3.Response;
  */
 public class Room_history_fragment extends Fragment {
 
+    private final static String MOTION = "motion";
     private final static String TEMPERATURE = "temperature";
     private final static String HUMIDITY = "humidity";
     private final static String CO2 = "co2";
 
     private SharedPreferences sharedPreferences;
+    private RoomHistoryOccupationCanvasView motion_canvasView;
     private RoomHistoryCanvasView temperature_canvasView;
     private RoomHistoryCanvasView co2_canvasView;
     private RoomHistoryCanvasView humidity_canvasView;
@@ -87,6 +91,8 @@ public class Room_history_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_room_history_fragment, container, false);
+        motion_canvasView = (RoomHistoryOccupationCanvasView) view.findViewById(R.id.motion_canvasView);
+        TextView motionInfo = (TextView) view.findViewById(R.id.motion_time_interval);
         temperature_canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.temperature_canvasView);
         TextView temperatureInfo = (TextView) view.findViewById(R.id.temperature_time_interval);
         co2_canvasView = (RoomHistoryCanvasView) view.findViewById(R.id.co2_canvasView);
@@ -101,25 +107,26 @@ public class Room_history_fragment extends Fragment {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault());
         String time = df.format(c.getTime());
 
-        temperature_canvasView.setScale(0, 40);
-        humidity_canvasView.setScale(0, 100);
-        co2_canvasView.setScale(0, 2000);
+        motion_canvasView.setScale(0, 1);
+        temperature_canvasView.setScale(18, 26);
+        humidity_canvasView.setScale(20, 60);
+        co2_canvasView.setScale(100, 500);
 
+        final String info;
         if (days > 1) {
+            motion_canvasView.showDates(true);
             temperature_canvasView.showDates(true);
             co2_canvasView.showDates(true);
             humidity_canvasView.showDates(true);
-
-            final String info = String.format(getResources().getString(R.string.room_fragment_history_info), days, getResources().getString(R.string.room_fragment_history_days));
-            temperatureInfo.setText(info);
-            humidity_Info.setText(info);
-            co2Info.setText(info);
+            info = String.format(getResources().getString(R.string.room_fragment_history_info), days, getResources().getString(R.string.room_fragment_history_days));
         } else {
-            final String info = String.format(getResources().getString(R.string.room_fragment_history_info), days * 24, getResources().getString(R.string.room_fragment_history_hours));
-            temperatureInfo.setText(info);
-            humidity_Info.setText(info);
-            co2Info.setText(info);
+            info = String.format(getResources().getString(R.string.room_fragment_history_info), days * 24, getResources().getString(R.string.room_fragment_history_hours));
         }
+
+        motionInfo.setText(info);
+        temperatureInfo.setText(info);
+        humidity_Info.setText(info);
+        co2Info.setText(info);
 
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerRoomHistory);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -133,6 +140,7 @@ public class Room_history_fragment extends Fragment {
                 AtomicInteger counter = new AtomicInteger();
                 counter.set(3);
 
+                fetchSensor(MOTION, time, counter);
                 fetchSensor(TEMPERATURE, time, counter);
                 fetchSensor(HUMIDITY, time, counter);
                 fetchSensor(CO2, time, counter);
@@ -142,13 +150,34 @@ public class Room_history_fragment extends Fragment {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
+                String mot = sharedPreferences.getString(MOTION + Integer.toString(days), "[]");
                 String temp = sharedPreferences.getString(TEMPERATURE + Integer.toString(days), "[]");
                 String hum = sharedPreferences.getString(HUMIDITY + Integer.toString(days), "[]");
                 String co2 = sharedPreferences.getString(CO2 + Integer.toString(days), "[]");
 
+                final List<SensorData> motion_sensor_data = new ArrayList<>();
                 final List<SensorData> temperature_sensor_data = new ArrayList<>();
                 final List<SensorData> co2_sensor_data = new ArrayList<>();
                 final List<SensorData> humidity_sensor_data = new ArrayList<>();
+
+                JSONArray jsonMot;
+                try {
+                    jsonMot = new JSONArray(mot);
+                    for (int i = 0; i < jsonMot.length(); i += next_sample) {
+                        JSONObject sensor_object = (JSONObject) jsonMot.get(i);
+                        SensorData data = new SensorData();
+                        if (sensor_object.getBoolean("detected"))
+                            data.setData(1);
+                        else
+                            data.setData(0);
+                        data.setTime(sensor_object.getString("timestamp"));
+                        motion_sensor_data.add(data);
+                    }
+                    if (motion_sensor_data.size() > 0)
+                        updateContent(MOTION, motion_sensor_data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 JSONArray jsonTemp;
                 try {
@@ -161,7 +190,7 @@ public class Room_history_fragment extends Fragment {
                             temperature_sensor_data.add(data);
                         }
                         if (temperature_sensor_data.size() > 0)
-                            updateContent("temperature", temperature_sensor_data);
+                            updateContent(TEMPERATURE, temperature_sensor_data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -177,7 +206,7 @@ public class Room_history_fragment extends Fragment {
                             humidity_sensor_data.add(data);
                         }
                         if (humidity_sensor_data.size() > 0)
-                            updateContent("humidity", humidity_sensor_data);
+                            updateContent(HUMIDITY, humidity_sensor_data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -193,7 +222,7 @@ public class Room_history_fragment extends Fragment {
                             co2_sensor_data.add(data);
                         }
                         if (co2_sensor_data.size() > 0)
-                            updateContent("co2", co2_sensor_data);
+                            updateContent(CO2, co2_sensor_data);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -202,6 +231,7 @@ public class Room_history_fragment extends Fragment {
         });
         thread.start();
 
+        fetchSensor(MOTION, time);
         fetchSensor(TEMPERATURE, time);
         fetchSensor(HUMIDITY, time);
         fetchSensor(CO2, time);
@@ -221,7 +251,6 @@ public class Room_history_fragment extends Fragment {
     private void fetchSensor(final String sensor, String filter) {
         fetchSensor(sensor, filter, null);
     }
-
 
     private void fetchSensor(final String sensor, String filter, final AtomicInteger counter) {
 
@@ -255,6 +284,7 @@ public class Room_history_fragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws java.io.IOException {
+                final List<SensorData> motion_sensor_data = new ArrayList<>();
                 final List<SensorData> temperature_sensor_data = new ArrayList<>();
                 final List<SensorData> co2_sensor_data = new ArrayList<>();
                 final List<SensorData> humidity_sensor_data = new ArrayList<>();
@@ -273,9 +303,21 @@ public class Room_history_fragment extends Fragment {
                 try {
                     if (json != null) {
                         switch (sensor) {
+                            case MOTION:
+                                sharedPreferences.edit().putString(MOTION + Integer.toString(days), jsonString).apply();
+                                for (int i = 0; i < json.length(); i += next_sample) {
+                                    JSONObject sensor_object = (JSONObject) json.get(i);
+                                    SensorData data = new SensorData();
+                                    if (sensor_object.getBoolean("detected"))
+                                        data.setData(1);
+                                    else
+                                        data.setData(0);
+                                    data.setTime(sensor_object.getString("timestamp"));
+                                    motion_sensor_data.add(data);
+                                }
+                                break;
                             case TEMPERATURE:
-                                sharedPreferences.edit().putString("temperature" + Integer.toString(days), jsonString).apply();
-                                temperature_sensor_data.clear();
+                                sharedPreferences.edit().putString(TEMPERATURE + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
@@ -285,8 +327,7 @@ public class Room_history_fragment extends Fragment {
                                 }
                                 break;
                             case HUMIDITY:
-                                sharedPreferences.edit().putString("humidity" + Integer.toString(days), jsonString).apply();
-                                humidity_sensor_data.clear();
+                                sharedPreferences.edit().putString(HUMIDITY + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
@@ -296,8 +337,7 @@ public class Room_history_fragment extends Fragment {
                                 }
                                 break;
                             case CO2:
-                                sharedPreferences.edit().putString("co2" + Integer.toString(days), jsonString).apply();
-                                co2_sensor_data.clear();
+                                sharedPreferences.edit().putString(CO2 + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
@@ -325,6 +365,9 @@ public class Room_history_fragment extends Fragment {
                         @Override
                         public void run() {
                             switch (sensor) {
+                                case MOTION:
+                                    updateContent(sensor, motion_sensor_data);
+                                    break;
                                 case TEMPERATURE:
                                     updateContent(sensor, temperature_sensor_data);
                                     break;
@@ -344,7 +387,11 @@ public class Room_history_fragment extends Fragment {
     }
 
     private void updateContent(String sensor, List<SensorData> list) {
+        Collections.reverse(list);
         switch (sensor) {
+            case MOTION:
+                motion_canvasView.setData(list);
+                break;
             case TEMPERATURE:
                 temperature_canvasView.setData(list);
                 break;

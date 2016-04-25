@@ -47,6 +47,16 @@ public class RoomActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.room_menu, menu);
+        if (realm == null) {
+            realm = Realm.getDefaultInstance();
+        }
+        final RoomModel room = realm.where(RoomModel.class).equalTo("id", roomId).findFirst();
+        if (room.isFollowed()) {
+            menu.getItem(0).setIcon(R.drawable.ic_notifications_active_white_24dp);
+        }
+        else {
+            menu.getItem(0).setIcon(R.drawable.ic_notifications_off_white_24dp);
+        }
         return true;
     }
 
@@ -152,7 +162,7 @@ public class RoomActivity extends AppCompatActivity {
             room.setFollowed(true);
             realm.copyToRealmOrUpdate(room);
             realm.commitTransaction();
-            menuit.setIcon(R.drawable.temperature);
+            menuit.setIcon(R.drawable.ic_notifications_active_white_24dp);
         }
         else {
             registerTopic
@@ -163,7 +173,7 @@ public class RoomActivity extends AppCompatActivity {
             room.setFollowed(false);
             realm.copyToRealmOrUpdate(room);
             realm.commitTransaction();
-            menuit.setIcon(R.drawable.humidity);
+            menuit.setIcon(R.drawable.ic_notifications_off_white_24dp);
         }
 
     }

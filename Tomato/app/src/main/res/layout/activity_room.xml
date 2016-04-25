@@ -17,11 +17,11 @@
             <ImageView
                 android:id="@+id/room_title_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="match_parent" />
             <RelativeLayout
                 android:id="@+id/room_image_bg_layout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/text_scrim_top_extra_heavy">
             </RelativeLayout>
 
@@ -44,6 +44,7 @@
             app:tabIndicatorColor="@color/color_tab_bar_indicator"
             app:tabMaxWidth="0dp"
             app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="#B8FFFFFF"
             android:elevation="4dp"
             app:tabMode="fixed" />
 

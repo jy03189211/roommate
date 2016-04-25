@@ -33,6 +33,11 @@ public class RegisterTopic {
         mAdapter = adapter;
     }
 
+    public RegisterTopic(Context context) {
+        mContext = context;
+        mAdapter = null;
+    }
+
     public void subscribeTopic(final String topic, final int room_id) {
         new AsyncTask<Void, Void, Boolean>() {
             @Override
@@ -111,6 +116,87 @@ public class RegisterTopic {
                     Toast toast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
                     toast.show();
                     mAdapter.notifyDataSetChanged();
+                }
+            }
+        }.execute();
+    }
+
+    public void subscribeTopicOther(final String topic, final int room_id) {
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                boolean ret;
+                try {
+                    InstanceID instanceID = InstanceID.getInstance(mContext);
+                    String token = instanceID.getToken(mContext.getResources().getString(R.string.gcm_defaultSenderId),
+                            GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+                    GcmPubSub.getInstance(mContext).subscribe(token, topic, null);
+                    Log.d(TAG,  "Registered to " + topic);
+                    ret = true;
+                } catch (IOException | IllegalArgumentException e) {
+                    Log.d(TAG, "Could not register to topic: " + topic);
+                    e.printStackTrace();
+                    ret = false;
+                }
+                return ret;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean retval) {
+                super.onPostExecute(retval);
+                // failed subscribe
+                if (!retval) {
+                    Realm realm = Realm.getDefaultInstance();
+                    RoomModel room = realm.where(RoomModel.class).equalTo("id", room_id).findFirst();
+                    realm.beginTransaction();
+                    room.setFollowed(false);
+                    realm.commitTransaction();
+                    realm.close();
+
+                    final String text = "Could not follow room";
+                    Toast toast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        }.execute();
+    }
+
+    public void unsubscribeTopicOther(final String topic, final int room_id) {
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                boolean ret;
+                try {
+                    InstanceID instanceID = InstanceID.getInstance(mContext);
+                    String token = instanceID.getToken(mContext.getResources().getString(R.string.gcm_defaultSenderId),
+                            GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+                    GcmPubSub.getInstance(mContext).unsubscribe(token, topic);
+                    Log.d(TAG,  "Unregistered to " + topic);
+                    ret = true;
+
+                } catch (IOException | IllegalArgumentException e) {
+                    Log.d(TAG, "Could not unregister to topic: " + topic);
+                    e.printStackTrace();
+                    ret = false;
+                }
+                return ret;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean retval) {
+                super.onPostExecute(retval);
+                // failed unsubscribe
+                if (!retval) {
+                    Realm realm = Realm.getDefaultInstance();
+                    RoomModel room = realm.where(RoomModel.class).equalTo("id", room_id).findFirst();
+                    realm.beginTransaction();
+                    room.setFollowed(true);
+                    realm.commitTransaction();
+                    realm.close();
+
+                    final String text = "Could not unfollow room";
+                    Toast toast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         }.execute();

@@ -313,6 +313,8 @@ public class Room_default_fragment extends Fragment {
         }
 
         // get different drawables
+        final Drawable offDr = ContextCompat
+                .getDrawable(appCont, R.drawable.scale_dash_off);
         final Drawable onDr = ContextCompat
                 .getDrawable(appCont, R.drawable.scale_dash_on);
         final Drawable mainDr = ContextCompat
@@ -328,18 +330,30 @@ public class Room_default_fragment extends Fragment {
             tempBars[i].setImageDrawable(onDr);
         }
         tempBars[i].setImageDrawable(mainDr);
+        i++;
+        for (; i < 5; i++) {
+            tempBars[i].setImageDrawable(offDr);
+        }
 
         i = 0;
         for (; i < humidMainbar; i++) {
             humidBars[i].setImageDrawable(onDr);
         }
         humidBars[i].setImageDrawable(mainDr);
+        i++;
+        for (; i < 5; i++) {
+            humidBars[i].setImageDrawable(offDr);
+        }
 
         i = 0;
         for (; i < co2MainBar; i++) {
             co2Bars[i].setImageDrawable(onDr);
         }
         co2Bars[i].setImageDrawable(mainDr);
+        i++;
+        for (; i < 5; i++) {
+            co2Bars[i].setImageDrawable(offDr);
+        }
     }
 
     private boolean shouldFetchNewData() {

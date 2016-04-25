@@ -1,0 +1,11 @@
+[
+    {
+	"model": "cloud_api.co2measurement",
+	"pk": null,
+	"fields": {
+	    "timestamp": "2016-04-01T18:00",
+	    "concentration": 300,
+	    "sensor": 2
+	}
+    }
+]

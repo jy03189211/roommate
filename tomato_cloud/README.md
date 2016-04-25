@@ -73,3 +73,7 @@ password: tomato-1230
 git subtree push --prefix tomato_cloud https://git.heroku.com/tomato-1230.git master
 ```
 
+## Flush measurements
+```sh
+python manage.py clear_measurements
+```

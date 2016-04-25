@@ -62,6 +62,8 @@ public class Room_history_fragment extends Fragment {
     private int days;
     private int next_sample;
 
+    private static int occupationSamplingModifier = 1;
+
     private String TAG = "Room history fragment";
 
     public Room_history_fragment() {
@@ -73,12 +75,15 @@ public class Room_history_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         days = bundle.getInt("days");
-        next_sample = 1;
-        if (days > 1) {
-            next_sample = 10;
-        } else if (days > 7) {
-            next_sample = 100;
+        if (days == 1) {
+            next_sample = 1;
         }
+        else if (days > 1 && days <= 7) {
+            next_sample = 5;
+        } else {
+            next_sample = 20;
+        }
+        Log.d(TAG, next_sample + " ");
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
         sharedPreferences = PreferenceManager
@@ -162,8 +167,9 @@ public class Room_history_fragment extends Fragment {
 
                 JSONArray jsonMot;
                 try {
+                    Log.e(TAG, "nextsample: " + next_sample + ", days: " + days);
                     jsonMot = new JSONArray(mot);
-                    for (int i = 0; i < jsonMot.length(); i += next_sample) {
+                    for (int i = 0; i < jsonMot.length(); i += next_sample*occupationSamplingModifier) {
                         JSONObject sensor_object = (JSONObject) jsonMot.get(i);
                         SensorData data = new SensorData();
                         if (sensor_object.getBoolean("detected"))
@@ -304,8 +310,9 @@ public class Room_history_fragment extends Fragment {
                     if (json != null) {
                         switch (sensor) {
                             case MOTION:
+                                Log.e(TAG, "nextsample: " + next_sample + ", days: " + days);
                                 sharedPreferences.edit().putString(MOTION + Integer.toString(days), jsonString).apply();
-                                for (int i = 0; i < json.length(); i += next_sample) {
+                                for (int i = 0; i < json.length(); i += next_sample*occupationSamplingModifier) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
                                     if (sensor_object.getBoolean("detected"))

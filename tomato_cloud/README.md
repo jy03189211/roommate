@@ -73,7 +73,17 @@ password: tomato-1230
 git subtree push --prefix tomato_cloud https://git.heroku.com/tomato-1230.git master
 ```
 
-## Flush measurements
+## Heroku DB
+
+Local Django database is also connected to remote Heroku database, i.e. the following commands changes affect Heroku.
+
+### Flush measurements (CO2, motion, humidity, temperature)
+
 ```sh
 python manage.py clear_measurements
+```
+
+### Load initial measurements
+```sh
+python manage.py loaddata <fixture_file>
 ```

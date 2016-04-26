@@ -102,8 +102,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 public void onClick(View v) {
                     final RoomModel room = roomList.get(getAdapterPosition());
 
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont.getApplicationContext());
-                    mBuilder.setContentTitle("Room Mate");
+                    // NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont.getApplicationContext());
+                    // mBuilder.setContentTitle("Room Mate");
 
                     final RegisterTopic registerTopic =
                             new RegisterTopic(cont.getApplicationContext(), RoomAdapter.this);
@@ -118,7 +118,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         room.setFollowed(true);
                         realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
-                        mBuilder.setContentText("Subscribed to room " + room.getRoomName());
+                        // mBuilder.setContentText("Subscribed to room " + room.getRoomName());
                         notifyDataSetChanged();
                     }
                     else {
@@ -130,18 +130,20 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         room.setFollowed(false);
                         realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
-                        mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
+                        // mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
                         notifyDataSetChanged();
                     }
-                    mBuilder.setSmallIcon(R.mipmap.room_mate_logo);
+                    /*
+                    // mBuilder.setSmallIcon(R.mipmap.room_mate_logo);
                     //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     //mBuilder.setSound(alarmSound);
-                    Notification notification = mBuilder.build();
+                    // Notification notification = mBuilder.build();
 
                     NotificationManager mNotificationManager =
                             (NotificationManager) cont.getApplicationContext()
                                     .getSystemService(Context.NOTIFICATION_SERVICE);
                     mNotificationManager.notify(9999, notification);
+                    */
 
                 }
 

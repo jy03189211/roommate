@@ -82,7 +82,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="16dp"
-                            android:src="@drawable/ic_air_2_ok_black_36dp" />
+                            android:src="@drawable/ic_air_2_ok_black_36dp"
+                            android:alpha="0.54" />
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -134,7 +135,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="16dp"
-                            android:src="@drawable/temperature" />
+                            android:src="@drawable/temperature"
+                            android:alpha="0.54" />
 
                         <!-- header + bars + names for them -->
                         <RelativeLayout
@@ -243,7 +245,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="16dp"
-                            android:src="@drawable/humidity" />
+                            android:src="@drawable/humidity"
+                            android:alpha="0.54" />
 
                         <!-- header + bars + names for them -->
                         <RelativeLayout
@@ -352,7 +355,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="16dp"
-                            android:src="@drawable/co2" />
+                            android:src="@drawable/co2"
+                            android:alpha="0.54" />
 
                         <!-- header + bars + names for them -->
                         <RelativeLayout

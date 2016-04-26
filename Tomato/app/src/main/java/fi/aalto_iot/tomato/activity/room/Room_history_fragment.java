@@ -58,6 +58,7 @@ public class Room_history_fragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
 
     private RoomModel room;
+    private int roomId;
     private OkHttpClient client = new OkHttpClient();
     private int days;
     private int next_sample;
@@ -85,6 +86,7 @@ public class Room_history_fragment extends Fragment {
         }
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        roomId = room.getId();
         sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getContext().getApplicationContext());
         realm.close();
@@ -154,10 +156,10 @@ public class Room_history_fragment extends Fragment {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                String mot = sharedPreferences.getString(MOTION + Integer.toString(days), "[]");
-                String temp = sharedPreferences.getString(TEMPERATURE + Integer.toString(days), "[]");
-                String hum = sharedPreferences.getString(HUMIDITY + Integer.toString(days), "[]");
-                String co2 = sharedPreferences.getString(CO2 + Integer.toString(days), "[]");
+                String mot = sharedPreferences.getString(roomId + "_" +MOTION + Integer.toString(days), "[]");
+                String temp = sharedPreferences.getString(roomId + "_" +TEMPERATURE + Integer.toString(days), "[]");
+                String hum = sharedPreferences.getString(roomId + "_" +HUMIDITY + Integer.toString(days), "[]");
+                String co2 = sharedPreferences.getString(roomId + "_" +CO2 + Integer.toString(days), "[]");
 
                 final List<SensorData> motion_sensor_data = new ArrayList<>();
                 final List<SensorData> temperature_sensor_data = new ArrayList<>();
@@ -308,7 +310,7 @@ public class Room_history_fragment extends Fragment {
                     if (json != null) {
                         switch (sensor) {
                             case MOTION:
-                                sharedPreferences.edit().putString(MOTION + Integer.toString(days), jsonString).apply();
+                                sharedPreferences.edit().putString(roomId + "_" + MOTION + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample*occupationSamplingModifier) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
@@ -321,7 +323,7 @@ public class Room_history_fragment extends Fragment {
                                 }
                                 break;
                             case TEMPERATURE:
-                                sharedPreferences.edit().putString(TEMPERATURE + Integer.toString(days), jsonString).apply();
+                                sharedPreferences.edit().putString(roomId + "_" +TEMPERATURE + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
@@ -331,7 +333,7 @@ public class Room_history_fragment extends Fragment {
                                 }
                                 break;
                             case HUMIDITY:
-                                sharedPreferences.edit().putString(HUMIDITY + Integer.toString(days), jsonString).apply();
+                                sharedPreferences.edit().putString(roomId + "_" +HUMIDITY + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();
@@ -341,7 +343,7 @@ public class Room_history_fragment extends Fragment {
                                 }
                                 break;
                             case CO2:
-                                sharedPreferences.edit().putString(CO2 + Integer.toString(days), jsonString).apply();
+                                sharedPreferences.edit().putString(roomId + "_" +CO2 + Integer.toString(days), jsonString).apply();
                                 for (int i = 0; i < json.length(); i += next_sample) {
                                     JSONObject sensor_object = (JSONObject) json.get(i);
                                     SensorData data = new SensorData();

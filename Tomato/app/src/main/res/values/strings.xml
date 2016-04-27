@@ -4,11 +4,11 @@
     <string name="gcm_registration_url">https://tomato-1230.herokuapp.com/gcm/v1/device/register/</string>
     <string name="gcm_unregistration_url">https://tomato-1230.herokuapp.com/gcm/v1/device/unregister/</string>
     <string name="room_header">%1$s</string>
-    <string name="status_occupied_text">Occupied</string>
+    <string name="status_occupied_text">Taken</string>
     <string name="status_free_text">Free</string>
     <string name="failed_to_download">Could not get room data</string>
-    <string name="follow_text">+ Follow</string>
-    <string name="unfollow_text">- Unfollow</string>
+    <string name="follow_text">Follow</string>
+    <string name="unfollow_text">Unfollow</string>
     <string name="room_condition_text">%1$d °C, Air Quality: %2$s</string>
     <string name="room_co2_fresh">Fresh</string>
     <string name="room_co2_ok">Okay</string>
@@ -23,6 +23,7 @@
     <string name="room_fragment_history_hours">hours</string>
     <string name="room_fragment_history_humidity_header">Relative humidity, %</string>
     <string name="room_fragment_history_co2_header">CO2 level, ppm</string>
+    <string name="room_fragment_history_occupation_header">Occupation</string>
     <string name="room_co2_header">CO2 LEVEL</string>
     <string name="room_temperature_header">TEMPERATURE</string>
     <string name="room_humidity_header">HUMIDITY</string>
@@ -33,7 +34,10 @@
     <string name="air_quality_bad_notification">Take a break! The air\'s getting poor.</string>
     <string name="room_available_notification">Run, Forrest, run! The room is free now.</string>
     <string name="google_services_not_available">Push notifications not available for this device</string>
-    <string name="about_description_text">By: Anssi Grekula, Juho Marttila, Julius Eerola, Jin Jin, Joni Lampio\n\n Made for Mobile Systems Programming\n Aalto University School of Science\n\n www.aalto.fi</string>
+    <string name="about_header_text">About Room Mate</string>
+    <string name="about_description_text">Room Mate helps you find a free room for group work sessions. Follow a room to get notified when it becomes free and when the air quality of the room drops significantly.</string>
+    <string name="about_authors_text">Made on spring 2016 by: Julius Eerola, Anssi Grekula, Jin Jin, Joni Lampio, and Juho Marttila for T-110.5130 Mobile Systems Programming in Aalto University School of Science.</string>
+    <string name="about_credits_text">Thermometer icon created by Scott Lewis from Noun Project.\nWater drop icon created by Grzegorz Oksiuta from Noun Project.</string>
     <string name="temperature_level_header">TEMPERATURE</string>
     <string name="humidity_level_header">RELATIVE HUMIDITY</string>
     <string name="co2_level_header">CO2 LEVEL, ppm</string>
@@ -42,9 +46,21 @@
     <string name="room_fragment_temperature_hot">too hot</string>
     <string name="room_fragment_humidity_dry">desert</string>
     <string name="room_fragment_humidity_ok">optimal</string>
-    <string name="room_fragment_humidity_humid">sauna</string>
+    <string name="room_fragment_humidity_humid">jungle</string>
     <string name="room_fragment_co2_low">fresh</string>
     <string name="room_fragment_co2_normal">bearable</string>
     <string name="room_fragment_co2_high">drowsy</string>
+    <string name="room_condition_great">Great</string>
+    <string name="room_condition_good">Good</string>
+    <string name="room_condition_ok">OK</string>
+    <string name="room_condition_bad">Bad</string>
+    <string name="room_condition_poor">Poor</string>
+    <string name="occupation">OCCUPATION</string>
+    <string name="air_quality">AIR QUALITY</string>
+    <string name="placeholder_temperature">0°C</string>
+    <string name="placeholder_percentage">0%</string>
+    <string name="placeholder_number">0</string>
+    <string name="follow">Follow</string>
+    <string name="details">Details</string>
 
 </resources>

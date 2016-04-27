@@ -38,6 +38,7 @@ import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.activity.RoomActivity;
 import fi.aalto_iot.tomato.db.data.RoomModel;
 import fi.aalto_iot.tomato.other.Constants;
+import fi.aalto_iot.tomato.other.FreeFunctions;
 import fi.aalto_iot.tomato.other.RegisterTopic;
 import fi.aalto_iot.tomato.services.RegistrationIntentService;
 import io.realm.Realm;
@@ -45,11 +46,11 @@ import io.realm.Realm;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     private List<RoomModel> roomList = new ArrayList<>();
-    private String myTag = "RoomAdapter";
+    private String TAG = "RoomAdapter";
     private SharedPreferences preferences;
     private Realm realm;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
         public TextView mRoomTitleView;
         public TextView mOccupationView;
@@ -70,9 +71,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mFollowButton = (Button)v.findViewById(R.id.follow_button);
             mDetailsButton = (Button)v.findViewById(R.id.details_button);
             cont = v.getContext();
-            realm = Realm.getDefaultInstance();
 
-            preferences = PreferenceManager.getDefaultSharedPreferences(cont);
+            preferences = PreferenceManager.getDefaultSharedPreferences(cont.getApplicationContext());
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -100,48 +100,54 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             mFollowButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RoomModel room = roomList.get(getAdapterPosition());
+                    final RoomModel room = roomList.get(getAdapterPosition());
 
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont);
-                    mBuilder.setContentTitle("Room Mate");
+                    // NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(cont.getApplicationContext());
+                    // mBuilder.setContentTitle("Room Mate");
+
+                    final RegisterTopic registerTopic =
+                            new RegisterTopic(cont.getApplicationContext(), RoomAdapter.this);
 
                     int room_id = room.getId();
                     if (!room.isFollowed()) {
-                        new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id));
-                        new RegisterTopic(cont).subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        registerTopic
+                                .subscribeTopic("/topics/" + Integer.toString(room_id), room_id);
+                        registerTopic
+                                .subscribeTopic("/topics/" + Integer.toString(room_id) + "-quality", room_id);
                         realm.beginTransaction();
                         room.setFollowed(true);
                         realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
-                        mBuilder.setContentText("Subscribed to room " + room.getRoomName());
+                        // mBuilder.setContentText("Subscribed to room " + room.getRoomName());
                         notifyDataSetChanged();
                     }
                     else {
-                        new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id));
-                        new RegisterTopic(cont).unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality");
+                        registerTopic
+                                .unsubscribeTopic("/topics/" + Integer.toString(room_id), room_id);
+                        registerTopic
+                                .unsubscribeTopic("/topics/" + Integer.toString(room_id) + "-quality", room_id);
                         realm.beginTransaction();
                         room.setFollowed(false);
                         realm.copyToRealmOrUpdate(room);
                         realm.commitTransaction();
-                        mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
+                        // mBuilder.setContentText("Unsubscribed to room " + room.getRoomName());
                         notifyDataSetChanged();
                     }
-                    mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);
+                    /*
+                    // mBuilder.setSmallIcon(R.mipmap.room_mate_logo);
                     //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     //mBuilder.setSound(alarmSound);
-                    Notification notification = mBuilder.build();
+                    // Notification notification = mBuilder.build();
 
                     NotificationManager mNotificationManager =
-                            (NotificationManager) cont.getSystemService(Context.NOTIFICATION_SERVICE);
+                            (NotificationManager) cont.getApplicationContext()
+                                    .getSystemService(Context.NOTIFICATION_SERVICE);
                     mNotificationManager.notify(9999, notification);
+                    */
 
                 }
 
             });
-        }
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(), "Actvity 1", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -167,7 +173,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                         res.getString(R.string.room_header), roomName));
 
         // Set room picture to card header
-        Picasso.with(holder.cont)
+        Picasso.with(holder.cont.getApplicationContext())
                 .load(room.getPicture())
                 .fit().centerCrop()
                 .into(holder.mImageView);
@@ -176,8 +182,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         // Set correct status indicator ("traffic light") color
         final Drawable statusIndicator = isOccupied ?
-                ContextCompat.getDrawable(holder.cont, R.drawable.room_status_indicator_occupied) :
-                ContextCompat.getDrawable(holder.cont, R.drawable.room_status_indicator_free);
+                ContextCompat.getDrawable
+                        (holder.cont.getApplicationContext(), R.drawable.room_status_indicator_occupied) :
+                ContextCompat.getDrawable
+                        (holder.cont.getApplicationContext(), R.drawable.room_status_indicator_free);
         holder.mStatusIndicatorView.setImageDrawable(statusIndicator);
 
         // Set occupation status text
@@ -186,17 +194,29 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
                 res.getString(R.string.status_free_text);
         holder.mOccupationView.setText(occupationStatus);
 
-        // Set room condition text
-        final String co2_status;
-        final int co2_level = room.getCo2();
-        if (co2_level < Constants.CO2_FRESH)
-            co2_status = res.getString(R.string.room_co2_fresh);
-        else if (co2_level > Constants.CO2_DROWSY)
-            co2_status = res.getString(R.string.room_co2_drowsy);
-        else
-            co2_status = res.getString(R.string.room_co2_ok);
+        final int roomTemp = room.getTemperature();
+        final int roomHumidity = room.getHumidity();
+        final int roomCo2 = room.getCo2();
 
-        final String room_condition = String.format(res.getString(R.string.room_condition_text), room.getTemperature(), co2_status);
+        final int airQualityPoints =
+                FreeFunctions.getAirQualityPoints(roomTemp, roomCo2, roomHumidity);
+
+        // Set room condition text
+        final String air_status;
+
+        if (airQualityPoints >= 0) {
+            air_status = res.getString(R.string.room_condition_great);
+        } else if (airQualityPoints >= -1) { // good
+            air_status = res.getString(R.string.room_condition_good);
+        } else if (airQualityPoints >= -2) { // ok
+            air_status = res.getString(R.string.room_condition_ok);
+        } else if (airQualityPoints >= -3) { // bad
+            air_status = res.getString(R.string.room_condition_bad);
+        } else { // poor
+            air_status = res.getString(R.string.room_condition_poor);
+        }
+
+        final String room_condition = String.format(res.getString(R.string.room_condition_text), room.getTemperature(), air_status);
         holder.mRoomConditionView.setText(room_condition);
 
         // Set follow button text
@@ -209,15 +229,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     public void add(RoomModel job) {
         roomList.add(job);
-        //Log.d(myTag, "added room to adapter");
     }
 
     public void clear() {
         roomList.clear();
     }
 
+    public void setRealm(Realm r) {
+        realm = r;
+    }
+
     @Override
     public int getItemCount() {
         return roomList.size();
     }
+
 }

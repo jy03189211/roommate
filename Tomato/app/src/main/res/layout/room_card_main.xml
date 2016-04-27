@@ -62,12 +62,13 @@
                     <TextView
                         android:id="@+id/status_indicator_text"
                         style="@style/BodyFont"
-                        android:text="Unknown"/>
+                        android:text="@string/unknown"
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/room_condition_text"
                         style="@style/Body2Font"
                         android:layout_below="@+id/status_indicator_text"
-                        android:text="Unknown"/>
+                        android:text="@string/unknown"/>
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -81,7 +82,7 @@
                     android:id="@+id/follow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Follow"
+                    android:text="@string/follow"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
@@ -92,7 +93,7 @@
                     android:id="@+id/details_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Details"
+                    android:text="@string/details"
                     android:layout_toEndOf="@+id/follow_button"
                     android:layout_toRightOf="@+id/follow_button"
                     style="?android:attr/borderlessButtonStyle"

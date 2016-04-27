@@ -56,7 +56,7 @@
                                 android:id="@+id/room_status_indicator_header"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="OCCUPATION"
+                                android:text="@string/occupation"
                                 android:textSize="12sp"/>
                             <TextView
                                 android:id="@+id/room_status_indicator_text"
@@ -82,7 +82,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="16dp"
-                            android:src="@drawable/ic_air_2_ok_black_36dp" />
+                            android:src="@drawable/ic_air_2_ok_black_36dp"
+                            android:alpha="0.54" />
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,7 +93,7 @@
                                 android:id="@+id/room_air_indicator_header"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="AIR QUALITY"
+                                android:text="@string/air_quality"
                                 android:textSize="12sp"/>
                             <TextView
                                 android:id="@+id/room_air_indicator_text"
@@ -134,7 +135,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="16dp"
-                            android:src="@drawable/temperature" />
+                            android:src="@drawable/temperature"
+                            android:alpha="0.54" />
 
                         <!-- header + bars + names for them -->
                         <RelativeLayout
@@ -158,6 +160,7 @@
                                     android:id="@+id/temperature_bar_1"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -166,6 +169,7 @@
                                     android:id="@+id/temperature_bar_2"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -174,6 +178,7 @@
                                     android:id="@+id/temperature_bar_3"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -182,6 +187,7 @@
                                     android:id="@+id/temperature_bar_4"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -190,6 +196,7 @@
                                     android:id="@+id/temperature_bar_5"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -223,7 +230,7 @@
                             android:layout_width="@dimen/room_fragment_data_value"
                             android:layout_height="match_parent"
                             android:padding="8dp"
-                            android:text="0°C"
+                            android:text="@string/placeholder_temperature"
                             android:textSize="24sp"
                             android:gravity="center_vertical" />
                     </LinearLayout>
@@ -238,7 +245,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="16dp"
-                            android:src="@drawable/humidity" />
+                            android:src="@drawable/humidity"
+                            android:alpha="0.54" />
 
                         <!-- header + bars + names for them -->
                         <RelativeLayout
@@ -262,6 +270,7 @@
                                     android:id="@+id/humidity_bar_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -270,6 +279,7 @@
                                     android:id="@+id/humidity_bar_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -278,6 +288,7 @@
                                     android:id="@+id/humidity_bar_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -286,6 +297,7 @@
                                     android:id="@+id/humidity_bar_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -294,6 +306,7 @@
                                     android:id="@+id/humidity_bar_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -327,7 +340,7 @@
                             android:layout_width="@dimen/room_fragment_data_value"
                             android:layout_height="fill_parent"
                             android:padding="8dp"
-                            android:text="0%"
+                            android:text="@string/placeholder_percentage"
                             android:textSize="24sp"
                             android:gravity="center_vertical" />
                     </LinearLayout>
@@ -342,7 +355,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="16dp"
-                            android:src="@drawable/co2" />
+                            android:src="@drawable/co2"
+                            android:alpha="0.54" />
 
                         <!-- header + bars + names for them -->
                         <RelativeLayout
@@ -367,6 +381,7 @@
                                     android:id="@+id/co2_bar_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -375,6 +390,7 @@
                                     android:id="@+id/co2_bar_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -383,6 +399,7 @@
                                     android:id="@+id/co2_bar_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -391,6 +408,7 @@
                                     android:id="@+id/co2_bar_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -399,6 +417,7 @@
                                     android:id="@+id/co2_bar_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:padding="@dimen/padding_bar"
                                     android:layout_weight="1"
                                     android:scaleType="fitXY"
@@ -432,7 +451,7 @@
                             android:layout_width="@dimen/room_fragment_data_value"
                             android:layout_height="match_parent"
                             android:padding="8dp"
-                            android:text="0"
+                            android:text="@string/placeholder_number"
                             android:textSize="24sp"
                             android:gravity="center_vertical" />
                     </LinearLayout>

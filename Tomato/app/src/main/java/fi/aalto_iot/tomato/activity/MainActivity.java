@@ -54,11 +54,11 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    ProgressBar mProgressBar;
-    RoomAdapter mAdapter;
-    OkHttpClient client = new OkHttpClient();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressBar mProgressBar;
+    private RoomAdapter mAdapter;
+    private OkHttpClient client = new OkHttpClient();
     private Realm realm;
     private RealmChangeListener changeListener;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -78,12 +78,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
+                PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
 
 
         sharedPreferences
                 .edit()
-                .putString("android_id", Settings.Secure.getString(this.getContentResolver(),
+                .putString("android_id", Settings.Secure
+                        .getString(this.getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID))
                 .apply();
 
@@ -92,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.initial_loading_progress);
 
         mLayoutManager = new LinearLayoutManager(this);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RoomAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setRealm(realm);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -110,27 +113,18 @@ public class MainActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences
                         .getBoolean(Preferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    Log.d(TAG, "Registration complete?");
+                    Log.d(TAG, "Registration complete");
                 } else {
-                    Log.d(TAG, "Registration error?");
+                    Log.d(TAG, "Registration error");
                 }
             }
         };
-        /*
-        changeListener = new RealmChangeListener() {
-            @Override
-            public void onChange() {
-                mAdapter.notifyDataSetChanged();
-            }
-        };
-        */
-
 
         registerReceiver();
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
-            Intent intent = new Intent(this, RegistrationIntentService.class);
+            Intent intent = new Intent(this.getApplicationContext(), RegistrationIntentService.class);
             startService(intent);
         }
 
@@ -145,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mAdapter.notifyDataSetChanged();
         registerReceiver();
     }
 
@@ -153,6 +148,12 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         isReceiverRegistered = false;
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
     @Override
@@ -188,28 +189,9 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
     }
 
-    // not used
-    private boolean getOccupation(String url) {
-        Request req = new Request.Builder()
-                .url(url + "motion")
-                .build();
-        try {
-            Response resp = client.newCall(req).execute();
-            final String jsonString = resp.body().string();
-            JSONArray json = new JSONArray(jsonString);
-            JSONObject measurement = (JSONObject) json.get(0);
-
-            return measurement.getBoolean("detected");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     private void fetchRooms() throws IOException {
         Request req = new Request.Builder()
-                .url(this.getResources().getString(R.string.rooms_url))
+                .url(this.getApplicationContext().getResources().getString(R.string.rooms_url))
                 .build();
         client.newCall(req).enqueue(new Callback() {
             @Override
@@ -254,13 +236,13 @@ public class MainActivity extends AppCompatActivity {
         BaseApplication app = (BaseApplication)getApplicationContext();
         long elapsedMs = android.os.SystemClock.elapsedRealtime()
                 - app.getLastFetchedDataMainActivity();
-        //Log.d(TAG, Long.toString(elapsedMs));
-        return (elapsedMs > Constants.MAXDATAGETINTERVAL*1000);
+        return (elapsedMs > Constants.MAXDATAGETINTERVAL);
 
     }
 
     private void registerReceiver(){
         if(!isReceiverRegistered) {
+            // getInstance automatically gets Application context
             LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                     new IntentFilter(Preferences.REGISTRATION_COMPLETE));
             isReceiverRegistered = true;
@@ -269,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this.getApplicationContext());
         if (resultCode != ConnectionResult.SUCCESS) {
             if (apiAvailability.isUserResolvableError(resultCode)) {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
@@ -322,13 +304,10 @@ public class MainActivity extends AppCompatActivity {
                             .equalTo("id", id).findAll().size();
 
                     if (isAlreadyInRealm == 0) {
-                        //Log.d(TAG, room.getString("name") + " is not in realm already");
                         thisRoom.setFollowed(false);
                     } else {
                         thisRoom.setFollowed(realm.where(RoomModel.class)
                                 .equalTo("id", id).findAll().first().isFollowed());
-                        //Log.d(TAG, room.get("name") + "is already in realm " + Boolean.toString(realm.where(RoomModel.class)
-                         //       .equalTo("id", id).findAll().first().isFollowed()));
                     }
 
                     realm.copyToRealmOrUpdate(thisRoom);

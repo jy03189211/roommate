@@ -21,28 +21,31 @@ public class MyGcmListenerService extends GcmListenerService {
     public void onMessageReceived(String from, Bundle data) {
 
         // Send a proper User notification, not a generic one
-        NotificationSender.parseAndShowNotification(data, this);
+        NotificationSender.parseAndShowNotification(data, this.getApplicationContext());
     }
 
     @Override
     public void onDeletedMessages() {
-        sendNotification("Deleted messages on server");
+        // functionality not needed in currently
+        //sendNotification("Deleted messages on server");
     }
 
     @Override
     public void onMessageSent(String msgId) {
-        sendNotification("Upstream message sent. Id=" + msgId);
+        // functionality not needed in currently
+        //sendNotification("Upstream message sent. Id=" + msgId);
     }
 
     @Override
     public void onSendError(String msgId, String error) {
-        sendNotification("Upstream message send error. Id=" + msgId + ", error" + error);
+        // functionality not needed in currently
+        //sendNotification("Upstream message send error. Id=" + msgId + ", error" + error);
     }
 
     // Send generic notification when GCM message got
     private void sendNotification(String msg) {
         Log.d("NOTIFICATION", msg);
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.getApplicationContext());
         mBuilder.setContentTitle("Room Mate");
         mBuilder.setContentText(msg);
         mBuilder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark_disabled);

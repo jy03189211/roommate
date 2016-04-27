@@ -18,12 +18,11 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import fi.aalto_iot.tomato.BaseApplication;
 import fi.aalto_iot.tomato.R;
 import fi.aalto_iot.tomato.db.data.RoomModel;
 import fi.aalto_iot.tomato.other.Constants;
+import fi.aalto_iot.tomato.other.FreeFunctions;
 import io.realm.Realm;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -35,7 +34,6 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class Room_default_fragment extends Fragment {
-
 
     private RoomModel room;
     private Bundle bundle;
@@ -79,6 +77,13 @@ public class Room_default_fragment extends Fragment {
         bundle = getArguments();
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        realm.close();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateContent();
     }
 
     @Override
@@ -136,14 +141,13 @@ public class Room_default_fragment extends Fragment {
         return view;
     }
 
-    public void fetchRoom(final String roomUrl) {
+    private void fetchRoom(final String roomUrl) {
         Request req = new Request.Builder()
                 .url(roomUrl)
                 .build();
         client.newCall(req).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, java.io.IOException e) {
-                // TODO: failure handling
                 Activity activity = getActivity();
                 if (activity != null) {
                     activity.runOnUiThread(new Runnable() {
@@ -200,7 +204,7 @@ public class Room_default_fragment extends Fragment {
                     realm.close();
 
                     Activity activity = getActivity();
-                    Context context = null;
+                    Context context;
                     if (activity != null) {
                         context = activity.getApplicationContext();
                         if (context != null) {
@@ -233,6 +237,7 @@ public class Room_default_fragment extends Fragment {
     private void updateContent() {
         Realm realm = Realm.getDefaultInstance();
         room = realm.where(RoomModel.class).equalTo("id", bundle.getInt("id")).findFirst();
+        realm.close();
 
         final int roomTemp = room.getTemperature();
         final int roomHumidity = room.getHumidity();
@@ -258,7 +263,32 @@ public class Room_default_fragment extends Fragment {
                 getResources().getString(R.string.status_free_text);
         mOccupation.setText(occupationStatus);
 
-        // TODO: set air quality status and text
+        int allPoints = FreeFunctions.getAirQualityPoints(roomTemp, roomCo2, roomHumidity);
+
+        Context appCont = getContext().getApplicationContext();
+
+        // great
+        if (allPoints >= 0) {
+            mAirQuality.setText(getResources().getString(R.string.room_condition_great));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_0_great_black_36dp));
+        } else if (allPoints >= -1) { // good
+            mAirQuality.setText(getResources().getString(R.string.room_condition_good));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_1_good_black_36dp));
+        } else if (allPoints >= -2) { // ok
+            mAirQuality.setText(getResources().getString(R.string.room_condition_ok));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_2_ok_black_36dp));
+        } else if (allPoints >= -3) { // bad
+            mAirQuality.setText(getResources().getString(R.string.room_condition_bad));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_3_bad_black_36dp));
+        } else { // poor
+            mAirQuality.setText(getResources().getString(R.string.room_condition_poor));
+            mAirQualityImage.setImageDrawable(
+                    ContextCompat.getDrawable(appCont, R.drawable.ic_air_4_poor_black_36dp));
+        }
 
 
         // calculate correct bars
@@ -289,8 +319,12 @@ public class Room_default_fragment extends Fragment {
         }
 
         // get different drawables
-        final Drawable onDr = ContextCompat.getDrawable(getContext(), R.drawable.scale_dash_on);
-        final Drawable mainDr = ContextCompat.getDrawable(getContext(), R.drawable.scale_dash_main);
+        final Drawable offDr = ContextCompat
+                .getDrawable(appCont, R.drawable.scale_dash_off);
+        final Drawable onDr = ContextCompat
+                .getDrawable(appCont, R.drawable.scale_dash_on);
+        final Drawable mainDr = ContextCompat
+                .getDrawable(appCont, R.drawable.scale_dash_main);
 
         ImageView[] tempBars = { mTemperature_bar_1, mTemperature_bar_2, mTemperature_bar_3, mTemperature_bar_4, mTemperature_bar_5 };
         ImageView[] humidBars = { mHumidity_bar_1, mHumidity_bar_2, mHumidity_bar_3, mHumidity_bar_4, mHumidity_bar_5 };
@@ -302,18 +336,30 @@ public class Room_default_fragment extends Fragment {
             tempBars[i].setImageDrawable(onDr);
         }
         tempBars[i].setImageDrawable(mainDr);
+        i++;
+        for (; i < 5; i++) {
+            tempBars[i].setImageDrawable(offDr);
+        }
 
         i = 0;
         for (; i < humidMainbar; i++) {
             humidBars[i].setImageDrawable(onDr);
         }
         humidBars[i].setImageDrawable(mainDr);
+        i++;
+        for (; i < 5; i++) {
+            humidBars[i].setImageDrawable(offDr);
+        }
 
         i = 0;
         for (; i < co2MainBar; i++) {
             co2Bars[i].setImageDrawable(onDr);
         }
         co2Bars[i].setImageDrawable(mainDr);
+        i++;
+        for (; i < 5; i++) {
+            co2Bars[i].setImageDrawable(offDr);
+        }
     }
 
     private boolean shouldFetchNewData() {

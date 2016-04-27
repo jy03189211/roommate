@@ -69,7 +69,21 @@ GET /api/v1/rooms/<room_id>/{motion,co2,temperature,humidity}[/?from=<start_date
 username: tomato.heroku@gmail.com
 password: tomato-1230
 
+### Heroku push
 ```sh
 git subtree push --prefix tomato_cloud https://git.heroku.com/tomato-1230.git master
 ```
 
+### Heroku DB
+
+Local Django database is also connected to remote Heroku database, i.e. the following commands affect Heroku.
+
+#### Flush measurements
+```sh
+python manage.py clear_measurements
+```
+
+#### Load initial measurements
+```sh
+python manage.py loaddata <fixture_file>
+```

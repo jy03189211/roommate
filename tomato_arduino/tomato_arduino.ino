@@ -2,7 +2,7 @@
 #include <Ethernet.h>
 #include "library/SimpleTimer/SimpleTimer.h"
 #include "library/PinChangeInterrupt/src/PinChangeInterrupt.h"
-#include "library/TinkerKit-master/TinkerKit.h"
+//#include "library/TinkerKit-master/TinkerKit.h"
 #include "library/DHT_sensor_library/DHT.h"
 
 #define CO2_PIN 5 // CO2 sensor should be attached to pin 5
@@ -20,13 +20,13 @@
 #define SENSOR_ID_TEMPERATURE "3"
 #define SENSOR_ID_HUMIDITY "4"
 
-volatile uint16_t cur_co2_concentration;
-volatile uint16_t prev_co2_concentration;
+volatile double cur_co2_concentration;
+volatile double prev_co2_concentration;
 volatile bool co2_changed;
 volatile uint32_t co2_sum;
 volatile uint16_t co2_count;
 
-volatile uint32_t start_millis;
+volatile uint32_t start_micro;
 volatile bool motion_detected;
 volatile bool motion_detected_cloud;
 
@@ -49,13 +49,13 @@ uint16_t sound_prev_value;
 
 SimpleTimer timer;
 EthernetClient client;
-TKLightSensor ldr(I1);  //create the "ldr" object on port I1
+//TKLightSensor ldr(I1);  //create the "ldr" object on port I1
 DHT dht(DHT_PIN, DHT_TYPE);
 
 #define BUF_SIZE 256
 #define PORT 80
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x75, 0xFD }; // This is the real mac of one of the arduino ethernet boards
-IPAddress ip(192, 168, 1, 100); //fallback if DHCP doesnt work
+IPAddress ip(192, 168, 1, 108); //fallback if DHCP doesnt work
 const char protocol[] = "http://";
 const char server[] = "tomato-1230.herokuapp.com";
 const char api_url[] = "/api/v" API_VERSION "/";
@@ -77,8 +77,8 @@ const char humidity[] = "humidity/";
 */
 void on_rising_edge(void)
 {
-  start_millis = millis();
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(CO2_PIN), on_falling_edge, FALLING);
+  start_micro = micros();
 }
 
 /*
@@ -88,15 +88,19 @@ void on_rising_edge(void)
 void on_falling_edge(void)
 {
   prev_co2_concentration = cur_co2_concentration;
-  uint32_t cur_millis = millis();
-
+  
+  
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(CO2_PIN), on_rising_edge, RISING);
-
-  if (cur_millis < start_millis) //millis() will go around at some point
+  uint32_t cur_micro = micros();
+  
+  if (cur_micro < start_micro) //micro() will go around at some point
     return; // We don't really need to take care of this as we only send data once in five minutes, so one sample doesn't really matter, eventhought it would be easy to handle
   else
-    cur_co2_concentration = cur_millis - start_millis - 2; // 2.0ms (@ 0ppm), 1002ms (@ 5000ppm)
-
+    cur_co2_concentration = cur_micro - start_micro; // 2.0ms (@ 0ppm), 1002ms (@ 5000ppm)
+    Serial.print("CO2 concentration: ");
+    Serial.print(cur_co2_concentration/400); //2.0ms (@ 0ppm), 1002ms (@ 5000ppm)
+    Serial.println("ppm");
+    
   co2_sum += cur_co2_concentration;
   co2_count++;
   if (cur_co2_concentration != prev_co2_concentration)
@@ -147,6 +151,7 @@ void temperature_humidity_timer_handler(void)
 /*
    Function to send sensor data to cloud.
 */
+/*
 void send_sensor_data_to_cloud(const char *method, const char *path, const char *data)
 {
   char buf[BUF_SIZE];
@@ -174,7 +179,7 @@ void send_sensor_data_to_cloud(const char *method, const char *path, const char 
     Serial.println("Failed to create connection to server");
   }
 }
-
+*/
 void setup()
 {
   pinMode(CO2_PIN, INPUT); // no internal pullup
@@ -199,13 +204,13 @@ void setup()
 }
 
 void loop() {
-  int brightnessVal = ldr.read(); //this is actually not used at all
-
+//  int brightnessVal = ldr.read(); //this is actually not used at all
+  
   timer.run();
 
   sound_prev_value = sound_cur_value;
   sound_cur_value = analogRead(SOUND_APIN);
-
+  
   if (sound_cur_value != sound_prev_value) {
     //Serial.print("Sound level: ");
     //Serial.println(sound_cur_value);
@@ -227,9 +232,7 @@ void loop() {
 
   if (co2_changed) {
     co2_changed = false;
-    Serial.print("CO2 concentration: ");
-    Serial.print(cur_co2_concentration); //2.0ms (@ 0ppm), 1002ms (@ 5000ppm)
-    Serial.println("ppm");
+    
   }
 
   if (motion_detected) {
@@ -250,27 +253,27 @@ void loop() {
 
     snprintf(params, BUF_SIZE, "detected=%s&sensor=%s%s%s%s%s", motion_detected_cloud ? "true" : "false", protocol, server, api_url, sensor_url, motion_url);
     snprintf(sensor, 32, "%s%s%s", api_url, room_url, motion);
-    send_sensor_data_to_cloud(post, sensor, params);
+    //send_sensor_data_to_cloud(post, sensor, params);
 
     motion_detected_cloud = false;
-    Serial.println("sensor data sent to cloud"); //send motion sensor data to cloud once in minute
+    //Serial.println("sensor data sent to cloud"); //send motion sensor data to cloud once in minute
 
     if (cloud_interval_counter % 5 == 0) { // send other sensor data once in 5 minutes
       //there is bug somewhere as for some reason we need six %s eventhought I have only five string parameters
       snprintf(params, BUF_SIZE, "concentration=%u&sensor=%s%s%s%s%s%s", co2_sum / co2_count, protocol, server, api_url, sensor_url, co2_url);
       Serial.println(params);
       snprintf(sensor, 32, "%s%s%s", api_url, room_url, co2);
-      send_sensor_data_to_cloud(post, sensor, params);
+      //send_sensor_data_to_cloud(post, sensor, params);
       co2_sum = co2_count = 0;
 
       snprintf(params, BUF_SIZE, "temperature=%i&sensor=%s%s%s%s%s%s", temperature_sum / temperature_count, protocol, server, api_url, sensor_url, temperature_url);
       snprintf(sensor, 32, "%s%s%s", api_url, room_url, temperature);
-      send_sensor_data_to_cloud(post, sensor, params);
+      //send_sensor_data_to_cloud(post, sensor, params);
       temperature_sum = temperature_count = 0;
 
       snprintf(params, BUF_SIZE, "humidity=%u&sensor=%s%s%s%s%s%s", humidity_sum / humidity_count, protocol, server, api_url, sensor_url, humidity_url);
       snprintf(sensor, 32, "%s%s%s", api_url, room_url, humidity);
-      send_sensor_data_to_cloud(post, sensor, params);
+      //send_sensor_data_to_cloud(post, sensor, params);
       humidity_sum = humidity_count = 0;
 
       Serial.println("Other sensor data sent to cloud");
@@ -278,3 +281,4 @@ void loop() {
     }
   }
 }
+

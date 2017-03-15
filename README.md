@@ -92,7 +92,7 @@ By working in an iterative manner as outlined above, we would be able to adjust 
 
 We are team Room Mate. We are Master’s students from Aalto School of Science and School of Engineering in Aalto University. Our skills include Android development, embedded system programming, backend development and UI/UX design. We are participating the Elisa IoT challenge as a group of individuals.
 
-Contact person: Anssi Grekula, [anssi.grekula@aalto.fi](mailto:anssi.grekula@aalto.fi), +358453255901.
+Contact person: Anssi Grekula, [anssi.grekula@aalto.fi](mailto:anssi.grekula@aalto.fi), 
 
 Team:
 
@@ -106,31 +106,26 @@ Team:
   <tr>
     <td>Jin Jin</td>
     <td>jin.jin@aalto.fi</td>
-    <td>+358445078830</td>
     <td></td>
   </tr>
   <tr>
     <td>Juho Marttila</td>
     <td>juho.marttila@aalto.fi</td>
-    <td>+358400510795</td>
     <td></td>
   </tr>
   <tr>
     <td>Joni Lampio</td>
     <td>joni.lampio@aalto.fi</td>
-    <td>+358503279264</td>
     <td></td>
   </tr>
   <tr>
     <td>Anssi Grekula</td>
     <td>anssi.grekula@aalto.fi</td>
-    <td>+358453255901</td>
     <td></td>
   </tr>
   <tr>
     <td>Julius Eerola</td>
     <td>julius.eerola@aalto.fi</td>
-    <td>+358440557081</td>
     <td></td>
   </tr>
 </table>
